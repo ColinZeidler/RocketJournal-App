@@ -3,7 +3,9 @@ package zeidler.colin.rocketjournal;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,18 +53,26 @@ public class JournalListView extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_settings: return true;
-            case R.id.add_test: jList.addNewTestItem(); return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case R.id.add_test:
+                Intent intent = new Intent();
+                intent.setClass(context, AddJournal.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_delete_all:
+                jList.deleteAll();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("JournalListA", "resumed");
+    }
 
     public static class JournalList extends Fragment {
 
@@ -103,16 +113,30 @@ public class JournalListView extends Activity {
         public void addNewTestItem() {
             Journal j = new Journal("Stellar", "H255", 5, new Date(), "", Journal.LaunchRes.SUCCESS, 4.0f);
             dbManager.addJournal(j);
+            updateList();
+        }
 
-            journals.add(j);
+        public void deleteAll() {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    dbManager.deleteAll();
+                    updateList();
+                }
+            }).start();
+        }
+
+        public void updateList() {
+            journals.clear();
+            journals.addAll(dbManager.getAllJournals());
             arrAdapter.notifyDataSetChanged();
         }
 
         @Override
         public void onResume() {
             super.onResume();
-            journals = dbManager.getAllJournals();
-            arrAdapter.notifyDataSetChanged();
+            Log.d("JournalListF", "resumed");
+            updateList();
         }
     }
 }
