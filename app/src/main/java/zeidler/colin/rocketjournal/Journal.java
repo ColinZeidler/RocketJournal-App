@@ -21,7 +21,31 @@ public class Journal {
     private float weight;   //weight of the rocket in pounds
 
     public static enum LaunchRes {
-        SUCCESS, NO_FIRE, CATO, NO_DEPLOY
+        SUCCESS("Success"),
+        NO_FIRE("No Fire"),
+        CATO("CATO"),
+        NO_DEPLOY("No Deploy");
+
+        private String text;
+
+        LaunchRes(String text) {
+            this.text = text;
+        }
+
+        public static LaunchRes fromString(String text) {
+            if (text != null) {
+                for (LaunchRes l: LaunchRes.values()) {
+                    if (text.equalsIgnoreCase(l.text))
+                        return l;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
     }
 
     public Journal(String name, String motor, int delay, Date date, String notes, LaunchRes result, float weight) {
