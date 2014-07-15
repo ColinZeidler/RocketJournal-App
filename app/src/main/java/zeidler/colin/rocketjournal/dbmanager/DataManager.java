@@ -126,4 +126,7 @@ public class DataManager extends SQLiteOpenHelper{
     }
 
     //TODO remove Journal function
+    public void deleteAll() {
+        db.delete(TABLENAME, null, null);
+    }
 }
