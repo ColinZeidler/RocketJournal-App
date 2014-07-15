@@ -2,10 +2,32 @@
 <resources>
 
     <string name="app_name">Rocket Journal</string>
+
     <string name="hello_world">Hello world!</string>
+
+    //Menus
     <string name="action_settings">Settings</string>
     <string name="add_menu">Add Test item</string>
     <string name="confirm_menu">Done</string>
     <string name="cancel_menu">Cancel</string>
+    <string name="action_delete_all">Delete All</string>
+
+    //Activity Titles
+    <string name="add_journal">New Journal</string>
+
+    //fields
+    <string name="motor_field">Motor</string>
+    <string name="delay_field">Delay</string>
+    <string name="name_field">Name</string>
+    <string name="weight_field">Weight</string>
+    <string name="notes_field">Notes</string>
+    <string name="results_field">Result</string>
+
+    <string-array name="results_array">
+        <item>Success</item>
+        <item>No Fire</item>
+        <item>CATO</item>
+        <item>No Deploy</item>
+    </string-array>
 
 </resources>
