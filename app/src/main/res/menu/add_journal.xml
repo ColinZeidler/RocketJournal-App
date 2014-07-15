@@ -5,9 +5,10 @@
     tools:context=".JournalListView">
     <item android:id="@+id/action_done"
         android:title="@string/confirm_menu"
+        android:icon="@drawable/ic_action_navigation_accept"
         android:showAsAction="always"/>
     <item android:id="@+id/action_cancel"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:icon="@drawable/ic_action_navigation_cancel"
         android:title="@string/cancel_menu"
         android:showAsAction="always"/>
 
