@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddJournal"
+            android:label="@string/add_journal"
+            android:parentActivityName=".JournalListView">
+                <meta-data android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".JournalListView"/>
+        </activity>
     </application>
 
 </manifest>
