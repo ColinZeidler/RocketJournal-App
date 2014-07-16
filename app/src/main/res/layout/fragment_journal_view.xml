@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/placeholder_name"
+        android:id="@+id/r_name"
         android:textSize="@dimen/medium_text"/>
 
     <Space
@@ -42,6 +43,7 @@
         <TextView
             style="@style/table_text"
             android:text="@string/j_view_motor"
+            android:id="@+id/r_motor"
             android:layout_row="0"
             android:layout_column="2"/>
 
@@ -58,6 +60,7 @@
         <TextView
             style="@style/table_text"
             android:text="@string/j_view_weight"
+            android:id="@+id/r_weight"
             android:layout_row="1"
             android:layout_column="2"/>
         </GridLayout>
@@ -87,6 +90,7 @@
         <TextView
             style="@style/table_text"
             android:text="@string/placeholder_short_text"
+            android:id="@+id/r_res"
             android:layout_row="0"
             android:layout_column="2"/>
 
@@ -102,6 +106,7 @@
         <TextView
             style="@style/table_text"
             android:text="@string/placeholder_date"
+            android:id="@+id/r_date"
             android:layout_column="2"
             android:layout_row="1"/>
 
@@ -117,6 +122,7 @@
 
     <TextView
         style="@style/display_text"
+        android:id="@+id/r_notes"
         android:text="@string/placeholder_paragraph"/>
 
 </LinearLayout>
