@@ -30,4 +30,29 @@
         <item>No Deploy</item>
     </string-array>
 
+    //Journal View
+    <string name="spec_table">Rocket Info</string>
+    <string name="motor_header">Motor:</string>
+    <string name="j_view_motor">P1500-R 9 seconds</string>
+    <string name="weight_header">Weight:</string>
+    <string name="j_view_weight">1.3 lbs</string>
+    <string name="flight_table">Flight Data</string>
+    <string name="result_header">Result:</string>
+    <string name="notes_header">Flight Notes</string>
+    <string name="date_header">Date:</string>
+
+    //placeholders
+    <string name="placeholder_name">Lorem Ipsum Dolor</string>
+    <string name="placeholder_short_text">ipsum dolor</string>
+    <string name="placeholder_date">14 Jun, 2013: 2:15 AM</string>
+    <string name="placeholder_sentence">Lorem ipsum dolor sit amet, utamur antiopam molestiae ex quo.</string>
+    <string name="placeholder_paragraph">\tLorem ipsum dolor sit amet, errem invenire referrentur ex
+        cum, has ne postea percipit. Ut nec volumus suscipit, nullam appellantur ut vis, id brute
+        aliquip alterum sit. Ut usu diam vulputate, et eos appetere inimicus hendrerit. Modo
+        adipisci ocurreret nec id. No quo dicta iracundia, cu essent dicunt temporibus sed, est et
+        ceteros expetenda dissentias.\n\t\n\tEu mel viderer fuisset torquatos, usu ei ridens probatus,
+        ne qui habeo paulo impedit. Iudico primis prompta no cum, quidam alienum moderatius sea id,
+        ad graeco iracundia rationibus duo. Utinam admodum salutatus mel ad, admodum alienum
+        appellantur sed id, abhorreant vituperata ea eam. Ea elit prima constituam sit.</string>
+
 </resources>

@@ -5,4 +5,23 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="display_text">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/small_text</item>
+    </style>
+
+    <style name="table_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/small_text</item>
+    </style>
+
+    <style name="table_text.bold" parent="table_text">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="display_text.bold" parent="display_text">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
