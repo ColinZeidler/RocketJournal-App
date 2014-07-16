@@ -1,5 +1,6 @@
 package zeidler.colin.rocketjournal;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  *
  * Also defines the Enum that is used for all the possible flight results.
  */
-public class Journal {
+public class Journal implements Serializable {
     private String rName;
     private String motor;
     private int delay;
