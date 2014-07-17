@@ -79,13 +79,13 @@ public class JournalListView extends Activity {
         private DataManager dbManager;
         private List<Journal> journals;
         private Context context;
-        private ArrayAdapter<Journal> arrAdapter;
+        private JournalListAdapter arrAdapter;
 
         public JournalList() {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_journal, container, false);
 
@@ -93,7 +93,7 @@ public class JournalListView extends Activity {
 
             dbManager = DataManager.getInstance(context);
             journals = dbManager.getAllJournals();
-            arrAdapter = new ArrayAdapter<Journal>(context, android.R.layout.simple_list_item_1,
+            arrAdapter = new JournalListAdapter(context, R.layout.journal_adapter,
                     journals);
 
             ListView lView = (ListView) rootView.findViewById(R.id.listView);
@@ -102,8 +102,11 @@ public class JournalListView extends Activity {
             lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //TODO implement custom arrayAdapter.
-//                    Journal j = (Journal)view.getTag();
+                    Journal j = (Journal)view.getTag();
+                    Intent intent = new Intent();
+                    intent.setClass(context, JournalView.class);
+                    intent.putExtra("Journal", j);
+                    startActivity(intent);
                 }
             });
 
