@@ -38,9 +38,6 @@ public class JournalView extends Activity {
         }
 
         context = this;
-        //load Journal object and
-        Journal journal = (Journal) getIntent().getExtras().getSerializable("Journal");
-        jView.populate(journal);
 
     }
 
@@ -54,19 +51,23 @@ public class JournalView extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
     public static class JournalViewFrag extends Fragment {
 
         private Context context;
         private View rootView;
+        private Journal journal;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             rootView = inflater.inflate(R.layout.fragment_journal_view, container, false);
             context = container.getContext();
+            journal = (Journal) getActivity().getIntent().getExtras().getSerializable("Journal");
+            populate();
             return rootView;
         }
 
-        public void populate(Journal journal) {
+        public void populate() {
             TextView nameV = (TextView) rootView.findViewById(R.id.r_name);
             TextView motorV = (TextView) rootView.findViewById(R.id.r_motor);
             TextView weightV = (TextView) rootView.findViewById(R.id.r_weight);
