@@ -17,11 +17,15 @@
         <item name="android:textSize">@dimen/small_text</item>
     </style>
 
-    <style name="table_text.bold" parent="table_text">
+    <style name="table_text.bold">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="display_text.bold" parent="display_text">
+    <style name="display_text.bold">
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="display_text.medium">
+        <item name="android:textSize">@dimen/medium_text</item>
     </style>
 </resources>
