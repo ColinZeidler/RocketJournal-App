@@ -19,7 +19,7 @@ import zeidler.colin.rocketjournal.Journal;
  */
 public class DataManager extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION   = 1;
+    private static final int DATABASE_VERSION   = 2;
     private static final String DATABASE_NAME   = "Rocket Journal";
 
     private static final String TABLENAME       = "Journals";
@@ -118,7 +118,7 @@ public class DataManager extends SQLiteOpenHelper{
                  */
                 jList.add(new Journal(cursor.getString(1), cursor.getString(2), cursor.getInt(3),
                         new Date(cursor.getLong(4)), cursor.getString(5),
-                        Journal.LaunchRes.valueOf(cursor.getString(6)), cursor.getFloat(7)));
+                        Journal.LaunchRes.fromString(cursor.getString(6)), cursor.getFloat(7)));
             }while (cursor.moveToNext());
         }
 
