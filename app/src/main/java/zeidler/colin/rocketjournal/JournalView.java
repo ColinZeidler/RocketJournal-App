@@ -43,11 +43,16 @@ public class JournalView extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.journal_view, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_menu: return true; //TODO add actual action
+            case R.id.edit_menu: return true;   //TODO add actual action
+        }
         return super.onOptionsItemSelected(item);
     }
 
