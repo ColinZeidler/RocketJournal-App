@@ -11,6 +11,9 @@
     <string name="confirm_menu">Done</string>
     <string name="cancel_menu">Cancel</string>
     <string name="action_delete_all">Delete All</string>
+    <string name="edit_menu">Edit</string>
+    <string name="delete_menu">Delete</string>
+    <string name="delete_selection_menu">Delete Selected</string>
 
     //Activity Titles
     <string name="add_journal">New Journal</string>
@@ -40,11 +43,13 @@
     <string name="result_header">Result:</string>
     <string name="notes_header">Flight Notes</string>
     <string name="date_header">Date:</string>
+    <string name="altitude_header">Altitude:</string>
 
     //placeholders
     <string name="placeholder_name">Lorem Ipsum Dolor</string>
     <string name="placeholder_short_text">ipsum dolor</string>
     <string name="placeholder_date">14 Jun, 2013: 2:15 AM</string>
+    <string name="placeholder_number">5123</string>
     <string name="placeholder_sentence">Lorem ipsum dolor sit amet, utamur antiopam molestiae ex quo.</string>
     <string name="placeholder_paragraph">\tLorem ipsum dolor sit amet, errem invenire referrentur ex
         cum, has ne postea percipit. Ut nec volumus suscipit, nullam appellantur ut vis, id brute

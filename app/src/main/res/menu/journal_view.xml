@@ -2,7 +2,14 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="@string/hello_world"
-        />
+        android:id="@+id/edit_menu"
+        android:title="@string/edit_menu"
+        android:icon="@drawable/ic_action_content_edit"
+        android:showAsAction="always"/>
+    <item
+        android:id="@+id/delete_menu"
+        android:title="@string/delete_menu"
+        android:icon="@drawable/ic_action_content_discard"
+        android:showAsAction="always"/>
 
 </menu>
