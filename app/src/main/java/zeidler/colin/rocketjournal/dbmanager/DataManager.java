@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import zeidler.colin.rocketjournal.data.Journal;
+import zeidler.colin.rocketjournal.data.Rocket;
 
 /**
  * Created by Colin on 2014-07-08.
@@ -63,6 +64,15 @@ public class DataManager extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLENAME);
         onCreate(db);
     }
+
+    /**
+     * Delete everything in the database
+     */
+    public void deleteAllObjects() {
+
+    }
+
+    // JOURNALS
 
     /**
      * Add a single journal to the database
@@ -126,7 +136,50 @@ public class DataManager extends SQLiteOpenHelper{
     }
 
     //TODO remove Journal function
-    public void deleteAll() {
+    public void deleteAllJournals() {
         db.delete(TABLENAME, null, null);
+    }
+
+    // ROCKETS
+
+    /**
+     * Get all rockets from the database
+     * @return List of all rockets
+     */
+    public List<Rocket> getAllRockets() {
+        return null;
+    }
+
+    /**
+     * Get rocket that flew in given Journal
+     * @param journal Journal that contains the wanted rocket
+     * @return Rocket contained in the given Journal
+     */
+    public Rocket getRocketForJournal(Journal journal) {
+        return null;
+    }
+
+    /**
+     * Delete all Rockets in the Database
+     */
+    public void deleteAllRockets() {
+
+    }
+
+    /**
+     * Add the given Rocket to the database
+     * @param rocket the Rocket to add to the database
+     */
+    public void addRocket(Rocket rocket) {
+
+    }
+
+    /**
+     * Return what the ID will be of the next Rocket added
+     * Returns -1 if operation failed
+     * @return The ID of the Next Rocket
+     */
+    public int getNextRocketID() {
+        return -1;
     }
 }

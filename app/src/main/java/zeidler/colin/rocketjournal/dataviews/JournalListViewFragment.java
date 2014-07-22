@@ -72,7 +72,7 @@ public class JournalListViewFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                dbManager.deleteAll();
+                dbManager.deleteAllJournals();
                 updateList();
             }
         }).start();
