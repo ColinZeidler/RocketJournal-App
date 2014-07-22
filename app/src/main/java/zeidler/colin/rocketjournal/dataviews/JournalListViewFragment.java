@@ -87,7 +87,6 @@ public class JournalListViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("JournalListF", "resumed");
         updateList();
     }
 }

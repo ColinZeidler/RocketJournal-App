@@ -56,10 +56,4 @@ public class JournalListViewActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("JournalListA", "resumed");
-    }
-
 }
