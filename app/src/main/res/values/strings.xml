@@ -26,13 +26,6 @@
     <string name="notes_field">Notes</string>
     <string name="results_field">Result</string>
 
-    <string-array name="results_array">
-        <item>Success</item>
-        <item>No Fire</item>
-        <item>CATO</item>
-        <item>No Deploy</item>
-    </string-array>
-
     //Journal View
     <string name="spec_table">Rocket Info</string>
     <string name="motor_header">Motor:</string>

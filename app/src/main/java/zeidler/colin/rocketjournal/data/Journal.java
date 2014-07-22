@@ -24,8 +24,9 @@ public class Journal implements Serializable {
     public static enum LaunchRes {
         SUCCESS("Success"),
         NO_FIRE("No Fire"),
-        CATO("CATO"),
-        NO_DEPLOY("No Deploy");
+        LATE_DEPLOY("Late Deploy"),
+        NO_DEPLOY("No Deploy"),
+        CATO("CATO");
 
         private String text;
 
@@ -46,6 +47,16 @@ public class Journal implements Serializable {
         @Override
         public String toString() {
             return text;
+        }
+
+        public static String[] names() {
+            LaunchRes[] reses = values();
+            String[] names = new String[reses.length];
+
+            for (int i = 0; i < reses.length; i++)
+                names[i] = reses[i].toString();
+
+            return names;
         }
     }
 

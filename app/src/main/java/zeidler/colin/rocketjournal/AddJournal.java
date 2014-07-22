@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -89,8 +90,8 @@ public class AddJournal extends Activity{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_new_journal, container, false);
             Spinner results = (Spinner) rootView.findViewById(R.id.spinner);
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(container.getContext(),
-                    R.array.results_array, android.R.layout.simple_spinner_dropdown_item);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(container.getContext(),
+                    android.R.layout.simple_spinner_dropdown_item, Journal.LaunchRes.names());
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             results.setAdapter(adapter);
