@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.listviews;
+package zeidler.colin.rocketjournal.dataviews;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,18 +12,18 @@ import zeidler.colin.rocketjournal.R;
  * Created by Colin on 2014-07-15.
  *
  * Activity to display the detailed contents of a single rocket journal entry
- * specific Journal is based on the one selected from the JournalListView
+ * specific Journal is based on the one selected from the JournalListViewActivity
  */
-public class JournalView extends Activity {
+public class JournalViewActivity extends Activity {
 
-    private JournalViewFrag jView;
+    private JournalViewFragment jView;
     private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_view);
-        jView = new JournalViewFrag();
+        jView = new JournalViewFragment();
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container_view, jView)

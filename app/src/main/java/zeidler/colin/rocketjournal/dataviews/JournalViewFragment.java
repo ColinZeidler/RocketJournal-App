@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.listviews;
+package zeidler.colin.rocketjournal.dataviews;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -18,7 +18,7 @@ import zeidler.colin.rocketjournal.R;
  * Created by Colin on 2014-07-21.
  *
  */
-public class JournalViewFrag extends Fragment {
+public class JournalViewFragment extends Fragment {
 
     private Context context;
     private View rootView;
