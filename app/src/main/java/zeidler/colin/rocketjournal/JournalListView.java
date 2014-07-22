@@ -12,16 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import zeidler.colin.rocketjournal.dbmanager.DataManager;
+import zeidler.colin.rocketjournal.view.JournalView;
 
 
 public class JournalListView extends Activity {

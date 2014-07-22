@@ -22,7 +22,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".JournalListView"/>
         </activity>
-        <activity android:name=".JournalView"
+        <activity android:name=".view.JournalView"
             android:label="@string/app_name"
             android:parentActivityName=".JournalListView">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
