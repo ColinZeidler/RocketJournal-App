@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal;
+package zeidler.colin.rocketjournal.data;
 
 import java.io.Serializable;
 import java.util.Date;

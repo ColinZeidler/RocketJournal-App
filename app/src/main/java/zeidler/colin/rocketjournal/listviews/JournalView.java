@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.view;
+package zeidler.colin.rocketjournal.listviews;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import zeidler.colin.rocketjournal.R;
-import zeidler.colin.rocketjournal.view.JournalViewFrag;
 
 /**
  * Created by Colin on 2014-07-15.

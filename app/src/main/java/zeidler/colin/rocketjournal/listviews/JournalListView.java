@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal;
+package zeidler.colin.rocketjournal.listviews;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -17,8 +17,11 @@ import android.widget.ListView;
 import java.util.Date;
 import java.util.List;
 
+import zeidler.colin.rocketjournal.AddJournal;
+import zeidler.colin.rocketjournal.JournalListAdapter;
+import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.data.Journal;
 import zeidler.colin.rocketjournal.dbmanager.DataManager;
-import zeidler.colin.rocketjournal.view.JournalView;
 
 
 public class JournalListView extends Activity {

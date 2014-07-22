@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.view;
+package zeidler.colin.rocketjournal.listviews;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
-import zeidler.colin.rocketjournal.Journal;
+import zeidler.colin.rocketjournal.data.Journal;
 import zeidler.colin.rocketjournal.R;
 
 /**

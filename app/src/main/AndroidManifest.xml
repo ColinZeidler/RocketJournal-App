@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".JournalListView"
+            android:name=".listviews.JournalListView"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,13 +18,13 @@
         </activity>
         <activity android:name=".AddJournal"
             android:label="@string/add_journal"
-            android:parentActivityName=".JournalListView">
+            android:parentActivityName=".listviews.JournalListView">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".JournalListView"/>
         </activity>
-        <activity android:name=".view.JournalView"
+        <activity android:name=".listviews.JournalView"
             android:label="@string/app_name"
-            android:parentActivityName=".JournalListView">
+            android:parentActivityName=".listviews.JournalListView">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".JournalListView"/>
         </activity>

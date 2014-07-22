@@ -11,6 +11,8 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import zeidler.colin.rocketjournal.data.Journal;
+
 /**
  * Created by Colin on 2014-07-16.
  *

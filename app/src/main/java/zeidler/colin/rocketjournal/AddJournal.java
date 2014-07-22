@@ -13,10 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Date;
 
+import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.data.Journal;
 import zeidler.colin.rocketjournal.dbmanager.DataManager;
 
 /**
