@@ -15,13 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/journal_data" />
+        <include layout="@layout/include_journal_data" />
 
-        <Space
+        <android.support.v7.widget.Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_vertical_margin" />
 
-        <include layout="@layout/journal_notes" />
+        <include layout="@layout/include_journal_notes" />
 
     </LinearLayout>
 

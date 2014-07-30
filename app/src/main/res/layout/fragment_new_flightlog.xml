@@ -20,12 +20,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="@string/name_field"
-                android:id="@+id/name_field" />
+                android:layout_height="40dp"
+                android:id="@+id/rocket_spinner"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -40,13 +38,6 @@
                 android:inputType="number"
                 android:hint="@string/delay_field"
                 android:id="@+id/delay_field" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:hint="@string/weight_field"
-                android:id="@+id/weight_field" />
 
             <Spinner
                 android:layout_width="match_parent"

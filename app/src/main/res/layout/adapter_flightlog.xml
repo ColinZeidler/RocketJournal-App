@@ -2,7 +2,9 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/row_padding_vertical"
+    android:paddingBottom="@dimen/row_padding_vertical">
 
     <TextView
         style="@style/display_text.medium"
@@ -10,7 +12,7 @@
         android:text="@string/placeholder_name"/>
 
     <TextView
-        style="@style/display_text"
+        style="@style/display_text.secondary"
         android:id="@+id/adapter_status"
         android:text="@string/placeholder_sentence"/>
 

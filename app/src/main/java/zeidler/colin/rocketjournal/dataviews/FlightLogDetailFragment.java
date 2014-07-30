@@ -1,8 +1,8 @@
 package zeidler.colin.rocketjournal.dataviews;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +11,26 @@ import android.widget.TextView;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
-import zeidler.colin.rocketjournal.data.Journal;
+import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.data.FlightLog;
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.data.Rocket;
 
 /**
  * Created by Colin on 2014-07-21.
  *
  */
-public class JournalViewFragment extends Fragment {
+public class FlightLogDetailFragment extends Fragment {
 
-    private Context context;
     private View rootView;
-    private Journal journal;
+    private FlightLog flightLog;
+    private Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_journal_view, container, false);
+        rootView = inflater.inflate(R.layout.fragment_flightlog_view, container, false);
         context = container.getContext();
-        journal = (Journal) getActivity().getIntent().getExtras().getSerializable("Journal");
+        flightLog = (FlightLog) getActivity().getIntent().getExtras().getSerializable("Journal");
         populate();
         return rootView;
     }
@@ -41,20 +43,21 @@ public class JournalViewFragment extends Fragment {
         TextView dateV = (TextView) rootView.findViewById(R.id.r_date);
         TextView noteV = (TextView) rootView.findViewById(R.id.r_notes);
 
-        nameV.setText(journal.getrName());
+        Rocket r = DataModel.getInstance(context).getRocket(flightLog.getRocketID());
+        nameV.setText(r.getName());
 
-        String motorT = journal.getMotor() + " " + journal.getDelay() + " seconds";
+        String motorT = flightLog.getMotor() + " " + flightLog.getDelay() + " seconds";
         motorV.setText(motorT);
 
-        String weightT = journal.getWeight() + " lbs";
+        String weightT = r.getWeight() + " lbs";
         weightV.setText(weightT);
 
-        resV.setText(journal.getResult().toString());
+        resV.setText(flightLog.getResult().toString());
 
         Format formatter = new SimpleDateFormat("dd EEE, yyyy: hh:mm a");
-        String dateT = formatter.format(journal.getLaunchDate());
+        String dateT = formatter.format(flightLog.getDate());
         dateV.setText(dateT);
 
-        noteV.setText(journal.getNotes());
+        noteV.setText(flightLog.getNotes());
     }
 }

@@ -11,24 +11,25 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import zeidler.colin.rocketjournal.data.Journal;
+import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.data.FlightLog;
 
 /**
  * Created by Colin on 2014-07-16.
  *
  */
-public class JournalListAdapter extends ArrayAdapter<Journal> {
+public class FlightLogListAdapter extends ArrayAdapter<FlightLog> {
 
     private int layoutId;
-    private List<Journal> journals;
+    private List<FlightLog> flightLogs;
     private Context mContext;
 
-    public JournalListAdapter(Context context, int layoutId, List<Journal> journals) {
-        super(context, layoutId, journals);
+    public FlightLogListAdapter(Context context, int layoutId, List<FlightLog> flightLogs) {
+        super(context, layoutId, flightLogs);
 
         this.mContext = context;
         this.layoutId = layoutId;
-        this.journals = journals;
+        this.flightLogs = flightLogs;
     }
 
     @Override
@@ -39,17 +40,18 @@ public class JournalListAdapter extends ArrayAdapter<Journal> {
             v = vi.inflate(layoutId, null);
         }
 
-        Journal journal = journals.get(position);
-        if (journal != null) {
+        FlightLog flightLog = flightLogs.get(position);
+        if (flightLog != null) {
             TextView name = (TextView) v.findViewById(R.id.adapter_name);
             TextView status = (TextView) v.findViewById(R.id.adapter_status);
 
-            name.setText(journal.getrName());
+            String n = DataModel.getInstance(mContext).getRocket(flightLog.getRocketID()).getName();
+            name.setText(n);
             Format formatter = new SimpleDateFormat("dd EEE, yyyy: hh:mm a");
-            String statusT = journal.getResult().toString() + " launched: " + formatter.format(journal.getLaunchDate());
+            String statusT = flightLog.getResult().toString() + " launched: " + formatter.format(flightLog.getDate());
             status.setText(statusT);
 
-            v.setTag(journal);
+            v.setTag(flightLog);
         }
 
         return v;

@@ -1,8 +1,8 @@
 package zeidler.colin.rocketjournal.dataviews;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,23 +14,20 @@ import zeidler.colin.rocketjournal.R;
  * Activity to display the detailed contents of a single rocket journal entry
  * specific Journal is based on the one selected from the JournalListViewActivity
  */
-public class JournalViewActivity extends Activity {
-
-    private JournalViewFragment jView;
-    private Context context;
+public class FlightLogDetailActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_view);
-        jView = new JournalViewFragment();
+        FlightLogDetailFragment jView = new FlightLogDetailFragment();
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.container_view, jView)
                     .commit();
         }
 
-        context = this;
+        Context context = this;
 
     }
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/add_item_rocket"
+        android:title="@string/add_rocket"
+        android:icon="@drawable/ic_action_content_new"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/delete_all_rockets"
+        android:title="@string/action_delete_all"/>
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

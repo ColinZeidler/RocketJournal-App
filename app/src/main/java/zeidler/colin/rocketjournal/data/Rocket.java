@@ -1,20 +1,21 @@
 package zeidler.colin.rocketjournal.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Colin on 2014-07-21.
  *
  * Data structure to contain data about a rocket
  */
-public class Rocket {
+public class Rocket implements Serializable {
 
-    private int id;
+    private final int id;
     private String name;
     private float weight;
     private int flightCount;
-    private ArrayList<Journal> journals;
+    private String image;
+    private ArrayList<Integer> flightLogIDs;
 
     /**
      * Create a new Rocket object
@@ -23,33 +24,37 @@ public class Rocket {
      * @param weight    The weight of the Rocket in pounds
      */
     public Rocket(int id, String name, float weight) {
+        if (id == -1)
+            id = DataModel.getNextRocketID();
         this.id = id;
         this.name = name;
         this.weight = weight;
         this.flightCount = 0;
-        this.journals = new ArrayList<Journal>();
+        flightLogIDs = new ArrayList<Integer>();
     }
 
-    /**
-     * Create New Rocket object
-     * Used mainly when loading from the database
-     * @param id        The ID of the rocket (returned from the DataManager)
-     * @param name      The Name of the Rocket
-     * @param weight    The weight of the Rocket in pounds
-     * @param journals  The Journals that the Rocket is listed in
-     */
-    public Rocket(int id, String name, float weight, ArrayList<Journal> journals) {
+    public Rocket(int id, String name, float weight, int flightCount, String image) {
         this(id, name, weight);
-        this.journals = journals;
-        this.flightCount = journals.size();
+        this.flightCount = flightCount;
+        this.image = image;
     }
 
-    public float getWeight() {
-        return weight;
+    public ArrayList<Integer> getFlightLogIDs() {
+        return flightLogIDs;
     }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
+    public void setFlightLogIDs(ArrayList<Integer> flightLogIDs) {
+        this.flightLogIDs = flightLogIDs;
+        this.flightCount = this.flightLogIDs.size();
+    }
+
+    public void addFlightLogID(int flightLogID) {
+        this.flightLogIDs.add(flightLogID);
+        this.flightCount++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -60,19 +65,28 @@ public class Rocket {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public float getWeight() {
+        return weight;
     }
 
-    public ArrayList<Journal> getJournals() {
-        return journals;
-    }
-
-    public void addJournal(Journal journal) {
-        journals.add(journal);
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
 
     public int getFlightCount() {
         return flightCount;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

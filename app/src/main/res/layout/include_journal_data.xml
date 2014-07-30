@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
@@ -11,7 +13,7 @@
         android:id="@+id/r_name"
         android:textSize="@dimen/medium_text"/>
 
-    <Space
+    <android.support.v7.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_vertical_margin" />
 
@@ -19,7 +21,7 @@
         style="@style/display_text.bold"
         android:text="@string/spec_table"/>
 
-    <GridLayout
+    <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin">
@@ -28,38 +30,38 @@
         <TextView
             style="@style/table_text.bold"
             android:text="@string/motor_header"
-            android:layout_row="0"
-            android:layout_column="0"/>
-        <Space
-            android:layout_column="1"
+            app:layout_row="0"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
             android:layout_width="@dimen/activity_horizontal_margin"/>
 
         <TextView
             style="@style/table_text"
             android:text="@string/j_view_motor"
             android:id="@+id/r_motor"
-            android:layout_row="0"
-            android:layout_column="2"/>
+            app:layout_row="0"
+            app:layout_column="2"/>
 
         <!-- Row 2 -->
         <TextView
             style="@style/table_text.bold"
             android:text="@string/weight_header"
-            android:layout_row="1"
-            android:layout_column="0"/>
-        <Space
-            android:layout_column="1"
+            app:layout_row="1"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
             android:layout_width="@dimen/activity_horizontal_margin"/>
 
         <TextView
             style="@style/table_text"
             android:text="@string/j_view_weight"
             android:id="@+id/r_weight"
-            android:layout_row="1"
-            android:layout_column="2"/>
-    </GridLayout>
+            app:layout_row="1"
+            app:layout_column="2"/>
+    </android.support.v7.widget.GridLayout>
 
-    <Space
+    <android.support.v7.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_vertical_margin" />
 
@@ -67,7 +69,7 @@
         style="@style/display_text.bold"
         android:text="@string/flight_table"/>
 
-    <GridLayout
+    <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin">
@@ -76,34 +78,34 @@
         <TextView
             style="@style/table_text.bold"
             android:text="@string/result_header"
-            android:layout_row="0"
-            android:layout_column="0"/>
-        <Space
+            app:layout_row="0"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
             android:layout_width="@dimen/activity_horizontal_margin"
-            android:layout_column="1"/>
+            app:layout_column="1"/>
         <TextView
             style="@style/table_text"
             android:text="@string/placeholder_short_text"
             android:id="@+id/r_res"
-            android:layout_row="0"
-            android:layout_column="2"/>
+            app:layout_row="0"
+            app:layout_column="2"/>
 
         <!-- Row 2 -->
         <TextView
             style="@style/table_text.bold"
             android:text="@string/date_header"
-            android:layout_column="0"
-            android:layout_row="1"/>
-        <Space
+            app:layout_column="0"
+            app:layout_row="1"/>
+        <android.support.v7.widget.Space
             android:layout_width="@dimen/activity_horizontal_margin"
-            android:layout_column="1"/>
+            app:layout_column="1"/>
         <TextView
             style="@style/table_text"
             android:text="@string/placeholder_date"
             android:id="@+id/r_date"
-            android:layout_column="2"
-            android:layout_row="1"/>
+            app:layout_column="2"
+            app:layout_row="1"/>
 
-    </GridLayout>
+    </android.support.v7.widget.GridLayout>
 
 </LinearLayout>

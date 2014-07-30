@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/display_text.bold"
+        android:text="@string/spec_table"/>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+        <!-- Row 2 -->
+        <TextView
+            style="@style/table_text.bold"
+            android:text="@string/weight_header"
+            app:layout_row="0"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
+            android:layout_width="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            style="@style/table_text"
+            android:text="@string/j_view_weight"
+            android:id="@+id/r_weight"
+            app:layout_row="0"
+            app:layout_column="2"/>
+
+        <!-- Row 3 -->
+        <TextView
+            style="@style/table_text.bold"
+            android:text="@string/flight_header"
+            app:layout_row="1"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
+            android:layout_width="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            style="@style/table_text"
+            android:text="@string/placeholder_number"
+            android:id="@+id/r_flights"
+            app:layout_row="1"
+            app:layout_column="2"/>
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>
