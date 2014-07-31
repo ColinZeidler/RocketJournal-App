@@ -35,10 +35,6 @@ public class AddFlightLog extends ActionBarActivity {
 
         //null when creating new flight log, not when editing
         final FlightLog flightLog = (FlightLog) getIntent().getExtras().getSerializable("FlightLog");
-        if (flightLog != null) {
-            editing = true;
-            populate(flightLog);
-        }
 
         //Inflate Done/Cancel actionbar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
@@ -79,6 +75,9 @@ public class AddFlightLog extends ActionBarActivity {
         Context context = this;
         model = DataModel.getInstance(context);
 
+        if (flightLog != null) {
+            editing = true;
+        }
     }
 
     private void saveToDB(FlightLog fLog) {
@@ -112,23 +111,6 @@ public class AddFlightLog extends ActionBarActivity {
             model.update(fLog);
     }
 
-    //fill in all of the fields if editing an old FlightLog
-    private void populate(FlightLog flightLog) {
-        TextView motor = (TextView) findViewById(R.id.motor_field);
-        TextView delay = (TextView) findViewById(R.id.delay_field);
-        TextView notes = (TextView) findViewById(R.id.notes_field);
-
-        Spinner res = (Spinner) findViewById(R.id.spinner);
-        Spinner rockets = (Spinner) findViewById(R.id.rocket_spinner);
-
-        motor.setText(flightLog.getMotor());
-        delay.setText(String.valueOf(flightLog.getDelay()));
-        notes.setText(flightLog.getNotes());
-
-        res.setSelection(flightLog.getResult().ordinal());
-        rockets.setSelection(model.getRocketPos(flightLog.getRocketID()));
-    }
-
     public static class AddJournalView extends Fragment {
 
         public AddJournalView() {
@@ -137,6 +119,9 @@ public class AddFlightLog extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_new_flightlog, container, false);
+
+            final DataModel model = DataModel.getInstance(container.getContext());
+            final FlightLog flightLog = (FlightLog) getActivity().getIntent().getExtras().getSerializable("Journal");
 
             Spinner results = (Spinner) rootView.findViewById(R.id.spinner);
             Spinner rockets = (Spinner) rootView.findViewById(R.id.rocket_spinner);
@@ -148,9 +133,22 @@ public class AddFlightLog extends ActionBarActivity {
 
             ArrayAdapter<Rocket> rocketAdapter = new ArrayAdapter<Rocket>(container.getContext(),
                     android.R.layout.simple_spinner_dropdown_item,
-                    DataModel.getInstance(container.getContext()).getRockets());
+                    model.getRockets());
             rocketAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             rockets.setAdapter(rocketAdapter);
+
+            if (flightLog != null) {
+                TextView motor = (TextView) rootView.findViewById(R.id.motor_field);
+                TextView delay = (TextView) rootView.findViewById(R.id.delay_field);
+                TextView notes = (TextView) rootView.findViewById(R.id.notes_field);
+
+                motor.setText(flightLog.getMotor());
+                delay.setText(String.valueOf(flightLog.getDelay()));
+                notes.setText(flightLog.getNotes());
+
+                results.setSelection(flightLog.getResult().ordinal());
+                rockets.setSelection(model.getRocketPos(flightLog.getRocketID()));
+            }
 
             return rootView;
         }
