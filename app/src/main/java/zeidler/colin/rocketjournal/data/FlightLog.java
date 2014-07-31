@@ -16,23 +16,28 @@ import zeidler.colin.rocketjournal.dbmanager.DataManager;
  */
 public class FlightLog implements Serializable {
 
-    private final int id, rocketID;
+    private final int id;
+    private int rocketID;
     private String motor;
     private int delay;
     private Date date;
     private String notes;
     private LaunchRes result;
 
-    public FlightLog(int id, int rocketID) {
+    public FlightLog(int id) {
         if (id == -1)
             id = DataModel.getNextFlightLogID();
         this.id = id;
-        this.rocketID = rocketID;
         this.motor = "No Motor";
         this.delay = -1;
         this.date = new Date();
         this.notes = "";
         this.result = null;
+    }
+
+    public FlightLog(int id, int rocketID) {
+        this(id);
+        this.rocketID = rocketID;
     }
 
     public FlightLog(int id, int rocketID, String motor, int delay,
@@ -51,6 +56,10 @@ public class FlightLog implements Serializable {
 
     public int getRocketID() {
         return rocketID;
+    }
+
+    public void setRocketID(int rocketID) {
+        this.rocketID = rocketID;
     }
 
     public String getMotor() {
