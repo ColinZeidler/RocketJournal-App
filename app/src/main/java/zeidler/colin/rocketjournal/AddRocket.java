@@ -21,13 +21,20 @@ public class AddRocket extends ActionBarActivity {
 
     private DataModel model;
     private boolean editing;
+    protected Rocket testValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         editing = false;
 
-        final Rocket rocket = (Rocket) getIntent().getExtras().getSerializable("Rocket");
+        Bundle extras = getIntent().getExtras();
+        final Rocket rocket;
+        if (extras != null) {
+            rocket = (Rocket) extras.getSerializable("Rocket");
+        } else {
+            rocket = null;
+        }
 
         //Inflate Done/Cancel actionbar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
@@ -61,8 +68,12 @@ public class AddRocket extends ActionBarActivity {
 
         setContentView(R.layout.activity_new_rocket);
         if (savedInstanceState == null) {
+            AddRocketView aRV = new AddRocketView();
+            Bundle args = new Bundle();
+            args.putSerializable("rocket", rocket);
+            aRV.setArguments(args);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.add_r_container, new AddRocketView())
+                    .add(R.id.add_r_container, aRV)
                     .commit();
         }
         Context context = this;
@@ -92,7 +103,8 @@ public class AddRocket extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_new_rocket, container, false);
-            final Rocket rocket = (Rocket) getActivity().getIntent().getExtras().getSerializable("Rocket");
+
+            final Rocket rocket = (Rocket) getArguments().getSerializable("rocket");
 
             if (rocket != null) {
                 TextView name = (TextView) rootView.findViewById(R.id.rocket_name);

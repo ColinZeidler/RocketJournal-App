@@ -34,7 +34,14 @@ public class AddFlightLog extends ActionBarActivity {
         editing = false;
 
         //null when creating new flight log, not when editing
-        final FlightLog flightLog = (FlightLog) getIntent().getExtras().getSerializable("FlightLog");
+        final FlightLog flightLog;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            flightLog = (FlightLog) extras.getSerializable("Journal");
+        } else {
+            flightLog = null;
+        }
+
 
         //Inflate Done/Cancel actionbar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
@@ -68,8 +75,12 @@ public class AddFlightLog extends ActionBarActivity {
 
         setContentView(R.layout.activity_new_journal);
         if (savedInstanceState == null) {
+            AddJournalView aJV = new AddJournalView();
+            Bundle args = new Bundle();
+            args.putSerializable("log", flightLog);
+            aJV.setArguments(args);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.add_j_container, new AddJournalView())
+                    .add(R.id.add_j_container, aJV)
                     .commit();
         }
         Context context = this;
@@ -121,7 +132,7 @@ public class AddFlightLog extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_new_flightlog, container, false);
 
             final DataModel model = DataModel.getInstance(container.getContext());
-            final FlightLog flightLog = (FlightLog) getActivity().getIntent().getExtras().getSerializable("Journal");
+            final FlightLog flightLog = (FlightLog) getArguments().getSerializable("log");
 
             Spinner results = (Spinner) rootView.findViewById(R.id.spinner);
             Spinner rockets = (Spinner) rootView.findViewById(R.id.rocket_spinner);
