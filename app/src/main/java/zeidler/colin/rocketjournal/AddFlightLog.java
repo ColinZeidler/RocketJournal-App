@@ -26,10 +26,19 @@ import zeidler.colin.rocketjournal.data.Rocket;
 public class AddFlightLog extends ActionBarActivity {
 
     private DataModel model;
+    private boolean editing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        editing = false;
+
+        //null when creating new flight log, not when editing
+        final FlightLog flightLog = (FlightLog) getIntent().getExtras().getSerializable("FlightLog");
+        if (flightLog != null) {
+            editing = true;
+            populate(flightLog);
+        }
 
         //Inflate Done/Cancel actionbar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
@@ -39,7 +48,7 @@ public class AddFlightLog extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        saveToDB();
+                        saveToDB(flightLog);
                         finish();
                     }
                 }
@@ -72,7 +81,7 @@ public class AddFlightLog extends ActionBarActivity {
 
     }
 
-    private void saveToDB() {
+    private void saveToDB(FlightLog fLog) {
         TextView motor = (TextView) findViewById(R.id.motor_field);
         TextView delay = (TextView) findViewById(R.id.delay_field);
         TextView notes = (TextView) findViewById(R.id.notes_field);
@@ -82,13 +91,42 @@ public class AddFlightLog extends ActionBarActivity {
 
         Rocket r = (Rocket) rockets.getSelectedItem();
 
-        FlightLog j = new FlightLog(-1, r.getId(),//TODO make this select the Rocket used
-                motor.getText().toString(),
-                Integer.parseInt(delay.getText().toString()),
-                new Date(), notes.getText().toString(),
-                FlightLog.LaunchRes.fromString(res.getSelectedItem().toString()));
+        Date d;
+        if (fLog == null) { //creating new FlightLog
+            fLog = new FlightLog(-1);
+            d = new Date();
+        } else {            //Editing old flight log
+            d = fLog.getDate();
+        }
 
-        model.addFlightLog(j);
+        fLog.setRocketID(r.getId());
+        fLog.setMotor(motor.getText().toString());
+        fLog.setDelay(Integer.parseInt(delay.getText().toString()));
+        fLog.setNotes(notes.getText().toString());
+        fLog.setResult(FlightLog.LaunchRes.fromString(res.getSelectedItem().toString()));
+        fLog.setDate(d);
+
+        if (!editing)
+            model.addFlightLog(fLog);
+        else
+            model.update(fLog);
+    }
+
+    //fill in all of the fields if editing an old FlightLog
+    private void populate(FlightLog flightLog) {
+        TextView motor = (TextView) findViewById(R.id.motor_field);
+        TextView delay = (TextView) findViewById(R.id.delay_field);
+        TextView notes = (TextView) findViewById(R.id.notes_field);
+
+        Spinner res = (Spinner) findViewById(R.id.spinner);
+        Spinner rockets = (Spinner) findViewById(R.id.rocket_spinner);
+
+        motor.setText(flightLog.getMotor());
+        delay.setText(flightLog.getDelay());
+        notes.setText(flightLog.getNotes());
+
+        res.setSelection(flightLog.getResult().ordinal());
+        rockets.setSelection(model.getRocketPos(flightLog.getRocketID()));
     }
 
     public static class AddJournalView extends Fragment {
@@ -114,7 +152,6 @@ public class AddFlightLog extends ActionBarActivity {
             rocketAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             rockets.setAdapter(rocketAdapter);
 
-            //TODO populate rocket_spinner with list of rocket objects, need custom spinner adapter
             return rootView;
         }
     }
