@@ -103,6 +103,10 @@ public class DataModel {
         getRocket(flightLog.getRocketID()).addFlightLogID(flightLog.getId());
     }
 
+    public int getFlightLogPos(int flightLogID) {
+        return flightLogs.indexOf(getFlightLog(flightLogID));
+    }
+
     /**
      *
      * @param flightLog the FlightLog to remove
@@ -122,6 +126,18 @@ public class DataModel {
      */
     public void deleteFlightLog(int flightLogID) {
         deleteFlightLog(getFlightLog(flightLogID));
+    }
+
+    /**
+     * Update a flight log with the ID of the one passed in
+     * @param flightLog the flight log to update with
+     */
+    public void update(FlightLog flightLog) {
+        int pos = getFlightLogPos(flightLog.getId());
+        if (pos == -1)
+            addFlightLog(flightLog);
+        else
+            flightLogs.set(pos, flightLog);
     }
 
     //ROCKETS
@@ -145,6 +161,10 @@ public class DataModel {
                 return rocket;
         }
         return null;
+    }
+
+    public int getRocketPos(int rocketID) {
+        return rockets.indexOf(getRocket(rocketID));
     }
 
     /**
@@ -181,4 +201,11 @@ public class DataModel {
         dbManager.deleteAllRockets();
     }
 
+    public void update(Rocket rocket) {
+        int pos = getRocketPos(rocket.getId());
+        if (pos == -1)
+            addRocket(rocket);
+        else
+            rockets.set(pos, rocket);
+    }
 }
