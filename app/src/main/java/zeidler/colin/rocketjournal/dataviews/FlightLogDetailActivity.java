@@ -46,7 +46,7 @@ public class FlightLogDetailActivity extends ActionBarActivity {
         FlightLog flightLog = (FlightLog) getIntent().getExtras().getSerializable("Journal");
         switch (item.getItemId()) {
             case R.id.delete_menu:
-                DataModel.getInstance(this).deleteFlightLog(flightLog);
+                DataModel.getInstance(this).deleteFlightLog(flightLog.getId());
                 finish();
                 return true; //TODO add actual action
             case R.id.edit_menu:

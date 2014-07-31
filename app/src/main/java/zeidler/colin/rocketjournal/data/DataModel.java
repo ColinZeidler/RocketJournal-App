@@ -112,6 +112,7 @@ public class DataModel {
      * @param flightLog the FlightLog to remove
      */
     public void deleteFlightLog(FlightLog flightLog) {
+        getRocket(flightLog.getRocketID()).getFlightLogIDs().remove(flightLog.getId());
         flightLogs.remove(flightLog);
     }
 

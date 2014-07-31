@@ -38,7 +38,7 @@ public class RocketDetailActivity extends ActionBarActivity {
         Rocket rocket = (Rocket) getIntent().getExtras().getSerializable("Rocket");
         switch (item.getItemId()) {
             case R.id.delete_menu:
-                DataModel.getInstance(this).deleteRocket(rocket);
+                DataModel.getInstance(this).deleteRocket(rocket.getId());
                 finish();
                 return true; //TODO add actual action
             case R.id.edit_menu:
