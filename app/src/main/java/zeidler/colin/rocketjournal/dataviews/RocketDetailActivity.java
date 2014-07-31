@@ -1,11 +1,15 @@
 package zeidler.colin.rocketjournal.dataviews;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import zeidler.colin.rocketjournal.AddRocket;
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.data.Rocket;
 
 /**
  * Created by Colin on 2014-07-26.
@@ -25,11 +29,25 @@ public class RocketDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.item_details, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Rocket rocket = (Rocket) getIntent().getExtras().getSerializable("Rocket");
+        switch (item.getItemId()) {
+            case R.id.delete_menu:
+                DataModel.getInstance(this).deleteRocket(rocket);
+                finish();
+                return true; //TODO add actual action
+            case R.id.edit_menu:
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), AddRocket.class);
+                intent.putExtra("Rocket", rocket);
+                startActivity(intent);
+                return true;   //TODO add actual action
+        }
         return super.onOptionsItemSelected(item);
     }
 }

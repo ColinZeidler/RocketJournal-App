@@ -1,12 +1,16 @@
 package zeidler.colin.rocketjournal.dataviews;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import zeidler.colin.rocketjournal.AddFlightLog;
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.data.FlightLog;
 
 /**
  * Created by Colin on 2014-07-15.
@@ -33,15 +37,24 @@ public class FlightLogDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.journal_view, menu);
+        getMenuInflater().inflate(R.menu.item_details, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        FlightLog flightLog = (FlightLog) getIntent().getExtras().getSerializable("Journal");
         switch (item.getItemId()) {
-            case R.id.delete_menu: return true; //TODO add actual action
-            case R.id.edit_menu: return true;   //TODO add actual action
+            case R.id.delete_menu:
+                DataModel.getInstance(this).deleteFlightLog(flightLog);
+                finish();
+                return true; //TODO add actual action
+            case R.id.edit_menu:
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), AddFlightLog.class);
+                intent.putExtra("Journal", flightLog);
+                startActivity(intent);
+                return true;   //TODO add actual action
         }
         return super.onOptionsItemSelected(item);
     }
