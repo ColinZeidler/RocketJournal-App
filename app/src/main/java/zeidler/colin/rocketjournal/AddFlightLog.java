@@ -122,7 +122,7 @@ public class AddFlightLog extends ActionBarActivity {
         Spinner rockets = (Spinner) findViewById(R.id.rocket_spinner);
 
         motor.setText(flightLog.getMotor());
-        delay.setText(flightLog.getDelay());
+        delay.setText(String.valueOf(flightLog.getDelay()));
         notes.setText(flightLog.getNotes());
 
         res.setSelection(flightLog.getResult().ordinal());
