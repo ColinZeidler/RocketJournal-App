@@ -20,10 +20,18 @@ import zeidler.colin.rocketjournal.data.Rocket;
 public class AddRocket extends ActionBarActivity {
 
     private DataModel model;
+    private boolean editing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        editing = false;
+
+        final Rocket rocket = (Rocket) getIntent().getExtras().getSerializable("Rocket");
+        if (rocket != null) {
+            editing = true;
+            populate(rocket);
+        }
 
         //Inflate Done/Cancel actionbar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
@@ -33,7 +41,7 @@ public class AddRocket extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        saveToDB();
+                        saveToDB(rocket);
                         finish();
                     }
                 }
@@ -66,13 +74,26 @@ public class AddRocket extends ActionBarActivity {
 
     }
 
-    public void saveToDB() {
+    public void saveToDB(Rocket rocket) {
         TextView name = (TextView) findViewById(R.id.rocket_name);
         TextView weight = (TextView) findViewById(R.id.rocket_weight);
 
-        model.addRocket(new Rocket(-1,
-                name.getText().toString(),
-                Float.parseFloat(weight.getText().toString())));
+        if (rocket == null)
+            rocket = new Rocket(-1);
+        rocket.setName(name.getText().toString());
+        rocket.setWeight(Float.parseFloat(weight.getText().toString()));
+        if (!editing)
+            model.addRocket(rocket);
+        else
+            model.update(rocket);
+    }
+
+    public void populate(Rocket rocket) {
+        TextView name = (TextView) findViewById(R.id.rocket_name);
+        TextView weight = (TextView) findViewById(R.id.rocket_weight);
+
+        name.setText(rocket.getName());
+        weight.setText(String.valueOf(rocket.getWeight()));
     }
 
     public static class AddRocketView extends Fragment {

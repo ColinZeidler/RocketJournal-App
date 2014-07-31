@@ -17,6 +17,15 @@ public class Rocket implements Serializable {
     private String image;
     private ArrayList<Integer> flightLogIDs;
 
+    public Rocket(int id) {
+        if (id == -1)
+            id = DataModel.getNextRocketID();
+        this.id = id;
+        this.flightCount = 0;
+        this.flightLogIDs = new ArrayList<Integer>();
+        this.image = "";
+    }
+
     /**
      * Create a new Rocket object
      * @param id        The ID of the rocket (returned from the DataManager)
@@ -24,13 +33,9 @@ public class Rocket implements Serializable {
      * @param weight    The weight of the Rocket in pounds
      */
     public Rocket(int id, String name, float weight) {
-        if (id == -1)
-            id = DataModel.getNextRocketID();
-        this.id = id;
+        this(id);
         this.name = name;
         this.weight = weight;
-        this.flightCount = 0;
-        flightLogIDs = new ArrayList<Integer>();
     }
 
     public Rocket(int id, String name, float weight, int flightCount, String image) {
