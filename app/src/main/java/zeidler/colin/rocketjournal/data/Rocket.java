@@ -58,6 +58,13 @@ public class Rocket implements Serializable {
         this.flightCount++;
     }
 
+    public void removeFlightLog(int flightLogID) {
+        if (this.flightLogIDs.contains(flightLogID)) {
+            this.flightCount--;
+            this.flightLogIDs.remove(this.flightLogIDs.indexOf(flightLogID));
+        }
+    }
+
     public int getId() {
         return id;
     }

@@ -113,10 +113,15 @@ public class DataModel {
      */
     public void deleteFlightLog(FlightLog flightLog) {
         flightLogs.remove(flightLog);
+        Rocket r = getRocket(flightLog.getRocketID());
+        r.removeFlightLog(flightLog.getId());
+        update(r);
     }
 
     public void deleteAllFlightLogs() {
-        flightLogs.clear();
+        for (FlightLog log : flightLogs) {
+            deleteFlightLog(log);
+        }
         dbManager.deleteAllFlightLogs();
     }
 
