@@ -73,9 +73,8 @@ public class DataModel {
      */
     public List<FlightLog> getFlightLogs(int rocketID) {
         List<FlightLog> logs = new ArrayList<FlightLog>();
-        for (FlightLog flightLog : flightLogs) {
-            if (flightLog.getRocketID() == rocketID)
-                logs.add(flightLog);
+        for (int id : getRocket(rocketID).getFlightLogIDs()) {
+            logs.add(getFlightLog(id));
         }
 
         return logs;
