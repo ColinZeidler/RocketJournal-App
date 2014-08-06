@@ -148,20 +148,6 @@ public class DataManager extends SQLiteOpenHelper{
         db.delete(J_TABLENAME, null, null);
     }
 
-    public int getNextFlightLogID() {
-        String query = "SELECT MAX(" + J_KEY +") AS max_id FROM " + J_TABLENAME;
-        Cursor cursor = db.rawQuery(query, null);
-
-        int id = 0;
-        if (cursor.moveToFirst()) {
-            do {
-                id = cursor.getInt(0);
-            }while(cursor.moveToNext());
-        }
-
-        return id;
-    }
-
     public void saveFlightLogs(List<FlightLog> flightLogs) {
         for (FlightLog flightLog : flightLogs)
             addFlightLog(flightLog);
@@ -220,25 +206,6 @@ public class DataManager extends SQLiteOpenHelper{
      */
     public void deleteAllRockets() {
         db.delete(R_TABLENAME, null, null);
-    }
-
-    /**
-     * Return what the ID will be of the next Rocket added
-     * Returns -1 if operation failed
-     * @return The ID of the Next Rocket
-     */
-    public int getNextRocketID() {
-        String query = "SELECT MAX(" + R_KEY +") AS max_id FROM " + R_TABLENAME;
-        Cursor cursor = db.rawQuery(query, null);
-
-        int id = 0;
-        if (cursor.moveToFirst()) {
-            do {
-                id = cursor.getInt(0);
-            }while(cursor.moveToNext());
-        }
-
-        return id;
     }
 
     public void saveRockets(List<Rocket> rockets) {
