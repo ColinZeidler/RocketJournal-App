@@ -48,13 +48,13 @@ public class FlightLogDetailActivity extends ActionBarActivity {
             case R.id.delete_menu:
                 DataModel.getInstance(this).deleteFlightLog(flightLog.getId());
                 finish();
-                return true; //TODO add actual action
+                return true;
             case R.id.edit_menu:
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), AddFlightLog.class);
                 intent.putExtra("Journal", flightLog);
                 startActivity(intent);
-                return true;   //TODO add actual action
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

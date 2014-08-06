@@ -40,13 +40,13 @@ public class RocketDetailActivity extends ActionBarActivity {
             case R.id.delete_menu:
                 DataModel.getInstance(this).deleteRocket(rocket.getId());
                 finish();
-                return true; //TODO add actual action
+                return true;
             case R.id.edit_menu:
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), AddRocket.class);
                 intent.putExtra("Rocket", rocket);
                 startActivity(intent);
-                return true;   //TODO add actual action
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
