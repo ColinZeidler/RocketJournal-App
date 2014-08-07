@@ -20,6 +20,8 @@ import zeidler.colin.rocketjournal.data.FlightLog;
  */
 public class FlightLogDetailActivity extends ActionBarActivity {
 
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class FlightLogDetailActivity extends ActionBarActivity {
                     .commit();
         }
 
-        Context context = this;
+        mContext = this;
 
     }
 
@@ -43,7 +45,7 @@ public class FlightLogDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        FlightLog flightLog = (FlightLog) getIntent().getExtras().getSerializable("Journal");
+        FlightLog flightLog = DataModel.getInstance(mContext).getFlightLog(getIntent().getExtras().getInt("Journal"));
         switch (item.getItemId()) {
             case R.id.delete_menu:
                 DataModel.getInstance(this).deleteFlightLog(flightLog.getId());

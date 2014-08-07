@@ -1,5 +1,6 @@
 package zeidler.colin.rocketjournal.dataviews;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +16,9 @@ import zeidler.colin.rocketjournal.data.Rocket;
  * Created by Colin on 2014-07-26.
  */
 public class RocketDetailActivity extends ActionBarActivity {
+
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,9 @@ public class RocketDetailActivity extends ActionBarActivity {
                     .add(R.id.container_view, new RocketDetailFragment())
                     .commit();
         }
+
+        mContext = this;
+
     }
 
     @Override
@@ -35,7 +42,7 @@ public class RocketDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Rocket rocket = (Rocket) getIntent().getExtras().getSerializable("Rocket");
+        Rocket rocket = DataModel.getInstance(mContext).getRocket(getIntent().getExtras().getInt("Rocket"));
         switch (item.getItemId()) {
             case R.id.delete_menu:
                 DataModel.getInstance(this).deleteRocket(rocket.getId());

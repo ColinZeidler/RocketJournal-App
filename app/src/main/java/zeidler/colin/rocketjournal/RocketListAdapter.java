@@ -42,11 +42,11 @@ public class RocketListAdapter extends ArrayAdapter<Rocket> {
         Rocket rocket = rockets.get(position);
         if (rocket != null) {
             String image = rocket.getImage();
-//        if (!image.equals("")) {
-//            //loadimage from disk
-//        } else {
-            iView.setImageDrawable(v.getResources().getDrawable(R.drawable.default_rocket));
-//        }
+//            if (!image.equals("")) {
+//                loadimage from disk
+//            } else {
+                iView.setImageDrawable(v.getResources().getDrawable(R.drawable.default_rocket));
+//            }
 
             TextView nameView = (TextView) v.findViewById(R.id.rocket_name);
             TextView flightView = (TextView) v.findViewById(R.id.flight_count);
@@ -54,7 +54,7 @@ public class RocketListAdapter extends ArrayAdapter<Rocket> {
             nameView.setText(rocket.getName());
             flightView.setText(rocket.getFlightCount() + " flights");   //TODO use resource instead of hardcode
 
-            v.setTag(rocket);
+            v.setTag(rocket.getId());
         }
         return v;
     }

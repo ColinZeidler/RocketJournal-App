@@ -23,19 +23,27 @@ import zeidler.colin.rocketjournal.data.Rocket;
 public class FlightLogDetailFragment extends Fragment {
 
     private View rootView;
-    private FlightLog flightLog;
-    private Context context;
+    private int flightLogID;
+    private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_flightlog_view, container, false);
-        context = container.getContext();
-        flightLog = (FlightLog) getActivity().getIntent().getExtras().getSerializable("Journal");
+        mContext = container.getContext();
+        flightLogID = getActivity().getIntent().getExtras().getInt("Journal");
         populate();
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        populate();
+    }
+
     public void populate() {
+        FlightLog flightLog = DataModel.getInstance(mContext).getFlightLog(flightLogID);
+
         TextView nameV = (TextView) rootView.findViewById(R.id.r_name);
         TextView motorV = (TextView) rootView.findViewById(R.id.r_motor);
         TextView weightV = (TextView) rootView.findViewById(R.id.r_weight);
@@ -43,7 +51,7 @@ public class FlightLogDetailFragment extends Fragment {
         TextView dateV = (TextView) rootView.findViewById(R.id.r_date);
         TextView noteV = (TextView) rootView.findViewById(R.id.r_notes);
 
-        Rocket r = DataModel.getInstance(context).getRocket(flightLog.getRocketID());
+        Rocket r = DataModel.getInstance(mContext).getRocket(flightLog.getRocketID());
         nameV.setText(r.getName());
 
         String motorT = flightLog.getMotor() + " " + flightLog.getDelay() + " seconds";

@@ -51,7 +51,7 @@ public class FlightLogListAdapter extends ArrayAdapter<FlightLog> {
             String statusT = flightLog.getResult().toString() + " launched: " + formatter.format(flightLog.getDate());
             status.setText(statusT);
 
-            v.setTag(flightLog);
+            v.setTag(flightLog.getId());
         }
 
         return v;

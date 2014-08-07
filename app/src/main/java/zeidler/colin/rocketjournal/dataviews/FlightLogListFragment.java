@@ -15,7 +15,6 @@ import android.widget.ListView;
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
-import zeidler.colin.rocketjournal.data.FlightLog;
 
 /**
  * Created by Colin on 2014-07-21.
@@ -49,7 +48,7 @@ public class FlightLogListFragment extends Fragment {
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                FlightLog j = (FlightLog)view.getTag();
+                int j = (Integer)view.getTag();
                 Intent intent = new Intent();
                 intent.setClass(context, FlightLogDetailActivity.class);
                 intent.putExtra("Journal", j);

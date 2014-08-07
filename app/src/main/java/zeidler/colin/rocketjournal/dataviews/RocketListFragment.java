@@ -15,7 +15,6 @@ import android.widget.ListView;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.RocketListAdapter;
 import zeidler.colin.rocketjournal.data.DataModel;
-import zeidler.colin.rocketjournal.data.Rocket;
 
 /**
  * Created by Colin on 2014-07-26.
@@ -51,7 +50,7 @@ public class RocketListFragment extends Fragment {
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Rocket r = (Rocket)view.getTag();
+                int r = (Integer)view.getTag();
                 Intent intent = new Intent();
                 intent.setClass(context, RocketDetailActivity.class);
                 intent.putExtra("Rocket", r);

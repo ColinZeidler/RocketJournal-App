@@ -25,18 +25,26 @@ public class RocketDetailFragment extends Fragment {
 
     private View rootView;
     private Context mContext;
-    private Rocket rocket;
+    private int rocketID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_rocket_view, container, false);
         mContext = container.getContext();
-        rocket = (Rocket) getActivity().getIntent().getExtras().getSerializable("Rocket");
+        rocketID = getActivity().getIntent().getExtras().getInt("Rocket");
         populate();
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        populate();
+    }
+
     public void populate() {
+        Rocket rocket = DataModel.getInstance(mContext).getRocket(rocketID);
+
         TextView rName = (TextView) rootView.findViewById(R.id.rocket_name);
         TextView rWeight = (TextView) rootView.findViewById(R.id.r_weight);
         TextView rFCount = (TextView) rootView.findViewById(R.id.r_flights);
@@ -56,7 +64,7 @@ public class RocketDetailFragment extends Fragment {
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                FlightLog f = (FlightLog)view.getTag();
+                int f = (Integer)view.getTag();
                 Intent intent = new Intent();
                 intent.setClass(mContext, FlightLogDetailActivity.class);
                 intent.putExtra("Journal", f);
