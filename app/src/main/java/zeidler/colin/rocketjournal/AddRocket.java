@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
@@ -44,8 +45,8 @@ public class AddRocket extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        saveToDB(rocket);
-                        finish();
+                        if (saveToDB(rocket))
+                            finish();
                     }
                 }
         );
@@ -85,18 +86,37 @@ public class AddRocket extends ActionBarActivity {
 
     }
 
-    public void saveToDB(Rocket rocket) {
+    /**
+     *
+     * @param rocket the rocket to update, null if creating a new one
+     * @return true if save succeeded, false if it was aborted
+     */
+    public boolean saveToDB(Rocket rocket) {
         TextView name = (TextView) findViewById(R.id.rocket_name);
         TextView weight = (TextView) findViewById(R.id.rocket_weight);
 
         if (rocket == null)
             rocket = new Rocket(-1);
         rocket.setName(name.getText().toString());
-        rocket.setWeight(Float.parseFloat(weight.getText().toString()));
+
+        float w;
+        try {
+            w = Float.parseFloat(weight.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast error = Toast.makeText(getApplicationContext(),
+                    getResources().getText(R.string.error_invalid_weight),
+                    Toast.LENGTH_SHORT);
+            error.show();
+            return false;
+        }
+
+        rocket.setWeight(w);
         if (!editing)
             model.addRocket(rocket);
         else
             model.update(rocket);
+
+        return true;
     }
 
     public static class AddRocketView extends Fragment {
