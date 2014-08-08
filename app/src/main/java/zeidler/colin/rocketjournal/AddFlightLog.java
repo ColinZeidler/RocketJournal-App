@@ -13,6 +13,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -51,8 +52,8 @@ public class AddFlightLog extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        saveToDB(flightLog);
-                        finish();
+                        if (saveToDB(flightLog))
+                            finish();
                     }
                 }
         );
@@ -91,7 +92,12 @@ public class AddFlightLog extends ActionBarActivity {
         }
     }
 
-    private void saveToDB(FlightLog fLog) {
+    /**
+     *
+     * @param fLog the flight log to update, null if creating a new one
+     * @return true if save successful, false otherwise
+     */
+    private boolean saveToDB(FlightLog fLog) {
         TextView motor = (TextView) findViewById(R.id.motor_field);
         TextView delay = (TextView) findViewById(R.id.delay_field);
         TextView notes = (TextView) findViewById(R.id.notes_field);
@@ -111,7 +117,19 @@ public class AddFlightLog extends ActionBarActivity {
 
         fLog.setRocketID(r.getId());
         fLog.setMotor(motor.getText().toString());
-        fLog.setDelay(Integer.parseInt(delay.getText().toString()));
+
+        int i;
+        try {
+            i = Integer.parseInt(delay.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast error = Toast.makeText(getApplicationContext(),
+                    getResources().getText(R.string.error_invalid_num),
+                    Toast.LENGTH_SHORT);
+            error.show();
+            return false;
+        }
+
+        fLog.setDelay(i);
         fLog.setNotes(notes.getText().toString());
         fLog.setResult(FlightLog.LaunchRes.fromString(res.getSelectedItem().toString()));
         fLog.setDate(d);
@@ -120,6 +138,8 @@ public class AddFlightLog extends ActionBarActivity {
             model.addFlightLog(fLog);
         else
             model.update(fLog);
+
+        return true;
     }
 
     public static class AddJournalView extends Fragment {

@@ -88,7 +88,7 @@ public class AddRocket extends ActionBarActivity {
 
     /**
      *
-     * @param rocket
+     * @param rocket the rocket to update, null if creating a new one
      * @return true if save succeeded, false if it was aborted
      */
     public boolean saveToDB(Rocket rocket) {
@@ -103,7 +103,6 @@ public class AddRocket extends ActionBarActivity {
         try {
             w = Float.parseFloat(weight.getText().toString());
         } catch (NumberFormatException e) {
-            //Generate Toast saying "invalid input, input must be a number"
             Toast error = Toast.makeText(getApplicationContext(),
                     getResources().getText(R.string.error_invalid_num),
                     Toast.LENGTH_SHORT);
