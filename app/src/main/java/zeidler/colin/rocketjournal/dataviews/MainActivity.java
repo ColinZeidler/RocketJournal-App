@@ -76,12 +76,6 @@ public class MainActivity extends ActionBarActivity {
                 intent.setClass(this, AddRocket.class);
                 startActivity(intent);
                 return true;
-            case R.id.delete_all_flightlogs:
-                DataModel.getInstance(this).deleteAllFlightLogs();
-                return true;
-            case R.id.delete_all_rockets:
-                DataModel.getInstance(this).deleteAllRockets();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }

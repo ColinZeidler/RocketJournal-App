@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,7 +24,7 @@ import zeidler.colin.rocketjournal.data.DataModel;
 public class FlightLogListFragment extends Fragment {
 
     private DataModel dataModel;
-    private Context context;
+    private Context mContext;
     private FlightLogListAdapter arrAdapter;
 
     @Override
@@ -32,14 +33,25 @@ public class FlightLogListFragment extends Fragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_all_flightlogs:
+                DataModel.getInstance(mContext).deleteAllFlightLogs();
+                updateList();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_flightlog_list, container, false);
         setHasOptionsMenu(true);
-        context = container.getContext();
+        mContext = container.getContext();
 
-        dataModel = DataModel.getInstance(context);
-        arrAdapter = new FlightLogListAdapter(context, R.layout.adapter_flightlog,
+        dataModel = DataModel.getInstance(mContext);
+        arrAdapter = new FlightLogListAdapter(mContext, R.layout.adapter_flightlog,
                 dataModel.getFlightLogs());
 
         ListView lView = (ListView) rootView.findViewById(R.id.listView);
@@ -50,7 +62,7 @@ public class FlightLogListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int j = (Integer)view.getTag();
                 Intent intent = new Intent();
-                intent.setClass(context, FlightLogDetailActivity.class);
+                intent.setClass(mContext, FlightLogDetailActivity.class);
                 intent.putExtra("Journal", j);
                 startActivity(intent);
             }

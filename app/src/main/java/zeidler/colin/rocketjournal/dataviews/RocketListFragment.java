@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,7 +23,7 @@ import zeidler.colin.rocketjournal.data.DataModel;
  */
 public class RocketListFragment extends Fragment {
 
-    private Context context;
+    private Context mContext;
     private DataModel dataModel;
     private RocketListAdapter arrAdapter;
 
@@ -32,16 +33,27 @@ public class RocketListFragment extends Fragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_all_rockets:
+                DataModel.getInstance(mContext).deleteAllRockets();
+                updateList();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
         View rootView = inflater.inflate(R.layout.fragment_rocket_list, container, false);
 
-        context = container.getContext();
+        mContext = container.getContext();
 
-        dataModel = DataModel.getInstance(context);
-        arrAdapter = new RocketListAdapter(context, R.layout.adapter_rocket,
+        dataModel = DataModel.getInstance(mContext);
+        arrAdapter = new RocketListAdapter(mContext, R.layout.adapter_rocket,
                 dataModel.getRockets());
 
         ListView lView = (ListView) rootView.findViewById(R.id.listView);
@@ -52,7 +64,7 @@ public class RocketListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int r = (Integer)view.getTag();
                 Intent intent = new Intent();
-                intent.setClass(context, RocketDetailActivity.class);
+                intent.setClass(mContext, RocketDetailActivity.class);
                 intent.putExtra("Rocket", r);
                 startActivity(intent);
             }
