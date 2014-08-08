@@ -118,8 +118,8 @@ public class DataModel {
     }
 
     public void deleteAllFlightLogs() {
-        for (FlightLog log : flightLogs) {  //BAD!!! concurrent modification TODO fix me
-            deleteFlightLog(log);
+        while (flightLogs.size() >= 1) {
+            deleteFlightLog(flightLogs.get(0));
         }
         dbManager.deleteAllFlightLogs();
     }
