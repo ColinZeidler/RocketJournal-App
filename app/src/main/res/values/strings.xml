@@ -40,6 +40,9 @@
     <string name="date_header">Date:</string>
     <string name="altitude_header">Altitude:</string>
 
+    //Error Messages
+    <string name="error_invalid_num">Invalid input, input must be a number</string>
+
     //placeholders
     <string name="placeholder_name">Lorem Ipsum Dolor</string>
     <string name="placeholder_short_text">ipsum dolor</string>
