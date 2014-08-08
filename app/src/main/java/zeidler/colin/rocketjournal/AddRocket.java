@@ -104,7 +104,7 @@ public class AddRocket extends ActionBarActivity {
             w = Float.parseFloat(weight.getText().toString());
         } catch (NumberFormatException e) {
             Toast error = Toast.makeText(getApplicationContext(),
-                    getResources().getText(R.string.error_invalid_num),
+                    getResources().getText(R.string.error_invalid_weight),
                     Toast.LENGTH_SHORT);
             error.show();
             return false;

@@ -41,7 +41,8 @@
     <string name="altitude_header">Altitude:</string>
 
     //Error Messages
-    <string name="error_invalid_num">Invalid input, input must be a number</string>
+    <string name="error_invalid_delay">Invalid input; Delay must be a number</string>
+    <string name="error_invalid_weight">Invalid input; Weight must be a number</string>
 
     //placeholders
     <string name="placeholder_name">Lorem Ipsum Dolor</string>

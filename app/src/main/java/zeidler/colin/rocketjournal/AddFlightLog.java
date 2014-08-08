@@ -123,7 +123,7 @@ public class AddFlightLog extends ActionBarActivity {
             i = Integer.parseInt(delay.getText().toString());
         } catch (NumberFormatException e) {
             Toast error = Toast.makeText(getApplicationContext(),
-                    getResources().getText(R.string.error_invalid_num),
+                    getResources().getText(R.string.error_invalid_delay),
                     Toast.LENGTH_SHORT);
             error.show();
             return false;
