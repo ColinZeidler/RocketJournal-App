@@ -4,17 +4,23 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog;
+
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import zeidler.colin.rocketjournal.R;
@@ -25,10 +31,15 @@ import zeidler.colin.rocketjournal.data.Rocket;
 /**
  * Created by Colin on 2014-07-10.
  */
-public class AddFlightLog extends ActionBarActivity {
+public class AddFlightLog extends ActionBarActivity implements
+        CalendarDatePickerDialog.OnDateSetListener{
 
     private DataModel model;
     private boolean editing;
+    protected Calendar mCalendar;
+    protected Button dateButton;
+    protected Format mFormatter;
+    protected static final String FRAG_DATE_PICKER_TAG = "date_picker_tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +50,20 @@ public class AddFlightLog extends ActionBarActivity {
         final FlightLog flightLog;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+            editing = true;
             flightLog = (FlightLog) extras.getSerializable("Journal");
         } else {
             flightLog = null;
         }
+        Date d;
+        if (flightLog != null)
+            d = flightLog.getDate();
+        else
+            d = new Date();
 
+        mCalendar = Calendar.getInstance();
+        mCalendar.setTime(d);
+        mFormatter = new SimpleDateFormat("dd MMM, yyyy");
 
         //Inflate Done/Cancel actionbar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
@@ -88,9 +108,7 @@ public class AddFlightLog extends ActionBarActivity {
         Context context = this;
         model = DataModel.getInstance(context);
 
-        if (flightLog != null) {
-            editing = true;
-        }
+
     }
 
     /**
@@ -108,13 +126,8 @@ public class AddFlightLog extends ActionBarActivity {
 
         Rocket r = (Rocket) rockets.getSelectedItem();
 
-        Date d;
-        if (fLog == null) { //creating new FlightLog
+        if (fLog == null)
             fLog = new FlightLog(-1);
-            d = new Date();
-        } else {            //Editing old flight log
-            d = fLog.getDate();
-        }
 
         fLog.setRocketID(r.getId());
         fLog.setMotor(motor.getText().toString());
@@ -133,7 +146,7 @@ public class AddFlightLog extends ActionBarActivity {
         fLog.setDelay(i);
         fLog.setNotes(notes.getText().toString());
         fLog.setResult(FlightLog.LaunchRes.fromString(res.getSelectedItem().toString()));
-        fLog.setDate(d);
+        fLog.setDate(mCalendar.getTime());
 
         if (!editing)
             model.addFlightLog(fLog);
@@ -141,6 +154,13 @@ public class AddFlightLog extends ActionBarActivity {
             model.update(fLog);
 
         return true;
+    }
+
+    @Override
+    public void onDateSet(CalendarDatePickerDialog calendarDatePickerDialog,
+                          int year, int month, int day) {
+        mCalendar.set(year, month, day);
+        dateButton.setText(mFormatter.format(mCalendar.getTime()));
     }
 
     public static class AddJournalView extends Fragment {
@@ -168,6 +188,21 @@ public class AddFlightLog extends ActionBarActivity {
                     model.getRockets());
             rocketAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             rockets.setAdapter(rocketAdapter);
+
+            //date button
+            final AddFlightLog parent = (AddFlightLog) getActivity();
+            parent.dateButton = (Button) rootView.findViewById(R.id.date_button);
+            parent.dateButton.setText(parent.mFormatter.format(parent.mCalendar.getTime()));
+            parent.dateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm = parent.getSupportFragmentManager();
+                    CalendarDatePickerDialog dPicker = CalendarDatePickerDialog
+                            .newInstance(parent, parent.mCalendar.get(Calendar.YEAR),
+                                    parent.mCalendar.get(Calendar.MONTH), parent.mCalendar.get(Calendar.DAY_OF_MONTH));
+                    dPicker.show(fm, FRAG_DATE_PICKER_TAG);
+                }
+            });
 
             if (flightLog != null) {
                 TextView motor = (TextView) rootView.findViewById(R.id.motor_field);

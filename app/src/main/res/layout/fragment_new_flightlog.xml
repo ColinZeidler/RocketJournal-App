@@ -44,6 +44,12 @@
                 android:layout_height="40dp"
                 android:id="@+id/spinner" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/date_button"
+                style="@style/Widget.AppCompat.Light.Base.Spinner"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
