@@ -82,7 +82,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 return true;
             case R.id.delete_all_flightlogs:
-                DataModel.getInstance(this).deleteAllRockets();
+                DataModel.getInstance(this).deleteAllFlightLogs();
                 for (int i=0; i < mSectionsPagerAdapter.getCount(); i++) {
                     ((UpdateList) mSectionsPagerAdapter.getItem(i)).updateList();
                 }
