@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.dataviews;
+package zeidler.colin.rocketjournal.dataviews.flightlog;
 
 import android.support.v4.app.Fragment;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +16,7 @@ import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailActivity;
 
 /**
  * Created by Colin on 2014-07-21.
@@ -59,11 +59,6 @@ public class FlightLogListFragment extends Fragment implements UpdateList{
         });
 
         return rootView;
-    }
-
-    public void deleteAll() {
-        dataModel.deleteAllFlightLogs();
-        updateList();
     }
 
     @Override

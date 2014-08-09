@@ -16,16 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddFlightLog"/>
-        <activity android:name=".AddRocket"/>
-        <activity android:name=".dataviews.RocketDetailActivity"
+        <activity android:name=".dataviews.flightlog.AddFlightLog"/>
+        <activity android:name=".dataviews.rocket.AddRocket"/>
+        <activity android:name=".dataviews.rocket.details.RocketDetailActivity"
             android:parentActivityName=".dataviews.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".dataviews.MainActivity"/>
         </activity>
         <activity
-            android:name=".dataviews.FlightLogDetailActivity"
+            android:name=".dataviews.flightlog.details.FlightLogDetailActivity"
             android:label="@string/app_name"
             android:parentActivityName=".dataviews.MainActivity" >
             <meta-data

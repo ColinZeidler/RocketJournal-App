@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.dataviews;
+package zeidler.colin.rocketjournal.dataviews.flightlog.details;
 
 import android.content.Context;
 import android.os.Bundle;

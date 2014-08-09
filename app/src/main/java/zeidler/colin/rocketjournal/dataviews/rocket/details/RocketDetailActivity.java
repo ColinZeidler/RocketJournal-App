@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.dataviews;
+package zeidler.colin.rocketjournal.dataviews.rocket.details;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import zeidler.colin.rocketjournal.AddRocket;
+import zeidler.colin.rocketjournal.dataviews.rocket.AddRocket;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;

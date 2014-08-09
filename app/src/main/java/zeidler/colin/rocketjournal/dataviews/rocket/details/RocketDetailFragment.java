@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal.dataviews;
+package zeidler.colin.rocketjournal.dataviews.rocket.details;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
-import zeidler.colin.rocketjournal.data.FlightLog;
 import zeidler.colin.rocketjournal.data.Rocket;
+import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailActivity;
 
 /**
  * Created by Colin on 2014-07-26.

@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal;
+package zeidler.colin.rocketjournal.dataviews.rocket;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
 

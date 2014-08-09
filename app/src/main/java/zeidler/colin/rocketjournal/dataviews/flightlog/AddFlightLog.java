@@ -1,4 +1,4 @@
-package zeidler.colin.rocketjournal;
+package zeidler.colin.rocketjournal.dataviews.flightlog;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.Date;
 
+import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.FlightLog;
 import zeidler.colin.rocketjournal.data.Rocket;

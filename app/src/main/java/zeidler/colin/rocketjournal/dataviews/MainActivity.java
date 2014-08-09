@@ -1,24 +1,22 @@
 package zeidler.colin.rocketjournal.dataviews;
 
-import java.util.Locale;
-
 import android.content.Intent;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
-import zeidler.colin.rocketjournal.AddFlightLog;
-import zeidler.colin.rocketjournal.AddRocket;
+import zeidler.colin.rocketjournal.dataviews.flightlog.AddFlightLog;
+import zeidler.colin.rocketjournal.dataviews.rocket.AddRocket;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.dataviews.flightlog.FlightLogListFragment;
+import zeidler.colin.rocketjournal.dataviews.rocket.RocketListFragment;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -130,7 +128,6 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
                     return getString(R.string.title_section2);

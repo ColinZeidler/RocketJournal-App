@@ -3,7 +3,6 @@ package zeidler.colin.rocketjournal.data;
 import java.io.Serializable;
 import java.util.Date;
 
-import zeidler.colin.rocketjournal.dbmanager.DataManager;
 
 /**
  * Created by Colin on 2014-07-08.
