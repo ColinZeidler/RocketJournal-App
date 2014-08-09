@@ -15,13 +15,14 @@ import android.widget.ListView;
 
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
 
 /**
  * Created by Colin on 2014-07-21.
  *
  */
-public class FlightLogListFragment extends Fragment {
+public class FlightLogListFragment extends Fragment implements UpdateList{
 
     private DataModel dataModel;
     private Context mContext;
@@ -30,17 +31,6 @@ public class FlightLogListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.flightlog_list, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.delete_all_flightlogs:
-                DataModel.getInstance(mContext).deleteAllFlightLogs();
-                updateList();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -76,6 +66,7 @@ public class FlightLogListFragment extends Fragment {
         updateList();
     }
 
+    @Override
     public void updateList() {
         arrAdapter.notifyDataSetChanged();
     }

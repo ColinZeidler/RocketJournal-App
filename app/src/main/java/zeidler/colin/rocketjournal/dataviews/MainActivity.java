@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import zeidler.colin.rocketjournal.AddFlightLog;
 import zeidler.colin.rocketjournal.AddRocket;
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
 
 public class MainActivity extends ActionBarActivity {
@@ -76,6 +77,18 @@ public class MainActivity extends ActionBarActivity {
                 intent.setClass(this, AddRocket.class);
                 startActivity(intent);
                 return true;
+            case R.id.delete_all_rockets:
+                DataModel.getInstance(this).deleteAllRockets();
+                for (int i=0; i < mSectionsPagerAdapter.getCount(); i++) {
+                    ((UpdateList) mSectionsPagerAdapter.getItem(i)).updateList();
+                }
+                return true;
+            case R.id.delete_all_flightlogs:
+                DataModel.getInstance(this).deleteAllRockets();
+                for (int i=0; i < mSectionsPagerAdapter.getCount(); i++) {
+                    ((UpdateList) mSectionsPagerAdapter.getItem(i)).updateList();
+                }
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -86,6 +99,9 @@ public class MainActivity extends ActionBarActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        private RocketListFragment rList;
+        private FlightLogListFragment fList;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -93,10 +109,15 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
-                case 0: return new RocketListFragment();
-                case 1: return new FlightLogListFragment();
+                case 0:
+                    if (rList == null)
+                        rList = new RocketListFragment();
+                    return rList;
+                case 1:
+                    if (fList == null)
+                        fList = new FlightLogListFragment();
+                    return fList;
             }
             return null;
         }

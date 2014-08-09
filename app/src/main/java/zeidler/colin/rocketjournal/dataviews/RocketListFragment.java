@@ -15,13 +15,14 @@ import android.widget.ListView;
 
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.RocketListAdapter;
+import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
 
 /**
  * Created by Colin on 2014-07-26.
  *
  */
-public class RocketListFragment extends Fragment {
+public class RocketListFragment extends Fragment implements UpdateList{
 
     private Context mContext;
     private DataModel dataModel;
@@ -30,17 +31,6 @@ public class RocketListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.rocket_list, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.delete_all_rockets:
-                DataModel.getInstance(mContext).deleteAllRockets();
-                updateList();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -78,6 +68,7 @@ public class RocketListFragment extends Fragment {
         updateList();
     }
 
+    @Override
     public void updateList() {
         arrAdapter.notifyDataSetChanged();
     }
@@ -87,4 +78,6 @@ public class RocketListFragment extends Fragment {
         super.onResume();
         updateList();
     }
+
+
 }
