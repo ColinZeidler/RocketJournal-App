@@ -62,7 +62,7 @@ public class FlightLogDetailFragment extends Fragment {
 
         resV.setText(flightLog.getResult().toString());
 
-        Format formatter = new SimpleDateFormat(getResources().getString(R.string.date_format_3));
+        Format formatter = new SimpleDateFormat(getResources().getString(R.string.date_format_use));
         String dateT = formatter.format(flightLog.getDate());
         dateV.setText(dateT);
 
