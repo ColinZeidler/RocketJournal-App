@@ -44,6 +44,13 @@
     <string name="error_invalid_delay">Invalid input; Delay must be a number</string>
     <string name="error_invalid_weight">Invalid input; Weight must be a number</string>
 
+    //date formats
+    <string name="date_format_0">yy/MM/dd</string>
+    <string name="date_format_1">"yyyy/MM/dd"</string>
+    <string name="date_format_2">"dd MMM, yyyy"</string>
+    <string name="date_format_3">"MMMM dd, yyyy"</string>
+    <string name="date_format_4">dd, MMM, yyyy</string>
+
     //placeholders
     <string name="placeholder_name">Lorem Ipsum Dolor</string>
     <string name="placeholder_short_text">ipsum dolor</string>

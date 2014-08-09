@@ -63,7 +63,7 @@ public class AddFlightLog extends ActionBarActivity implements
 
         mCalendar = Calendar.getInstance();
         mCalendar.setTime(d);
-        mFormatter = new SimpleDateFormat("dd MMM, yyyy");
+        mFormatter = new SimpleDateFormat(getResources().getString(R.string.date_format_3));
 
         //Inflate Done/Cancel actionbar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
