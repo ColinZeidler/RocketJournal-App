@@ -13,10 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Comparator;
+
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.data.FlightLog;
 import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailActivity;
 
 /**
@@ -28,6 +31,7 @@ public class FlightLogListFragment extends Fragment implements UpdateList{
     private DataModel dataModel;
     private Context mContext;
     private FlightLogListAdapter arrAdapter;
+    private Comparator<FlightLog> mComparator;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -45,6 +49,8 @@ public class FlightLogListFragment extends Fragment implements UpdateList{
         arrAdapter = new FlightLogListAdapter(mContext, R.layout.adapter_flightlog,
                 dataModel.getFlightLogs());
 
+        mComparator = new FlightLog.DateCompare();
+        arrAdapter.sort(mComparator);
         ListView lView = (ListView) rootView.findViewById(R.id.listView);
         lView.setAdapter(arrAdapter);
         TextView emptyText = (TextView) rootView.findViewById(R.id.empty_list);
@@ -67,6 +73,7 @@ public class FlightLogListFragment extends Fragment implements UpdateList{
     @Override
     public void updateList() {
         arrAdapter.notifyDataSetChanged();
+        arrAdapter.sort(mComparator);
     }
 
     @Override

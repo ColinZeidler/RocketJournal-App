@@ -13,10 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Comparator;
+
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.RocketListAdapter;
 import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
+import zeidler.colin.rocketjournal.data.Rocket;
 import zeidler.colin.rocketjournal.dataviews.rocket.details.RocketDetailActivity;
 
 /**
@@ -28,6 +31,7 @@ public class RocketListFragment extends Fragment implements UpdateList{
     private Context mContext;
     private DataModel dataModel;
     private RocketListAdapter arrAdapter;
+    private Comparator<Rocket> mComparator;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -47,6 +51,8 @@ public class RocketListFragment extends Fragment implements UpdateList{
         arrAdapter = new RocketListAdapter(mContext, R.layout.adapter_rocket,
                 dataModel.getRockets());
 
+        mComparator = new Rocket.NameCompare();
+        arrAdapter.sort(mComparator);
         ListView lView = (ListView) rootView.findViewById(R.id.listView);
         lView.setAdapter(arrAdapter);
         TextView emptyText = (TextView) rootView.findViewById(R.id.empty_list);
@@ -69,6 +75,7 @@ public class RocketListFragment extends Fragment implements UpdateList{
     @Override
     public void updateList() {
         arrAdapter.notifyDataSetChanged();
+        arrAdapter.sort(mComparator);
     }
 
     @Override
