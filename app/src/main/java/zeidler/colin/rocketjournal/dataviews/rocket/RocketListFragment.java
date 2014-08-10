@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.RocketListAdapter;
@@ -48,6 +49,8 @@ public class RocketListFragment extends Fragment implements UpdateList{
 
         ListView lView = (ListView) rootView.findViewById(R.id.listView);
         lView.setAdapter(arrAdapter);
+        TextView emptyText = (TextView) rootView.findViewById(R.id.empty_list);
+        lView.setEmptyView(emptyText);
 
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
