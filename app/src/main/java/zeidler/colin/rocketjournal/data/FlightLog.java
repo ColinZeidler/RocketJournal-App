@@ -1,6 +1,7 @@
 package zeidler.colin.rocketjournal.data;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 
 
@@ -137,6 +138,27 @@ public class FlightLog implements Serializable {
                 names[i] = reses[i].toString();
 
             return names;
+        }
+    }
+
+    static public class DateCompare implements Comparator<FlightLog> {
+        @Override
+        public int compare(FlightLog lhs, FlightLog rhs) {
+            return lhs.getDate().compareTo(rhs.getDate());
+        }
+    }
+
+    static public class ResultCompare implements Comparator<FlightLog> {
+        @Override
+        public int compare(FlightLog lhs, FlightLog rhs) {
+            return lhs.getResult().compareTo(rhs.getResult());
+        }
+    }
+
+    static public class MotorCompare implements Comparator<FlightLog> {
+        @Override
+        public int compare(FlightLog lhs, FlightLog rhs) {
+            return lhs.getMotor().charAt(0) - rhs.getMotor().charAt(0);
         }
     }
 }

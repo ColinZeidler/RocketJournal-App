@@ -2,6 +2,7 @@ package zeidler.colin.rocketjournal.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Colin on 2014-07-21.
@@ -100,5 +101,19 @@ public class Rocket implements Serializable {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    static public class NameCompare implements Comparator<Rocket> {
+        @Override
+        public int compare(Rocket lhs, Rocket rhs) {
+            return lhs.getName().compareTo(rhs.getName());
+        }
+    }
+
+    static public class FlightCountCompare implements Comparator<Rocket> {
+        @Override
+        public int compare(Rocket lhs, Rocket rhs) {
+            return lhs.getFlightCount() - rhs.getFlightCount();
+        }
     }
 }
