@@ -8,6 +8,12 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/sort"
+        android:title="@string/sort"
+        android:icon="@drawable/ic_action_collections_sort_by_size"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/delete_all_rockets"
         android:title="@string/action_delete_all"/>
 

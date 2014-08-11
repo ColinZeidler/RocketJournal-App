@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,12 +28,14 @@ import zeidler.colin.rocketjournal.dataviews.rocket.details.RocketDetailActivity
  * Created by Colin on 2014-07-26.
  *
  */
-public class RocketListFragment extends Fragment implements UpdateList{
+public class RocketListFragment extends Fragment implements UpdateList,
+        PopupMenu.OnMenuItemClickListener{
 
     private Context mContext;
     private DataModel dataModel;
     private RocketListAdapter arrAdapter;
     private Comparator<Rocket> mComparator;
+    private View rootView;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -43,7 +47,7 @@ public class RocketListFragment extends Fragment implements UpdateList{
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        View rootView = inflater.inflate(R.layout.fragment_rocket_list, container, false);
+        rootView = inflater.inflate(R.layout.fragment_rocket_list, container, false);
 
         mContext = container.getContext();
 
@@ -84,5 +88,30 @@ public class RocketListFragment extends Fragment implements UpdateList{
         updateList();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.sort) {
+            PopupMenu popup = new PopupMenu(mContext, getActivity().findViewById(R.id.sort));
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.sort_rocket, popup.getMenu());
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.sort_name:
+                mComparator = new Rocket.NameCompare();
+                updateList();
+                return true;
+            case R.id.sort_flights:
+                mComparator = new Rocket.FlightCountCompare();
+                updateList();
+                return true;
+        }
+        return false;
+    }
 }

@@ -15,6 +15,13 @@
     <string name="edit_menu">Edit</string>
     <string name="delete_menu">Delete</string>
     <string name="delete_selection_menu">Delete Selected</string>
+    <string name="sort">Sort By</string>
+    //sort
+    <string name="sort_name">Name</string>
+    <string name="sort_flights">Flight Count</string>
+    <string name="sort_date">Launch Date</string>
+    <string name="sort_motor">Motor</string>
+    <string name="sort_result">Result</string>
 
     //Activity Titles
     <string name="add_journal">New Journal</string>
