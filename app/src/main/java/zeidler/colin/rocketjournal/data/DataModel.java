@@ -22,6 +22,9 @@ public class DataModel {
         dbManager = DataManager.getInstance(context);
         rockets = dbManager.getAllRockets();
         flightLogs = dbManager.getAllFlightLogs();
+        for (Rocket rocket : rockets) {
+            rocket.setFlightLogIDs((ArrayList<Integer>) getFlightLogIDs(rocket.getId()));
+        }
     }
 
     public static synchronized DataModel getInstance(Context context) {
@@ -78,6 +81,16 @@ public class DataModel {
         }
 
         return logs;
+    }
+
+    public List<Integer> getFlightLogIDs(int rocketID) {
+        List<Integer> ids = new ArrayList<Integer>();
+        for (FlightLog flightLog : flightLogs) {
+            if (flightLog.getRocketID() == rocketID)
+                ids.add(flightLog.getId());
+        }
+
+        return ids;
     }
 
     /**
