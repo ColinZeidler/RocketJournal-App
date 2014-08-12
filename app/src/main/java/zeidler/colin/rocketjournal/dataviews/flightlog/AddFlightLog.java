@@ -120,6 +120,7 @@ public class AddFlightLog extends ActionBarActivity implements
         TextView motor = (TextView) findViewById(R.id.motor_field);
         TextView delay = (TextView) findViewById(R.id.delay_field);
         TextView notes = (TextView) findViewById(R.id.notes_field);
+        TextView altitude = (TextView) findViewById(R.id.altitude_field);
 
         Spinner res = (Spinner) findViewById(R.id.spinner);
         Spinner rockets = (Spinner) findViewById(R.id.rocket_spinner);
@@ -142,11 +143,23 @@ public class AddFlightLog extends ActionBarActivity implements
             error.show();
             return false;
         }
+        int altNum;
+        try {
+            altNum = Integer.parseInt(altitude.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast error = Toast.makeText(getApplicationContext(),
+                    getResources().getText(R.string.error_invalid_altitude),
+                    Toast.LENGTH_SHORT);
+            error.show();
+            return false;
+        }
 
         fLog.setDelay(i);
         fLog.setNotes(notes.getText().toString());
         fLog.setResult(FlightLog.LaunchRes.fromString(res.getSelectedItem().toString()));
         fLog.setDate(mCalendar.getTime());
+        fLog.setAltitude(altNum);
+        model.getRocket(fLog.getRocketID()).setMaxAltitude(altNum);
 
         if (!editing)
             model.addFlightLog(fLog);
@@ -210,10 +223,12 @@ public class AddFlightLog extends ActionBarActivity implements
                 TextView motor = (TextView) rootView.findViewById(R.id.motor_field);
                 TextView delay = (TextView) rootView.findViewById(R.id.delay_field);
                 TextView notes = (TextView) rootView.findViewById(R.id.notes_field);
+                TextView altitude = (TextView) rootView.findViewById(R.id.altitude_field);
 
                 motor.setText(flightLog.getMotor());
                 delay.setText(String.valueOf(flightLog.getDelay()));
                 notes.setText(flightLog.getNotes());
+                altitude.setText(String.valueOf(flightLog.getAltitude()));
 
                 results.setSelection(flightLog.getResult().ordinal());
                 rockets.setSelection(model.getRocketPos(flightLog.getRocketID()));
