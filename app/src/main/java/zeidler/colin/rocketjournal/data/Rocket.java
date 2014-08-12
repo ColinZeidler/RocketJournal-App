@@ -15,6 +15,7 @@ public class Rocket implements Serializable {
     private String name;
     private float weight;
     private int flightCount;
+    private int maxAltitude;
     private String image;
     private ArrayList<Integer> flightLogIDs;
 
@@ -23,6 +24,7 @@ public class Rocket implements Serializable {
             id = DataModel.getNextRocketID();
         this.id = id;
         this.flightCount = 0;
+        this.maxAltitude = -1;
         this.flightLogIDs = new ArrayList<Integer>();
         this.image = "";
     }
@@ -39,9 +41,10 @@ public class Rocket implements Serializable {
         this.weight = weight;
     }
 
-    public Rocket(int id, String name, float weight, int flightCount, String image) {
+    public Rocket(int id, String name, float weight, int flightCount, int maxAltitude, String image) {
         this(id, name, weight);
         this.flightCount = flightCount;
+        this.maxAltitude = maxAltitude;
         this.image = image;
     }
 
@@ -96,6 +99,15 @@ public class Rocket implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public int getMaxAltitude() {
+        return maxAltitude;
+    }
+
+    public void setMaxAltitude(int maxAltitude) {
+        if (maxAltitude > this.maxAltitude)
+            this.maxAltitude = maxAltitude;
     }
 
     @Override

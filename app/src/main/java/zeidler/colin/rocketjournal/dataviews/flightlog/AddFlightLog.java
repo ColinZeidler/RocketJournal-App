@@ -178,18 +178,20 @@ public class AddFlightLog extends ActionBarActivity implements
             Spinner results = (Spinner) rootView.findViewById(R.id.spinner);
             Spinner rockets = (Spinner) rootView.findViewById(R.id.rocket_spinner);
 
+            //Drop down for flight results
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(container.getContext(),
                     android.R.layout.simple_spinner_dropdown_item, FlightLog.LaunchRes.names());
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             results.setAdapter(adapter);
 
+            //drop down for rocket names
             ArrayAdapter<Rocket> rocketAdapter = new ArrayAdapter<Rocket>(container.getContext(),
                     android.R.layout.simple_spinner_dropdown_item,
                     model.getRockets());
             rocketAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             rockets.setAdapter(rocketAdapter);
 
-            //date button
+            //date button, and selector
             final AddFlightLog parent = (AddFlightLog) getActivity();
             parent.dateButton = (Button) rootView.findViewById(R.id.date_button);
             parent.dateButton.setText(parent.mFormatter.format(parent.mCalendar.getTime()));

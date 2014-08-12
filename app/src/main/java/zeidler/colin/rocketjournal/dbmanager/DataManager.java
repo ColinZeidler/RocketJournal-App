@@ -28,6 +28,7 @@ public class DataManager extends SQLiteOpenHelper{
     private static final String J_KEY = "_id";
     private static final String J_MOTOR = "motor";
     private static final String J_DELAY = "delay";
+    private static final String J_ALTITUDE = "altitude";
     private static final String J_DATE = "date";
     private static final String J_NOTES = "notes";
     private static final String J_RESULT = "result";
@@ -38,6 +39,7 @@ public class DataManager extends SQLiteOpenHelper{
     private static final String R_NAME = "name";
     private static final String R_WEIGHT = "weight";
     private static final String R_FLIGHTS = "flights";
+    private static final String R_ALTITUDE = "altitude";
     private static final String R_IMAGE = "image";
 
     private static DataManager instance;
@@ -62,7 +64,7 @@ public class DataManager extends SQLiteOpenHelper{
         String createTable = "CREATE TABLE " + R_TABLENAME + "("
                 + R_KEY + " INTEGER PRIMARY KEY," + R_NAME + " TEXT,"
                 + R_WEIGHT + " REAL," + R_FLIGHTS + " INTEGER,"
-                + R_IMAGE + " TEXT);";
+                + R_ALTITUDE + " INTEGER," + R_IMAGE + " TEXT);";
 
         db.execSQL(createTable);
 
@@ -70,6 +72,7 @@ public class DataManager extends SQLiteOpenHelper{
         createTable = "CREATE TABLE " + J_TABLENAME + "("
                 + J_KEY + " INTEGER PRIMARY KEY,"
                 + J_MOTOR + " TEXT," + J_DELAY + " INTEGER,"
+                + J_ALTITUDE + " INTEGER,"
                 + J_DATE + " INTEGER," + J_NOTES + " TEXT,"
                 + J_RESULT + " TEXT," + J_ROCKET + " INTEGER,"
                 + " FOREIGN KEY (" + J_ROCKET + ") REFERENCES " + R_TABLENAME + " (" + R_KEY + "));";
@@ -122,9 +125,10 @@ public class DataManager extends SQLiteOpenHelper{
                 cursor.getInt(6),               //Rocket ID
                 cursor.getString(1),            //Motor
                 cursor.getInt(2),               //Motor Delay
-                new Date(cursor.getLong(3)),    //Launch Date
-                cursor.getString(4),            //Notes
-                FlightLog.LaunchRes.fromString(cursor.getString(5)));   //Launch Result
+                cursor.getInt(3),               //altitude
+                new Date(cursor.getLong(4)),    //Launch Date
+                cursor.getString(5),            //Notes
+                FlightLog.LaunchRes.fromString(cursor.getString(6)));   //Launch Result
     }
 
     /**
@@ -183,7 +187,8 @@ public class DataManager extends SQLiteOpenHelper{
                 cursor.getString(1),    //Name
                 cursor.getFloat(2),     //weight
                 cursor.getInt(3),       //flight count
-                cursor.getString(4));   //image
+                cursor.getInt(4),
+                cursor.getString(5));   //image
     }
 
     /**

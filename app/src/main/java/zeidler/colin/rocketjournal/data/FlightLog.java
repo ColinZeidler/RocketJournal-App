@@ -20,6 +20,7 @@ public class FlightLog implements Serializable {
     private int rocketID;
     private String motor;
     private int delay;
+    private int altitude;
     private Date date;
     private String notes;
     private LaunchRes result;
@@ -30,6 +31,7 @@ public class FlightLog implements Serializable {
         this.id = id;
         this.motor = "No Motor";
         this.delay = -1;
+        this.altitude = -1;
         this.date = new Date();
         this.notes = "";
         this.result = null;
@@ -40,11 +42,12 @@ public class FlightLog implements Serializable {
         this.rocketID = rocketID;
     }
 
-    public FlightLog(int id, int rocketID, String motor, int delay,
+    public FlightLog(int id, int rocketID, String motor, int delay, int altitude,
                      Date date, String notes, LaunchRes result) {
         this(id, rocketID);
         this.motor = motor;
         this.delay = delay;
+        this.altitude = altitude;
         this.date = date;
         this.notes = notes;
         this.result = result;
@@ -100,6 +103,14 @@ public class FlightLog implements Serializable {
 
     public void setResult(LaunchRes result) {
         this.result = result;
+    }
+
+    public int getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(int altitude) {
+        this.altitude = altitude;
     }
 
     public static enum LaunchRes {
