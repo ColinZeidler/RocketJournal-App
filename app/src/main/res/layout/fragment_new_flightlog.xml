@@ -44,6 +44,13 @@
                 android:layout_height="40dp"
                 android:id="@+id/spinner" />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="@string/altitude_field"
+                android:id="@+id/altitude_field"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

@@ -33,6 +33,7 @@
     <string name="weight_field">Weight</string>
     <string name="notes_field">Notes</string>
     <string name="results_field">Result</string>
+    <string name="altitude_field">Altitude, -1 if not recorded</string>
 
     //FlightLog View
     <string name="spec_table">Rocket Info</string>
