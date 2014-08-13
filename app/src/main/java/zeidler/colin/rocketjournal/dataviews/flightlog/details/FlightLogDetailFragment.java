@@ -50,12 +50,14 @@ public class FlightLogDetailFragment extends Fragment {
         TextView resV = (TextView) rootView.findViewById(R.id.r_res);
         TextView dateV = (TextView) rootView.findViewById(R.id.r_date);
         TextView noteV = (TextView) rootView.findViewById(R.id.r_notes);
+        TextView rAlt = (TextView) rootView.findViewById(R.id.r_altitude);
 
         Rocket r = DataModel.getInstance(mContext).getRocket(flightLog.getRocketID());
         nameV.setText(r.getName());
 
         String motorT = flightLog.getMotor() + " " + flightLog.getDelay() + " seconds";
         motorV.setText(motorT);
+        rAlt.setText(String.valueOf(flightLog.getAltitude()));
 
         String weightT = r.getWeight() + " lbs";
         weightV.setText(weightT);
