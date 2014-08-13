@@ -21,7 +21,7 @@ import zeidler.colin.rocketjournal.data.Rocket;
  */
 public class DataManager extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION   = 7;
+    private static final int DATABASE_VERSION   = 8;
     private static final String DATABASE_NAME   = "Rocket Journal";
 
     private static final String J_TABLENAME = "Journals";
