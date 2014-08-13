@@ -46,7 +46,7 @@
     <string name="result_header">Result:</string>
     <string name="notes_header">Flight Notes</string>
     <string name="date_header">Date:</string>
-    <string name="altitude_header">Altitude:</string>
+    <string name="altitude_header">Max Altitude:</string>
 
     //Error Messages
     <string name="error_invalid_delay">Invalid input; Delay must be a number</string>

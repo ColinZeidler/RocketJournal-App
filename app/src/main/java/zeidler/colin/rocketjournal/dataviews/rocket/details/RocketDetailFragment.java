@@ -48,10 +48,12 @@ public class RocketDetailFragment extends Fragment {
         TextView rName = (TextView) rootView.findViewById(R.id.rocket_name);
         TextView rWeight = (TextView) rootView.findViewById(R.id.r_weight);
         TextView rFCount = (TextView) rootView.findViewById(R.id.r_flights);
+        TextView rAlt = (TextView) rootView.findViewById(R.id.r_altitude);
 
         rName.setText(rocket.getName());
         rWeight.setText(String.valueOf(rocket.getWeight()) + " lbs");
         rFCount.setText(String.valueOf(rocket.getFlightCount()));
+        rAlt.setText(String.valueOf(rocket.getMaxAltitude()));
 
         FlightLogListAdapter arrAdapter = new FlightLogListAdapter(mContext,
                 R.layout.adapter_flightlog,

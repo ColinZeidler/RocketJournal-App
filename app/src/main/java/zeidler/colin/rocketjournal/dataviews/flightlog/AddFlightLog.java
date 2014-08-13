@@ -130,9 +130,7 @@ public class AddFlightLog extends ActionBarActivity implements
         if (fLog == null)
             fLog = new FlightLog(-1);
 
-        fLog.setRocketID(r.getId());
-        fLog.setMotor(motor.getText().toString());
-
+        //try to convert delay to int, warn user on failure
         int i;
         try {
             i = Integer.parseInt(delay.getText().toString());
@@ -141,8 +139,9 @@ public class AddFlightLog extends ActionBarActivity implements
                     getResources().getText(R.string.error_invalid_delay),
                     Toast.LENGTH_SHORT);
             error.show();
-            return false;
+            return false;   //exit save before making any changes on error
         }
+        //try to convert altitude to int, warn user on failure
         int altNum;
         try {
             altNum = Integer.parseInt(altitude.getText().toString());
@@ -151,8 +150,11 @@ public class AddFlightLog extends ActionBarActivity implements
                     getResources().getText(R.string.error_invalid_altitude),
                     Toast.LENGTH_SHORT);
             error.show();
-            return false;
+            return false;   //exit save before making any changes on error
         }
+
+        fLog.setRocketID(r.getId());
+        fLog.setMotor(motor.getText().toString());
 
         fLog.setDelay(i);
         fLog.setNotes(notes.getText().toString());
@@ -219,6 +221,7 @@ public class AddFlightLog extends ActionBarActivity implements
                 }
             });
 
+            //when editing an existing log, populate all the fields
             if (flightLog != null) {
                 TextView motor = (TextView) rootView.findViewById(R.id.motor_field);
                 TextView delay = (TextView) rootView.findViewById(R.id.delay_field);

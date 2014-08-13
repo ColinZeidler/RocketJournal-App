@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin">
 
-        <!-- Row 2 -->
+        <!-- Row 1 -->
         <TextView
             style="@style/table_text.bold"
             android:text="@string/weight_header"
@@ -32,7 +32,7 @@
             app:layout_row="0"
             app:layout_column="2"/>
 
-        <!-- Row 3 -->
+        <!-- Row 2 -->
         <TextView
             style="@style/table_text.bold"
             android:text="@string/flight_header"
@@ -47,6 +47,23 @@
             android:text="@string/placeholder_number"
             android:id="@+id/r_flights"
             app:layout_row="1"
+            app:layout_column="2"/>
+
+        <!-- Row 3 -->
+        <TextView
+            style="@style/table_text.bold"
+            android:text="@string/altitude_header"
+            app:layout_row="2"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
+            android:layout_width="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            style="@style/table_text"
+            android:text="@string/placeholder_number"
+            android:id="@+id/r_altitude"
+            app:layout_row="2"
             app:layout_column="2"/>
     </android.support.v7.widget.GridLayout>
 
