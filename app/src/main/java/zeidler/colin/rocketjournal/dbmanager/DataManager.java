@@ -122,7 +122,7 @@ public class DataManager extends SQLiteOpenHelper{
                 4. notes, 5. result, 6. Rocket.ID
                  */
         return new FlightLog(cursor.getInt(0),  //ID
-                cursor.getInt(6),               //Rocket ID
+                cursor.getInt(7),               //Rocket ID
                 cursor.getString(1),            //Motor
                 cursor.getInt(2),               //Motor Delay
                 cursor.getInt(3),               //altitude
@@ -143,6 +143,7 @@ public class DataManager extends SQLiteOpenHelper{
         values.put(J_NOTES, flightLog.getNotes());
         values.put(J_RESULT, flightLog.getResult().toString());
         values.put(J_ROCKET, flightLog.getRocketID());
+        values.put(J_ALTITUDE, flightLog.getAltitude());
 
         //insert row
         db.insert(J_TABLENAME, null, values);
@@ -187,7 +188,7 @@ public class DataManager extends SQLiteOpenHelper{
                 cursor.getString(1),    //Name
                 cursor.getFloat(2),     //weight
                 cursor.getInt(3),       //flight count
-                cursor.getInt(4),
+                cursor.getInt(4),       //max altitude
                 cursor.getString(5));   //image
     }
 
@@ -202,6 +203,7 @@ public class DataManager extends SQLiteOpenHelper{
         values.put(R_WEIGHT, rocket.getWeight());
         values.put(R_FLIGHTS, rocket.getFlightCount());
         values.put(R_IMAGE, rocket.getImage());
+        values.put(R_ALTITUDE, rocket.getMaxAltitude());
 
         db.insert(R_TABLENAME, null, values);
     }
