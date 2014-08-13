@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red">#ff7e0e0f</color>
-    <color name="actionBarSecondary">#323232</color>
+    <color name="primary">#6f9416</color>
+    <color name="highlight">#536B11</color>
+    <color name="actionBarSecondary">@color/highlight</color>
+
 </resources>

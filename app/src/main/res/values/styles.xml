@@ -1,18 +1,19 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <!--<item name="android:actionBarStyle">@style/RedActionbar</item>-->
-        <!--<item name="actionBarStyle">@style/RedActionbar</item>-->
+        <item name="android:actionBarStyle" tools:ignore="NewApi">@style/GreenActionBar</item>
+        <item name="actionBarStyle">@style/GreenActionBar</item>
+
     </style>
 
     <!-- ActionBar style -->
-    <style name="RedActionbar"
+    <style name="GreenActionBar"
         parent="style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/red</item>
+        <item name="android:background">@drawable/actionbarbg</item>
 
-        <item name="background">@color/red</item>
+        <item name="background">@drawable/actionbarbg</item>
     </style>
 
     <style name="display_text">
