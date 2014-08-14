@@ -1,7 +1,9 @@
 package zeidler.colin.rocketjournal.dataviews.flightlog.details;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
+import zeidler.colin.rocketjournal.SettingsActivity;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.FlightLog;
 import zeidler.colin.rocketjournal.R;
@@ -64,7 +67,8 @@ public class FlightLogDetailFragment extends Fragment {
 
         resV.setText(flightLog.getResult().toString());
 
-        Format formatter = new SimpleDateFormat(getResources().getString(R.string.date_format_use));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        Format formatter = new SimpleDateFormat(prefs.getString(SettingsActivity.KEY_PREF_DATEFORMAT, ""));
         String dateT = formatter.format(flightLog.getDate());
         dateV.setText(dateT);
 

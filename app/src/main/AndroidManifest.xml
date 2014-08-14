@@ -2,14 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zeidler.colin.rocketjournal" >
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
             android:name=".dataviews.MainActivity"
             android:label="@string/app_name" >
@@ -19,17 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dataviews.flightlog.AddFlightLog"/>
-        <activity android:name=".dataviews.rocket.AddRocket"/>
-        <activity android:name=".dataviews.rocket.details.RocketDetailActivity"
+        <activity android:name=".dataviews.flightlog.AddFlightLog" />
+        <activity android:name=".dataviews.rocket.AddRocket" />
+        <activity
+            android:name=".dataviews.rocket.details.RocketDetailActivity"
             android:parentActivityName=".dataviews.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dataviews.MainActivity"/>
+                android:value=".dataviews.MainActivity" />
         </activity>
         <activity
             android:name=".dataviews.flightlog.details.FlightLogDetailActivity"
             android:label="@string/app_name"
+            android:parentActivityName=".dataviews.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dataviews.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
             android:parentActivityName=".dataviews.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
+import zeidler.colin.rocketjournal.SettingsActivity;
 import zeidler.colin.rocketjournal.dataviews.flightlog.AddFlightLog;
 import zeidler.colin.rocketjournal.dataviews.rocket.AddRocket;
 import zeidler.colin.rocketjournal.R;
@@ -67,7 +68,10 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
         Intent intent = new Intent();
         switch(id) {
-            case R.id.action_settings: return true;
+            case R.id.action_settings:
+                intent.setClass(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.add_item_flightlog:
                 intent.setClass(this, AddFlightLog.class);
                 startActivity(intent);

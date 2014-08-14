@@ -1,6 +1,8 @@
 package zeidler.colin.rocketjournal;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +49,8 @@ public class FlightLogListAdapter extends ArrayAdapter<FlightLog> {
 
             String n = DataModel.getInstance(mContext).getRocket(flightLog.getRocketID()).getName();
             name.setText(n);
-            Format formatter = new SimpleDateFormat(v.getResources().getString(R.string.date_format_use));
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+            Format formatter = new SimpleDateFormat(prefs.getString(SettingsActivity.KEY_PREF_DATEFORMAT, ""));
             String statusT = flightLog.getResult().toString() + " launched: " + formatter.format(flightLog.getDate());
             status.setText(statusT);
 

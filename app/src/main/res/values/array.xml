@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="date_formats">
+        <item>@string/date_format_0</item>
+        <item>@string/date_format_1</item>
+        <item>@string/date_format_2</item>
+        <item>@string/date_format_3</item>
+        <item>@string/date_format_4</item>
+    </array>
+</resources>
