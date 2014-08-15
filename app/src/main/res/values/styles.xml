@@ -17,11 +17,11 @@
     <!-- ActionBar style -->
     <style name="GreenActionBar"
         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/actionbar_bg</item>
-        <item name="android:backgroundStacked" tools:ignore="NewApi">@drawable/actionbar_stacked</item>
+        <item name="android:background">@color/primary</item>
+        <item name="android:backgroundStacked" tools:ignore="NewApi">@color/highlight</item>
 
-        <item name="background">@drawable/actionbar_bg</item>
-        <item name="backgroundStacked">@drawable/actionbar_stacked</item>
+        <item name="background">@color/primary</item>
+        <item name="backgroundStacked">@color/highlight</item>
     </style>
 
     <!--<style name="GreenPopupMenu"-->
