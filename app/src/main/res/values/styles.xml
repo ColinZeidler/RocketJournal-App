@@ -6,15 +6,40 @@
         <item name="android:actionBarStyle" tools:ignore="NewApi">@style/GreenActionBar</item>
         <item name="actionBarStyle">@style/GreenActionBar</item>
 
+        <item name="android:actionBarTabStyle" tools:ignore="NewApi">@style/GreenTabs</item>
+        <item name="actionBarTabStyle">@style/GreenTabs</item>
+
+        <!--<item name="android:popupMenuStyle" tools:ignore="NewApi">@style/GreenPopupMenu</item>-->
+        <!--<item name="popupMenuStyle">@style/GreenPopupMenu</item>-->
+
     </style>
 
     <!-- ActionBar style -->
     <style name="GreenActionBar"
-        parent="style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/actionbarbg</item>
+        parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/primary</item>
+        <item name="android:backgroundStacked" tools:ignore="NewApi">@color/highlight</item>
 
-        <item name="background">@drawable/actionbarbg</item>
+        <item name="background">@color/primary</item>
+        <item name="backgroundStacked">@color/highlight</item>
     </style>
+
+    <!--<style name="GreenPopupMenu"-->
+        <!--parent="@style/Widget.AppCompat.PopupMenu">-->
+        <!--<item name="android:popupBackground" tools:ignore="NewApi">@drawable/actionbar_stacked</item>-->
+
+        <!--<item name="popupBackground">@drawable/actionbar_stacked</item>-->
+    <!--</style>-->
+
+    <!-- Tab Style -->
+    <style name="GreenTabs"
+        parent="@style/Widget.AppCompat.ActionBar.TabView" >
+        <item name="android:background">@drawable/tab_indicator_green</item>
+
+        <item name="background">@drawable/tab_indicator_green</item>
+    </style>
+
+
 
     <style name="display_text">
         <item name="android:layout_height">wrap_content</item>
