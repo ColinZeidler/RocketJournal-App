@@ -6,6 +6,20 @@
         android:title="@string/date_format_title"
         android:entries="@array/date_formats"
         android:entryValues="@array/date_formats"
-        android:defaultValue="@string/date_format_3"/>
+        android:defaultValue="@string/date_format_3" />
+
+    <ListPreference
+        android:key="pref_alt_format"
+        android:title=""
+        android:entries="@array/altitude_entries"
+        android:entryValues="@array/altitude_values"
+        android:defaultValue="@string/altitude_format_0" />
+
+    <ListPreference
+        android:key="pref_weight_format"
+        android:title=""
+        android:entries="@array/weight_entries"
+        android:entryValues="@array/weight_values"
+        android:defaultValue="@string/weight_format_0" />
 
 </PreferenceScreen>

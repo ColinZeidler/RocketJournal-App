@@ -7,4 +7,24 @@
         <item>@string/date_format_3</item>
         <item>@string/date_format_4</item>
     </array>
+    
+    <array name="weight_values">
+        <item>0</item>
+        <item>1</item>
+    </array>
+
+    <array name="weight_entries">
+        <item>@string/weight_format_0</item>
+        <item>@string/weight_format_1</item>
+    </array>
+
+    <array name="altitude_values">
+        <item>0</item>
+        <item>1</item>
+    </array>
+
+    <array name="altitude_entries">
+        <item>@string/altitude_format_0</item>
+        <item>@string/altitude_format_1</item>
+    </array>
 </resources>

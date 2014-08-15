@@ -65,6 +65,14 @@
     <string name="date_format_3">"MMMM dd, yyyy"</string>
     <string name="date_format_4">dd, MMM, yyyy</string>
 
+    //weight formats
+    <string name="weight_format_0">lbs</string>
+    <string name="weight_format_1">kg</string>
+
+    //altitude formats
+    <string name="altitude_format_0">ft</string>
+    <string name="altitude_format_1">m</string>
+
     //placeholders
     <string name="placeholder_name">Lorem Ipsum Dolor</string>
     <string name="placeholder_short_text">ipsum dolor</string>
@@ -81,6 +89,7 @@
         appellantur sed id, abhorreant vituperata ea eam. Ea elit prima constituam sit.</string>
 
     <string name="title_activity_main">MainActivity</string>
+    <string name="settings_activity">Settings</string>
     <string name="title_section1">Flight Logs</string>
     <string name="title_section2">Rockets</string>
 
