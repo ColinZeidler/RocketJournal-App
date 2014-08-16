@@ -31,10 +31,10 @@
     <string name="motor_field">Motor</string>
     <string name="delay_field">Delay</string>
     <string name="name_field">Name</string>
-    <string name="weight_field">Weight</string>
+    <string name="weight_field">Weight (lbs)</string>
     <string name="notes_field">Notes</string>
     <string name="results_field">Result</string>
-    <string name="altitude_field">Altitude, -1 if not recorded</string>
+    <string name="altitude_field">Altitude (ft)</string>
 
     //FlightLog View
     <string name="spec_table">Rocket Info</string>
