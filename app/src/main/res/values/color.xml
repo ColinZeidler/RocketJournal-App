@@ -4,5 +4,7 @@
     <color name="highlight">#536B11</color>
     <color name="selection">#9ACC1E</color>
     <!--<color name="actionBarSecondary">@color/selection</color>-->
+    <color name="name_bg">#a2000000</color>
+    <color name="white">#FFF</color>
 
 </resources>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -49,6 +50,15 @@ public class RocketDetailFragment extends Fragment {
         TextView rWeight = (TextView) rootView.findViewById(R.id.r_weight);
         TextView rFCount = (TextView) rootView.findViewById(R.id.r_flights);
         TextView rAlt = (TextView) rootView.findViewById(R.id.r_altitude);
+        ImageView rImage = (ImageView) rootView.findViewById(R.id.rocket_image);
+
+
+        String image = rocket.getImage();
+        if (!image.equals("")) {
+//                loadimage from disk
+        } else {
+            rImage.setImageDrawable(rootView.getResources().getDrawable(R.drawable.default_rocket));
+        }
 
         rName.setText(rocket.getName());
         rWeight.setText(String.valueOf(rocket.getWeight()) + " lbs");

@@ -9,10 +9,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin">
 
-    <TextView
-        style="@style/display_text.medium"
-        android:text="Rocket Name"
-        android:id="@+id/rocket_name"/>
+
+    <include layout="@layout/include_rocket_name"
+        android:layout_height="150dp"
+        android:layout_width="match_parent"/>
 
     <android.support.v7.widget.Space
         android:layout_width="match_parent"
