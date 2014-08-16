@@ -15,8 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.Comparator;
-
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.RocketListAdapter;
 import zeidler.colin.rocketjournal.UpdateList;
@@ -34,7 +32,7 @@ public class RocketListFragment extends Fragment implements UpdateList,
     private Context mContext;
     private DataModel dataModel;
     private RocketListAdapter arrAdapter;
-    private Comparator<Rocket> mComparator;
+    private Rocket.RocketCompare mComparator;
     private View rootView;
 
     @Override
@@ -104,14 +102,26 @@ public class RocketListFragment extends Fragment implements UpdateList,
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.sort_name:
-                mComparator = new Rocket.NameCompare();
+                setmComparator(new Rocket.NameCompare());
                 updateList();
                 return true;
             case R.id.sort_flights:
-                mComparator = new Rocket.FlightCountCompare();
+                setmComparator(new Rocket.FlightCountCompare());
+                updateList();
+                return true;
+            case R.id.sort_max_alt:
+                setmComparator(new Rocket.AltitudeCompare());
                 updateList();
                 return true;
         }
         return false;
+    }
+
+    private void setmComparator(Rocket.RocketCompare rocketComparator) {
+        if (mComparator.getType() == rocketComparator.getType())
+            mComparator.flipSort();
+        else {
+            mComparator = rocketComparator;
+        }
     }
 }

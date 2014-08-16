@@ -152,24 +152,78 @@ public class FlightLog implements Serializable {
         }
     }
 
-    static public class DateCompare implements Comparator<FlightLog> {
+    static public abstract class LogCompare implements Comparator<FlightLog> {
+        public static final boolean ASCENDING_SORT = true;
+        public static final boolean DESCENDING_SORT = false;
+
+        protected boolean sortBy;
+
+        public LogCompare() {
+            sortBy = DESCENDING_SORT;
+        }
+
+        public void sortAs(boolean method) {
+            sortBy = method;
+        }
+        public void flipSort() { sortBy = !sortBy; }
+        abstract public int getType();
+
+    }
+
+    static public class DateCompare extends LogCompare {
         @Override
         public int compare(FlightLog lhs, FlightLog rhs) {
-            return lhs.getDate().compareTo(rhs.getDate());
+            if (sortBy)
+                return lhs.getDate().compareTo(rhs.getDate());
+            return rhs.getDate().compareTo(lhs.getDate());
+        }
+
+        @Override
+        public int getType() {
+            return 0;
         }
     }
 
-    static public class ResultCompare implements Comparator<FlightLog> {
+    static public class ResultCompare extends LogCompare {
         @Override
         public int compare(FlightLog lhs, FlightLog rhs) {
-            return lhs.getResult().compareTo(rhs.getResult());
+            if (sortBy)
+                return lhs.getResult().compareTo(rhs.getResult());
+            return rhs.getResult().compareTo(lhs.getResult());
+        }
+
+        @Override
+        public int getType() {
+            return 1;
         }
     }
 
-    static public class MotorCompare implements Comparator<FlightLog> {
+    static public class MotorCompare extends LogCompare {
         @Override
         public int compare(FlightLog lhs, FlightLog rhs) {
-            return lhs.getMotor().charAt(0) - rhs.getMotor().charAt(0);
+            if (sortBy)
+                return lhs.getMotor().charAt(0) - rhs.getMotor().charAt(0);
+            return rhs.getMotor().charAt(0) - lhs.getMotor().charAt(0);
+        }
+
+        @Override
+        public int getType() {
+            return 2;
+        }
+    }
+
+    static public class AltitudeCompare extends LogCompare {
+
+        @Override
+        public int compare(FlightLog lhs, FlightLog rhs) {
+            if (sortBy)
+                return lhs.getAltitude() - rhs.getAltitude();
+            return rhs.getAltitude() - lhs.getAltitude();
+        }
+
+        @Override
+        public int getType() {
+            return 3;
         }
     }
 }

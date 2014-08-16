@@ -34,7 +34,7 @@ public class FlightLogListFragment extends Fragment implements UpdateList,
     private DataModel dataModel;
     private Context mContext;
     private FlightLogListAdapter arrAdapter;
-    private Comparator<FlightLog> mComparator;
+    private FlightLog.LogCompare mComparator;
     private View rootView;
 
     @Override
@@ -102,18 +102,31 @@ public class FlightLogListFragment extends Fragment implements UpdateList,
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.sort_date:
-                mComparator = new FlightLog.DateCompare();
+                setmComparator(new FlightLog.DateCompare());
                 updateList();
                 return true;
             case R.id.sort_motor:
-                mComparator = new FlightLog.MotorCompare();
+                setmComparator(new FlightLog.MotorCompare());
                 updateList();
                 return true;
             case R.id.sort_result:
-                mComparator = new FlightLog.ResultCompare();
+                setmComparator(new FlightLog.ResultCompare());
+                updateList();
+                return true;
+            case R.id.sort_alt:
+                setmComparator(new FlightLog.AltitudeCompare());
                 updateList();
                 return true;
         }
         return false;
+    }
+
+
+    private void setmComparator(FlightLog.LogCompare flightComparator) {
+        if (mComparator.getType() == flightComparator.getType())
+            mComparator.flipSort();
+        else {
+            mComparator = flightComparator;
+        }
     }
 }

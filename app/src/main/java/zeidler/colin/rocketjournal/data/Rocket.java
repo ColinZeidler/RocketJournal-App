@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+
 /**
  * Created by Colin on 2014-07-21.
  *
@@ -115,17 +116,63 @@ public class Rocket implements Serializable {
         return this.name;
     }
 
-    static public class NameCompare implements Comparator<Rocket> {
+
+    static public abstract class RocketCompare implements Comparator<Rocket> {
+        public static final boolean ASCENDING_SORT = true;
+        public static final boolean DESCENDING_SORT = false;
+
+        protected boolean sortBy;
+
+        public RocketCompare() {
+            sortBy = DESCENDING_SORT;
+        }
+
+        public void sortAs(boolean method) {
+            sortBy = method;
+        }
+        public void flipSort() { sortBy = !sortBy; }
+        abstract public int getType();
+    }
+
+    static public class NameCompare extends RocketCompare {
         @Override
         public int compare(Rocket lhs, Rocket rhs) {
-            return lhs.getName().compareTo(rhs.getName());
+            if (sortBy)
+                return lhs.getName().compareTo(rhs.getName());
+            return  rhs.getName().compareTo(lhs.getName());
+        }
+
+        @Override
+        public int getType() {
+            return 0;
         }
     }
 
-    static public class FlightCountCompare implements Comparator<Rocket> {
+    static public class FlightCountCompare extends RocketCompare {
         @Override
         public int compare(Rocket lhs, Rocket rhs) {
-            return lhs.getFlightCount() - rhs.getFlightCount();
+            if (sortBy)
+                return lhs.getFlightCount() - rhs.getFlightCount();
+            return rhs.getFlightCount() - lhs.getFlightCount();
+        }
+
+        @Override
+        public int getType() {
+            return 1;
+        }
+    }
+
+    static public class AltitudeCompare extends RocketCompare {
+        @Override
+        public int compare(Rocket lhs, Rocket rhs) {
+            if (sortBy)
+                return lhs.getMaxAltitude() - rhs.getMaxAltitude();
+            return rhs.getMaxAltitude() - lhs.getMaxAltitude();
+        }
+
+        @Override
+        public int getType() {
+            return 2;
         }
     }
 }

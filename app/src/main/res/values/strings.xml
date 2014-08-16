@@ -22,6 +22,7 @@
     <string name="sort_date">Launch Date</string>
     <string name="sort_motor">Motor</string>
     <string name="sort_result">Result</string>
+    <string name="sort_alt">Altitude</string>
 
     //Activity Titles
     <string name="add_journal">New Journal</string>
