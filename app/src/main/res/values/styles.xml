@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="android:actionBarStyle" tools:ignore="NewApi">@style/GreenActionBar</item>
         <item name="actionBarStyle">@style/GreenActionBar</item>
@@ -9,9 +9,14 @@
         <item name="android:actionBarTabStyle" tools:ignore="NewApi">@style/GreenTabs</item>
         <item name="actionBarTabStyle">@style/GreenTabs</item>
 
-        <!--<item name="android:popupMenuStyle" tools:ignore="NewApi">@style/GreenPopupMenu</item>-->
-        <!--<item name="popupMenuStyle">@style/GreenPopupMenu</item>-->
+        <item name="android:actionOverflowButtonStyle" tools:ignore="NewApi">@style/Widget.AppCompat.ActionButton.Overflow</item>
+        <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
 
+        <item name="android:homeAsUpIndicator" tools:ignore="NewApi">@drawable/abc_ic_ab_back_holo_dark</item>
+        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_holo_dark</item>
+
+        <item name="android:actionBarTabTextStyle" tools:ignore="NewApi">@style/Widget.AppCompat.Light.ActionBar.TabText.Inverse</item>
+        <item name="actionBarTabTextStyle">@style/Widget.AppCompat.Light.ActionBar.TabText.Inverse</item>
     </style>
 
     <!-- ActionBar style -->
@@ -24,18 +29,10 @@
         <item name="backgroundStacked">@color/highlight</item>
     </style>
 
-    <!--<style name="GreenPopupMenu"-->
-        <!--parent="@style/Widget.AppCompat.PopupMenu">-->
-        <!--<item name="android:popupBackground" tools:ignore="NewApi">@drawable/actionbar_stacked</item>-->
-
-        <!--<item name="popupBackground">@drawable/actionbar_stacked</item>-->
-    <!--</style>-->
-
     <!-- Tab Style -->
     <style name="GreenTabs"
         parent="@style/Widget.AppCompat.ActionBar.TabView" >
         <item name="android:background">@drawable/tab_indicator_green</item>
-
         <item name="background">@drawable/tab_indicator_green</item>
     </style>
 
