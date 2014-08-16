@@ -8,12 +8,12 @@ android {
         applicationId "zeidler.colin.rocketjournal"
         minSdkVersion 9
         targetSdkVersion 20
-        versionCode 2
-        versionName "0.6.7"
+        versionCode 3
+        versionName "0.6.8"
     }
     buildTypes {
         release {
-            runProguard false
+            runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
