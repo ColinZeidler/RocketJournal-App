@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +23,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
@@ -31,7 +36,8 @@ public class AddRocket extends ActionBarActivity {
 
     private DataModel model;
     private boolean editing;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private File TEMP_CAMERA_FILE;
     private Bitmap picture;
     private Bitmap thumbnail;
 
@@ -100,6 +106,9 @@ public class AddRocket extends ActionBarActivity {
     public void loadImage(View v) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            TEMP_CAMERA_FILE = new File(Environment.getExternalStorageDirectory(),
+                    "temp.jpg");
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(TEMP_CAMERA_FILE));
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
@@ -128,6 +137,8 @@ public class AddRocket extends ActionBarActivity {
             return false;
         }
 
+        rocket.setImage(saveImageToStorage(rocket.getId()));
+
         rocket.setWeight(w);
         if (!editing)
             model.addRocket(rocket);
@@ -140,33 +151,39 @@ public class AddRocket extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap image = (Bitmap) extras.get("data");
+            //Thumbnail
+//            Bundle extras = data.getExtras();
+//            Bitmap image = (Bitmap) extras.get("data");
             ImageView iView = (ImageView) findViewById(R.id.rocket_image);
-            iView.setImageBitmap(image);
+//            iView.setImageBitmap(image);
+//            thumbnail = image;
+
+            //Full image
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            picture = BitmapFactory.decodeFile(TEMP_CAMERA_FILE.getAbsolutePath(),
+                    bmOptions);
+            iView.setImageBitmap(picture);
+            TEMP_CAMERA_FILE.delete();
         }
     }
 
-    private void saveImageToStorage(String rocketImage) {
+    private String saveImageToStorage(int rocketID) {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         //path to /data/data/<app>/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
 
-        File myThumb = new File(directory, rocketImage+"_thumb.jpg");
-        File myPic = new File(directory, rocketImage+".jpg");
+        File myPic = new File(directory, "rocket"+rocketID+".jpg");
 
-        FileOutputStream picFOS, thumbFOS;
+        FileOutputStream picFOS;
         try {
             picFOS = new FileOutputStream(myPic);
-            picture.compress(Bitmap.CompressFormat.PNG, 100, picFOS);
+            picture.compress(Bitmap.CompressFormat.PNG, 85, picFOS);
             picFOS.close();
-
-            thumbFOS = new FileOutputStream(myThumb);
-            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, thumbFOS);
-            thumbFOS.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.i("PICTURE PATH", myPic.getAbsolutePath());
+        return myPic.getAbsolutePath();
     }
 
     public static class AddRocketView extends Fragment {
