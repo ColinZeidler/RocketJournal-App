@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
@@ -39,7 +38,6 @@ public class AddRocket extends ActionBarActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private File TEMP_CAMERA_FILE;
     private Bitmap picture;
-    private Bitmap thumbnail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +135,10 @@ public class AddRocket extends ActionBarActivity {
             return false;
         }
 
-        rocket.setImage(saveImageToStorage(rocket.getId()));
+        if (picture != null)
+            rocket.setImage(saveImageToStorage(rocket.getId()));
+        else
+            rocket.setImage("");
 
         rocket.setWeight(w);
         if (!editing)
@@ -164,7 +165,7 @@ public class AddRocket extends ActionBarActivity {
 
     private String saveImageToStorage(int rocketID) {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        //path to /data/data/<app>/app_data/imageDir
+        //path to /data/data/<app>/app_imageDir/
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
 
         final File myPic = new File(directory, "rocket"+rocketID+".jpg");

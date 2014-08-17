@@ -87,8 +87,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         DataModel.getInstance(this).saveAllData();
     }
 

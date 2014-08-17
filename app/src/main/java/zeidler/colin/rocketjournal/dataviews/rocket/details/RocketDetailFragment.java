@@ -2,6 +2,8 @@ package zeidler.colin.rocketjournal.dataviews.rocket.details;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +15,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.data.BitmapLoader;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
 import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailActivity;
@@ -50,12 +56,13 @@ public class RocketDetailFragment extends Fragment {
         TextView rWeight = (TextView) rootView.findViewById(R.id.r_weight);
         TextView rFCount = (TextView) rootView.findViewById(R.id.r_flights);
         TextView rAlt = (TextView) rootView.findViewById(R.id.r_altitude);
-        ImageView rImage = (ImageView) rootView.findViewById(R.id.rocket_image);
+        final ImageView rImage = (ImageView) rootView.findViewById(R.id.rocket_image);
 
 
-        String image = rocket.getImage();
+        final String image = rocket.getImage();
         if (!image.equals("")) {
-//                loadimage from disk
+            BitmapLoader task = new BitmapLoader(rImage);
+            task.execute(image);
         } else {
             rImage.setImageDrawable(rootView.getResources().getDrawable(R.drawable.default_rocket));
         }
