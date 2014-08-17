@@ -2,6 +2,7 @@ package zeidler.colin.rocketjournal.data;
 
 import android.content.Context;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -200,6 +201,8 @@ public class DataModel {
      */
     public void deleteRocket(Rocket rocket) {
         flightLogs.removeAll(getFlightLogs(rocket.getId()));
+        File image = new File(rocket.getImage());
+        image.delete();
         rockets.remove(rocket);
     }
 
