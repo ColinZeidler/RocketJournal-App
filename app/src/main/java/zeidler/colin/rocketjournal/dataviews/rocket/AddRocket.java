@@ -151,12 +151,7 @@ public class AddRocket extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            //Thumbnail
-//            Bundle extras = data.getExtras();
-//            Bitmap image = (Bitmap) extras.get("data");
             ImageView iView = (ImageView) findViewById(R.id.rocket_image);
-//            iView.setImageBitmap(image);
-//            thumbnail = image;
 
             //Full image
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
@@ -172,16 +167,22 @@ public class AddRocket extends ActionBarActivity {
         //path to /data/data/<app>/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
 
-        File myPic = new File(directory, "rocket"+rocketID+".jpg");
+        final File myPic = new File(directory, "rocket"+rocketID+".jpg");
 
-        FileOutputStream picFOS;
-        try {
-            picFOS = new FileOutputStream(myPic);
-            picture.compress(Bitmap.CompressFormat.PNG, 85, picFOS);
-            picFOS.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Thread saveImage = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FileOutputStream picFOS;
+                try {
+                    picFOS = new FileOutputStream(myPic);
+                    picture.compress(Bitmap.CompressFormat.PNG, 85, picFOS);
+                    picFOS.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        saveImage.start();
         Log.i("PICTURE PATH", myPic.getAbsolutePath());
         return myPic.getAbsolutePath();
     }
