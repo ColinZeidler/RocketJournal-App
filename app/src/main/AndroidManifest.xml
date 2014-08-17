@@ -3,6 +3,10 @@
     package="zeidler.colin.rocketjournal" >
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18"/>
+    <uses-feature android:name="android.hardware.Camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"

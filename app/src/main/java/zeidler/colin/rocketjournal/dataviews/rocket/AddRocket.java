@@ -1,7 +1,10 @@
 package zeidler.colin.rocketjournal.dataviews.rocket;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -9,6 +12,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +27,7 @@ public class AddRocket extends ActionBarActivity {
 
     private DataModel model;
     private boolean editing;
-    protected Rocket testValue;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,13 @@ public class AddRocket extends ActionBarActivity {
 
     }
 
+    public void loadImage(View v) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
     /**
      *
      * @param rocket the rocket to update, null if creating a new one
@@ -120,6 +131,16 @@ public class AddRocket extends ActionBarActivity {
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap image = (Bitmap) extras.get("data");
+            ImageView iView = (ImageView) findViewById(R.id.rocket_image);
+            iView.setImageBitmap(image);
+        }
+    }
+
     public static class AddRocketView extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -130,6 +151,14 @@ public class AddRocket extends ActionBarActivity {
             if (rocket != null) {
                 TextView name = (TextView) rootView.findViewById(R.id.rocket_name);
                 TextView weight = (TextView) rootView.findViewById(R.id.rocket_weight);
+                ImageView image = (ImageView) rootView.findViewById(R.id.rocket_image);
+
+                String imageS = rocket.getImage();
+                if (!imageS.equals("")) {
+//                loadimage from disk
+                } else {
+                    image.setImageDrawable(rootView.getResources().getDrawable(R.drawable.default_rocket));
+                }
 
                 name.setText(rocket.getName());
                 weight.setText(String.valueOf(rocket.getWeight()));
