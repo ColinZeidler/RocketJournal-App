@@ -1,6 +1,7 @@
 package zeidler.colin.rocketjournal.dataviews.rocket;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
@@ -28,6 +32,8 @@ public class AddRocket extends ActionBarActivity {
     private DataModel model;
     private boolean editing;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Bitmap picture;
+    private Bitmap thumbnail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +144,28 @@ public class AddRocket extends ActionBarActivity {
             Bitmap image = (Bitmap) extras.get("data");
             ImageView iView = (ImageView) findViewById(R.id.rocket_image);
             iView.setImageBitmap(image);
+        }
+    }
+
+    private void saveImageToStorage(String rocketImage) {
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        //path to /data/data/<app>/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+
+        File myThumb = new File(directory, rocketImage+"_thumb.jpg");
+        File myPic = new File(directory, rocketImage+".jpg");
+
+        FileOutputStream picFOS, thumbFOS;
+        try {
+            picFOS = new FileOutputStream(myPic);
+            picture.compress(Bitmap.CompressFormat.PNG, 100, picFOS);
+            picFOS.close();
+
+            thumbFOS = new FileOutputStream(myThumb);
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, thumbFOS);
+            thumbFOS.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
