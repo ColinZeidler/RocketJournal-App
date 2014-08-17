@@ -2,8 +2,6 @@ package zeidler.colin.rocketjournal.dataviews.rocket.details;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,9 +13,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.BitmapLoader;
@@ -27,6 +22,8 @@ import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailAc
 
 /**
  * Created by Colin on 2014-07-26.
+ *
+ * Populate the details page for a rocket,
  */
 public class RocketDetailFragment extends Fragment {
 

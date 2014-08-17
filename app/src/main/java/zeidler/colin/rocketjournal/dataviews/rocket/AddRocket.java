@@ -25,11 +25,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.data.BitmapLoader;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
 
 /**
  * Created by Colin on 2014-07-28.
+ *
+ * handles the creation of a new rocket or editing an old one
  */
 public class AddRocket extends ActionBarActivity {
 
@@ -202,7 +205,8 @@ public class AddRocket extends ActionBarActivity {
 
                 String imageS = rocket.getImage();
                 if (!imageS.equals("")) {
-//                loadimage from disk
+                    BitmapLoader task = new BitmapLoader(image);
+                    task.execute(imageS);
                 } else {
                     image.setImageDrawable(rootView.getResources().getDrawable(R.drawable.default_rocket));
                 }
