@@ -161,9 +161,20 @@ public class AddRocket extends ActionBarActivity {
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             picture = BitmapFactory.decodeFile(TEMP_CAMERA_FILE.getAbsolutePath(),
                     bmOptions);
+            picture = scaleDown(picture, 700, 700);
             iView.setImageBitmap(picture);
+            Log.i("PICTURE", picture.getHeight()+ " height");
+            Log.i("PICTURE", picture.getWidth()+ " width");
             TEMP_CAMERA_FILE.delete();
         }
+    }
+
+    private Bitmap scaleDown(Bitmap original, int width, int height) {
+        float ratio = Math.min((float) width / original.getWidth(),
+                (float) height / original.getHeight());
+        width = Math.round(ratio * original.getWidth());
+        height = Math.round(ratio * original.getHeight());
+        return Bitmap.createScaledBitmap(original, width, height, true);
     }
 
     private String saveImageToStorage(int rocketID) {
