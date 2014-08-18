@@ -8,8 +8,8 @@ android {
         applicationId "zeidler.colin.rocketjournal"
         minSdkVersion 9
         targetSdkVersion 20
-        versionCode 3
-        versionName "0.6.8"
+        versionCode 4
+        versionName "0.7.0"
     }
     buildTypes {
         release {
