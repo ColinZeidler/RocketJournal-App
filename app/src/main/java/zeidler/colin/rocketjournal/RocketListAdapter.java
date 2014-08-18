@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import zeidler.colin.rocketjournal.data.BitmapLoader;
 import zeidler.colin.rocketjournal.data.Rocket;
 
 /**
@@ -42,11 +43,12 @@ public class RocketListAdapter extends ArrayAdapter<Rocket> {
         Rocket rocket = rockets.get(position);
         if (rocket != null) {
             String image = rocket.getImage();
-//            if (!image.equals("")) {
-//                loadimage from disk
-//            } else {
+            if (!image.equals("")) {
+                BitmapLoader task = new BitmapLoader(iView);
+                task.execute(image);
+            } else {
                 iView.setImageDrawable(v.getResources().getDrawable(R.drawable.default_rocket));
-//            }
+            }
 
             TextView nameView = (TextView) v.findViewById(R.id.rocket_name);
             TextView flightView = (TextView) v.findViewById(R.id.flight_count);

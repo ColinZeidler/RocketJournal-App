@@ -12,14 +12,17 @@
         android:layout_alignParentTop="true"
         android:layout_width="@dimen/image_side"
         android:layout_height="@dimen/image_side"
+        android:scaleType="centerCrop"
         android:id="@+id/rocket_image" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/rocket_image"
+        android:layout_toEndOf="@+id/rocket_image"
         android:layout_above="@+id/flight_count"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/placeholder_short_text"
         android:id="@+id/rocket_name"
         style="@style/display_text.medium"/>
@@ -28,8 +31,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/rocket_image"
+        android:layout_toEndOf="@+id/rocket_image"
         android:layout_alignBottom="@+id/rocket_image"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/placeholder_number"
         android:id="@+id/flight_count"
         style="@style/display_text.secondary"/>

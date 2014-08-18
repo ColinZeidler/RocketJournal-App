@@ -15,13 +15,28 @@
         android:text="New Rocket"
         style="@style/display_text.medium"/>
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:onClick="loadImage"
-        android:src="@drawable/default_rocket"
-        android:scaleType="centerCrop"
-        android:id="@+id/rocket_image"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:onClick="loadImage"
+            android:src="@drawable/default_rocket"
+            android:scaleType="centerCrop"
+            android:id="@+id/rocket_image"/>
+
+        <TextView
+            style="@style/display_text.medium"
+            android:layout_alignBottom="@+id/rocket_image"
+            android:padding="8dp"
+            android:text="@string/image_change"
+            android:background="@color/name_bg"
+            android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
 
     <EditText
         android:layout_width="match_parent"
