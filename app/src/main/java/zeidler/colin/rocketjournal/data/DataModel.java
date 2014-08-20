@@ -181,6 +181,8 @@ public class DataModel {
         return null;
     }
 
+    public int getRocketCount() { return rockets.size(); }
+
     public int getRocketPos(int rocketID) {
         return rockets.indexOf(getRocket(rocketID));
     }

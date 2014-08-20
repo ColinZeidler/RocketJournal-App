@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import zeidler.colin.rocketjournal.dataviews.flightlog.AddFlightLog;
 import zeidler.colin.rocketjournal.dataviews.rocket.AddRocket;
@@ -102,8 +103,15 @@ public class MainActivity extends ActionBarActivity {
         switch(id) {
             case R.id.action_settings: return true;
             case R.id.add_item_flightlog:
-                intent.setClass(this, AddFlightLog.class);
-                startActivity(intent);
+                if (DataModel.getInstance(this).getRocketCount() > 0) {
+                    intent.setClass(this, AddFlightLog.class);
+                    startActivity(intent);
+                } else {
+                    Toast error = Toast.makeText(this,
+                            getResources().getText(R.string.error_no_rockets),
+                            Toast.LENGTH_SHORT);
+                    error.show();
+                }
                 return true;
             case R.id.add_item_rocket:
                 intent.setClass(this, AddRocket.class);

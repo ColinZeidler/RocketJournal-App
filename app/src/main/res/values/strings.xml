@@ -59,6 +59,7 @@
     <string name="empty_list_rocket">You have no rockets,\npress add to get started</string>
     <string name="empty_list_flightlogs">You have no flight logs,\npress add to get started</string>
     <string name="error_invalid_altitude">Invalid input; Altitude must be a number</string>
+    <string name="error_no_rockets">You need at least one rocket to create a flight log</string>
 
     //date formats
     <string name="date_format_use">@string/date_format_3</string>   //this one is the only value needed to change
