@@ -39,7 +39,7 @@ public class FlightLogDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.item_details, menu);
+        getMenuInflater().inflate(R.menu.flightlog_details, menu);
         return true;
     }
 
@@ -48,12 +48,12 @@ public class FlightLogDetailActivity extends ActionBarActivity {
         FlightLog flightLog = DataModel.getInstance(mContext).getFlightLog(getIntent().getExtras().getInt("Journal"));
         switch (item.getItemId()) {
             case R.id.delete_menu:
-                DataModel.getInstance(this).deleteFlightLog(flightLog.getId());
+                DataModel.getInstance(mContext).deleteFlightLog(flightLog.getId());
                 finish();
                 return true;
             case R.id.edit_menu:
                 Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), AddFlightLog.class);
+                intent.setClass(mContext, AddFlightLog.class);
                 intent.putExtra("Journal", flightLog);
                 startActivity(intent);
                 return true;

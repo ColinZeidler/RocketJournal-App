@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import zeidler.colin.rocketjournal.dataviews.flightlog.AddFlightLog;
 import zeidler.colin.rocketjournal.dataviews.rocket.AddRocket;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.DataModel;
@@ -36,7 +37,7 @@ public class RocketDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.item_details, menu);
+        getMenuInflater().inflate(R.menu.rocket_details, menu);
         return true;
     }
 
@@ -49,10 +50,16 @@ public class RocketDetailActivity extends ActionBarActivity {
                 finish();
                 return true;
             case R.id.edit_menu:
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), AddRocket.class);
-                intent.putExtra("Rocket", rocket);
-                startActivity(intent);
+                Intent rocketIntent = new Intent();
+                rocketIntent.setClass(mContext, AddRocket.class);
+                rocketIntent.putExtra("Rocket", rocket);
+                startActivity(rocketIntent);
+                return true;
+            case R.id.add_item_flightlog:
+                Intent logIntent = new Intent();
+                logIntent.setClass(mContext, AddFlightLog.class);
+//                logIntent.putExtra("RocketID", rocket.getId());
+                startActivity(logIntent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

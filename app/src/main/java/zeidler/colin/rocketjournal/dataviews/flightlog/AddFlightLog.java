@@ -50,8 +50,12 @@ public class AddFlightLog extends ActionBarActivity implements
         final FlightLog flightLog;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            editing = true;
-            flightLog = (FlightLog) extras.getSerializable("Journal");
+            if (extras.containsKey("Journal")) {
+                editing = true;
+                flightLog = (FlightLog) extras.getSerializable("Journal");
+            } else {
+                flightLog = null;
+            }
         } else {
             flightLog = null;
         }
