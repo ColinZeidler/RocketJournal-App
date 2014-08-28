@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        class="zeidler.colin.rocketjournal.dataviews.rocket.RocketListFragment"
-        android:id="@+id/rocket_list_fragment"
-        android:layout_width="200dp"
+    <FrameLayout
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_rocket_list" />
-    <fragment
-        class="zeidler.colin.rocketjournal.dataviews.rocket.details.RocketDetailFragment"
+        android:id="@+id/rocket_list_fragment"/>
+    <FrameLayout
         android:id="@+id/rocket_details_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_rocket_view" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

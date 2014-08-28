@@ -30,14 +30,27 @@ public class FlightLogDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_flightlog_view, container, false);
         mContext = container.getContext();
-        flightLogID = getActivity().getIntent().getExtras().getInt("Journal");
-        populate();
+        try {
+            flightLogID = getActivity().getIntent().getExtras().getInt("Journal");
+            populate();
+        } catch (Exception e) {
+            //do nothing
+        }
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        try {
+            populate();
+        } catch (NullPointerException e) {
+
+        }
+    }
+
+    public void update(int id) {
+        flightLogID = id;
         populate();
     }
 

@@ -2,7 +2,6 @@ package zeidler.colin.rocketjournal.dataviews.flightlog;
 
 import android.support.v4.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
@@ -15,14 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.Comparator;
-
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.FlightLog;
-import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailActivity;
 
 /**
  * Created by Colin on 2014-07-21.
@@ -60,16 +56,7 @@ public class FlightLogListFragment extends Fragment implements UpdateList,
         TextView emptyText = (TextView) rootView.findViewById(R.id.empty_list);
         lView.setEmptyView(emptyText);
 
-        lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int j = (Integer)view.getTag();
-                Intent intent = new Intent();
-                intent.setClass(mContext, FlightLogDetailActivity.class);
-                intent.putExtra("Journal", j);
-                startActivity(intent);
-            }
-        });
+        lView.setOnItemClickListener((AdapterView.OnItemClickListener) getParentFragment());
 
         return rootView;
     }

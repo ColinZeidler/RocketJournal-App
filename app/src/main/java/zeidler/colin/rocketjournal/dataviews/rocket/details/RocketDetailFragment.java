@@ -35,14 +35,27 @@ public class RocketDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_rocket_view, container, false);
         mContext = container.getContext();
-        rocketID = getActivity().getIntent().getExtras().getInt("Rocket");
-        populate();
+        try {
+            rocketID = getActivity().getIntent().getExtras().getInt("Rocket");
+            populate();
+        } catch (Exception e) {
+            //do nothing
+        }
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        try {
+            populate();
+        } catch (NullPointerException e) {
+            
+        }
+    }
+
+    public void update(int id) {
+        rocketID = id;
         populate();
     }
 

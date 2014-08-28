@@ -20,7 +20,6 @@ import zeidler.colin.rocketjournal.RocketListAdapter;
 import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
-import zeidler.colin.rocketjournal.dataviews.rocket.details.RocketDetailActivity;
 
 /**
  * Created by Colin on 2014-07-26.
@@ -60,16 +59,8 @@ public class RocketListFragment extends Fragment implements UpdateList,
         TextView emptyText = (TextView) rootView.findViewById(R.id.empty_list);
         lView.setEmptyView(emptyText);
 
-        lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int r = (Integer)view.getTag();
-                Intent intent = new Intent();
-                intent.setClass(mContext, RocketDetailActivity.class);
-                intent.putExtra("Rocket", r);
-                startActivity(intent);
-            }
-        });
+        //This fragment will always be a child to RocketPageHandler
+        lView.setOnItemClickListener((AdapterView.OnItemClickListener)getParentFragment());
 
         return rootView;
     }

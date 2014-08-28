@@ -14,12 +14,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import zeidler.colin.rocketjournal.dataviews.flightlog.AddFlightLog;
+import zeidler.colin.rocketjournal.dataviews.flightlog.FlightLogPageHandler;
 import zeidler.colin.rocketjournal.dataviews.rocket.AddRocket;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.dataviews.flightlog.FlightLogListFragment;
 import zeidler.colin.rocketjournal.dataviews.rocket.RocketListFragment;
+import zeidler.colin.rocketjournal.dataviews.rocket.RocketPageHandler;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -139,8 +141,8 @@ public class MainActivity extends ActionBarActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        private RocketListFragment rList;
-        private FlightLogListFragment fList;
+        private RocketPageHandler rList;
+        private FlightLogPageHandler fList;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -152,11 +154,11 @@ public class MainActivity extends ActionBarActivity {
             switch (position) {
                 case 0:
                     if (rList == null)
-                        rList = new RocketListFragment();
+                        rList = new RocketPageHandler();
                     return rList;
                 case 1:
                     if (fList == null)
-                        fList = new FlightLogListFragment();
+                        fList = new FlightLogPageHandler();
                     return fList;
             }
             return null;
