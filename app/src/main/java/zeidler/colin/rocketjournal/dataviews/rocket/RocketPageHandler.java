@@ -27,6 +27,7 @@ import zeidler.colin.rocketjournal.dataviews.rocket.details.RocketDetailFragment
 public class RocketPageHandler extends Fragment implements AdapterView.OnItemClickListener, UpdateList{
     private Context mContext;
     private View rootView;
+    private RocketDetailFragment detailFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,8 +36,10 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
             getChildFragmentManager().beginTransaction().add(R.id.rocket_list_fragment,
                     new RocketListFragment()).commit();
             if (rootView.findViewById(R.id.rocket_details_fragment) != null) {
+                if (detailFragment == null)
+                    detailFragment = new RocketDetailFragment();
                 getChildFragmentManager().beginTransaction().add(R.id.rocket_details_fragment,
-                        new RocketDetailFragment(), "RocketDetails").commit();
+                        detailFragment).commit();
             }
         }
 
@@ -46,8 +49,6 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        RocketDetailFragment detailFragment = (RocketDetailFragment) getFragmentManager()
-                .findFragmentByTag("RocketDetails");
         int r = (Integer) view.getTag();
         if (detailFragment == null) {   //always returning null TODO fix me
             Intent intent = new Intent();

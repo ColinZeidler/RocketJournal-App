@@ -21,6 +21,7 @@ import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailFr
 public class FlightLogPageHandler extends Fragment implements AdapterView.OnItemClickListener, UpdateList{
     private View rootView;
     private Context mContext;
+    private FlightLogDetailFragment detailFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,8 +30,10 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
             getChildFragmentManager().beginTransaction().add(R.id.flightlog_list_fragment,
                     new FlightLogListFragment()).commit();
             if (rootView.findViewById(R.id.flightlog_details_fragment) != null) {
+                if (detailFragment == null)
+                    detailFragment = new FlightLogDetailFragment();
                 getChildFragmentManager().beginTransaction().add(R.id.flightlog_details_fragment,
-                        new FlightLogDetailFragment(), "FlightDetails").commit();
+                        detailFragment).commit();
             }
         }
         mContext = container.getContext();
@@ -39,8 +42,6 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        FlightLogDetailFragment detailFragment = (FlightLogDetailFragment) getFragmentManager()
-                .findFragmentByTag("FlightDetails");
         int j = (Integer)view.getTag();
         if (detailFragment == null) {   //always returning null TODO fix me
             Intent intent = new Intent();
