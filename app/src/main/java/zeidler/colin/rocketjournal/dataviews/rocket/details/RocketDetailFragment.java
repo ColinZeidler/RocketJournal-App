@@ -50,7 +50,7 @@ public class RocketDetailFragment extends Fragment {
         try {
             populate();
         } catch (NullPointerException e) {
-            
+
         }
     }
 

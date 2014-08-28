@@ -31,11 +31,13 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.pager_item_rocket, container, false);
-        getChildFragmentManager().beginTransaction().add(R.id.rocket_list_fragment,
-                new RocketListFragment()).commit();
-        if (rootView.findViewById(R.id.rocket_details_fragment) != null) {
-            getChildFragmentManager().beginTransaction().add(R.id.rocket_details_fragment,
-                    new RocketDetailFragment()).commit();
+        if (savedInstanceState == null) {
+            getChildFragmentManager().beginTransaction().add(R.id.rocket_list_fragment,
+                    new RocketListFragment()).commit();
+            if (rootView.findViewById(R.id.rocket_details_fragment) != null) {
+                getChildFragmentManager().beginTransaction().add(R.id.rocket_details_fragment,
+                        new RocketDetailFragment(), "RocketDetails").commit();
+            }
         }
 
         mContext = container.getContext();
@@ -45,9 +47,9 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         RocketDetailFragment detailFragment = (RocketDetailFragment) getFragmentManager()
-                .findFragmentById(R.id.rocket_details_fragment);
+                .findFragmentByTag("RocketDetails");
         int r = (Integer) view.getTag();
-        if (detailFragment == null) {
+        if (detailFragment == null) {   //always returning null TODO fix me
             Intent intent = new Intent();
             intent.setClass(mContext, RocketDetailActivity.class);
             intent.putExtra("Rocket", r);

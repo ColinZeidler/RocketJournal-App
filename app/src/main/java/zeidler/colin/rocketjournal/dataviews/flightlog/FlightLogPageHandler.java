@@ -21,14 +21,17 @@ import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailFr
 public class FlightLogPageHandler extends Fragment implements AdapterView.OnItemClickListener, UpdateList{
     private View rootView;
     private Context mContext;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.pager_item_flightlog, container, false);
-        getChildFragmentManager().beginTransaction().add(R.id.flightlog_list_fragment,
-                new FlightLogListFragment()).commit();
-        if (rootView.findViewById(R.id.flightlog_details_fragment) != null) {
-            getChildFragmentManager().beginTransaction().add(R.id.flightlog_details_fragment,
-                    new FlightLogDetailFragment()).commit();
+        if (savedInstanceState == null) {
+            getChildFragmentManager().beginTransaction().add(R.id.flightlog_list_fragment,
+                    new FlightLogListFragment()).commit();
+            if (rootView.findViewById(R.id.flightlog_details_fragment) != null) {
+                getChildFragmentManager().beginTransaction().add(R.id.flightlog_details_fragment,
+                        new FlightLogDetailFragment(), "FlightDetails").commit();
+            }
         }
         mContext = container.getContext();
         return rootView;
@@ -37,9 +40,9 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FlightLogDetailFragment detailFragment = (FlightLogDetailFragment) getFragmentManager()
-                .findFragmentById(R.id.flightlog_details_fragment);
+                .findFragmentByTag("FlightDetails");
         int j = (Integer)view.getTag();
-        if (detailFragment == null) {
+        if (detailFragment == null) {   //always returning null TODO fix me
             Intent intent = new Intent();
             intent.setClass(mContext, FlightLogDetailActivity.class);
             intent.putExtra("Journal", j);
