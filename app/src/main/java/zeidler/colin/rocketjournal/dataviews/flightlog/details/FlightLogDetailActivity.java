@@ -23,6 +23,12 @@ public class FlightLogDetailActivity extends ActionBarActivity {
     private Context mContext;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.flightlog_details, menu);
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_view);

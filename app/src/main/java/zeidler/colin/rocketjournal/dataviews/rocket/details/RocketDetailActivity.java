@@ -34,4 +34,10 @@ public class RocketDetailActivity extends ActionBarActivity {
         mContext = this;
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.rocket_details, menu);
+        return true;
+    }
 }
