@@ -34,11 +34,6 @@ public class FlightLogListFragment extends Fragment implements UpdateList,
     private View rootView;
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.flightlog_list, menu);
-    }
-
-    @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_flightlog_list, container, false);
@@ -75,8 +70,8 @@ public class FlightLogListFragment extends Fragment implements UpdateList,
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.sort) {
-            PopupMenu popup = new PopupMenu(mContext, getActivity().findViewById(R.id.sort));
+        if (item.getItemId() == R.id.sort_flightlog) {
+            PopupMenu popup = new PopupMenu(mContext, getActivity().findViewById(R.id.sort_flightlog));
             MenuInflater inflater = popup.getMenuInflater();
             inflater.inflate(R.menu.sort_flightlog, popup.getMenu());
             popup.setOnMenuItemClickListener(this);

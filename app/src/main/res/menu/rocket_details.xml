@@ -5,15 +5,15 @@
     <item
         android:id="@+id/add_item_flightlog"
         android:title="@string/add_flightlog"
-        android:icon="@drawable/ic_action_content_new"
+        android:icon="@drawable/ic_action_content_new_event"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/edit_menu"
+        android:id="@+id/edit_menu_rocket"
         android:title="@string/edit_menu"
         android:icon="@drawable/ic_action_content_edit"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/delete_menu"
+        android:id="@+id/delete_menu_rocket"
         android:title="@string/delete_menu"
         android:icon="@drawable/ic_action_content_discard"
         app:showAsAction="never"/>

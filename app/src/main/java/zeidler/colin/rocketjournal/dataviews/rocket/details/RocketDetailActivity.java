@@ -34,34 +34,4 @@ public class RocketDetailActivity extends ActionBarActivity {
         mContext = this;
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.rocket_details, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Rocket rocket = DataModel.getInstance(mContext).getRocket(getIntent().getExtras().getInt("Rocket"));
-        switch (item.getItemId()) {
-            case R.id.delete_menu:
-                DataModel.getInstance(this).deleteRocket(rocket.getId());
-                finish();
-                return true;
-            case R.id.edit_menu:
-                Intent rocketIntent = new Intent();
-                rocketIntent.setClass(mContext, AddRocket.class);
-                rocketIntent.putExtra("Rocket", rocket);
-                startActivity(rocketIntent);
-                return true;
-            case R.id.add_item_flightlog:
-                Intent logIntent = new Intent();
-                logIntent.setClass(mContext, AddFlightLog.class);
-//                logIntent.putExtra("RocketID", rocket.getId());
-                startActivity(logIntent);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

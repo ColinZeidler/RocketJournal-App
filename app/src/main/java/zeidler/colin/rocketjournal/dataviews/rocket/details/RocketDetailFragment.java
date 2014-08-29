@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,7 +21,9 @@ import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.BitmapLoader;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
+import zeidler.colin.rocketjournal.dataviews.flightlog.AddFlightLog;
 import zeidler.colin.rocketjournal.dataviews.flightlog.details.FlightLogDetailActivity;
+import zeidler.colin.rocketjournal.dataviews.rocket.AddRocket;
 
 /**
  * Created by Colin on 2014-07-26.
@@ -34,6 +39,7 @@ public class RocketDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_rocket_view, container, false);
+        setHasOptionsMenu(true);
         mContext = container.getContext();
         try {
             rocketID = getActivity().getIntent().getExtras().getInt("Rocket");
@@ -52,6 +58,29 @@ public class RocketDetailFragment extends Fragment {
         } catch (NullPointerException e) {
 
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Rocket rocket = DataModel.getInstance(mContext).getRocket(rocketID);
+        switch (item.getItemId()) {
+            case R.id.delete_menu_rocket:
+                DataModel.getInstance(mContext).deleteRocket(rocket.getId());
+                return true;
+            case R.id.edit_menu_rocket:
+                Intent rocketIntent = new Intent();
+                rocketIntent.setClass(mContext, AddRocket.class);
+                rocketIntent.putExtra("Rocket", rocket);
+                startActivity(rocketIntent);
+                return true;
+            case R.id.add_item_flightlog:
+                Intent logIntent = new Intent();
+                logIntent.setClass(mContext, AddFlightLog.class);
+//                logIntent.putExtra("RocketID", rocket.getId());
+                startActivity(logIntent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void update(int id) {

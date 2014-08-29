@@ -3,12 +3,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/edit_menu"
+        android:id="@+id/edit_menu_flightlog"
         android:title="@string/edit_menu"
         android:icon="@drawable/ic_action_content_edit"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/delete_menu"
+        android:id="@+id/delete_menu_flightlog"
         android:title="@string/delete_menu"
         android:icon="@drawable/ic_action_content_discard"
         app:showAsAction="never"/>

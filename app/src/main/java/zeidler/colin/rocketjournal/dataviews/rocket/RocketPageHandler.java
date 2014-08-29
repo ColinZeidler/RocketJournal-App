@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,6 +34,8 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.pager_item_rocket, container, false);
+        setHasOptionsMenu(true);
+
         if (savedInstanceState == null) {
             getChildFragmentManager().beginTransaction().add(R.id.rocket_list_fragment,
                     new RocketListFragment()).commit();
@@ -65,4 +69,14 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
         ((RocketListFragment) getFragmentManager()
                 .findFragmentById(R.id.rocket_list_fragment)).updateList();
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.rocket_list, menu);
+        if (detailFragment != null) {
+            inflater.inflate(R.menu.rocket_details, menu);
+        }
+    }
+
+
 }

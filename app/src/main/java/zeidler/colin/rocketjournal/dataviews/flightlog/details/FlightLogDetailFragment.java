@@ -1,9 +1,11 @@
 package zeidler.colin.rocketjournal.dataviews.flightlog.details;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.FlightLog;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.data.Rocket;
+import zeidler.colin.rocketjournal.dataviews.flightlog.AddFlightLog;
 
 /**
  * Created by Colin on 2014-07-21.
@@ -82,5 +85,22 @@ public class FlightLogDetailFragment extends Fragment {
         dateV.setText(dateT);
 
         noteV.setText(flightLog.getNotes());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FlightLog flightLog = DataModel.getInstance(mContext).getFlightLog(flightLogID);
+        switch (item.getItemId()) {
+            case R.id.delete_menu_flightlog:
+                DataModel.getInstance(mContext).deleteFlightLog(flightLog.getId());
+                return true;
+            case R.id.edit_menu_flightlog:
+                Intent intent = new Intent();
+                intent.setClass(mContext, AddFlightLog.class);
+                intent.putExtra("Journal", flightLog);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/sort"
+        android:id="@+id/sort_flightlog"
         android:title="@string/sort"
         android:icon="@drawable/ic_action_collections_sort_by_size"
         app:showAsAction="ifRoom"/>

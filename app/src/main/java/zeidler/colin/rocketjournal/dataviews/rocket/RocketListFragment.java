@@ -35,11 +35,6 @@ public class RocketListFragment extends Fragment implements UpdateList,
     private View rootView;
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.rocket_list, menu);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -79,8 +74,8 @@ public class RocketListFragment extends Fragment implements UpdateList,
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.sort) {
-            PopupMenu popup = new PopupMenu(mContext, getActivity().findViewById(R.id.sort));
+        if (item.getItemId() == R.id.sort_rocket) {
+            PopupMenu popup = new PopupMenu(mContext, getActivity().findViewById(R.id.sort_rocket));
             MenuInflater inflater = popup.getMenuInflater();
             inflater.inflate(R.menu.sort_rocket, popup.getMenu());
             popup.setOnMenuItemClickListener(this);
