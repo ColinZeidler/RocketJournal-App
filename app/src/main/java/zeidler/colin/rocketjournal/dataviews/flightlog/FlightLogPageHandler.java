@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
     private View rootView;
     private Context mContext;
     private FlightLogDetailFragment detailFragment;
+    private final String listFragmentTag = "FlightList";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
 
         if (savedInstanceState == null) {
             getChildFragmentManager().beginTransaction().add(R.id.flightlog_list_fragment,
-                    new FlightLogListFragment()).commit();
+                    new FlightLogListFragment(), listFragmentTag).commit();
             if (rootView.findViewById(R.id.flightlog_details_fragment) != null) {
                 if (detailFragment == null)
                     detailFragment = new FlightLogDetailFragment();
@@ -47,7 +49,7 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int j = (Integer)view.getTag();
-        if (detailFragment == null) {   //always returning null TODO fix me
+        if (detailFragment == null) {
             Intent intent = new Intent();
             intent.setClass(mContext, FlightLogDetailActivity.class);
             intent.putExtra("Journal", j);
@@ -59,8 +61,8 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
 
     @Override
     public void updateList() {
-        ((FlightLogListFragment) getFragmentManager()
-                .findFragmentById(R.id.flightlog_list_fragment)).updateList();
+        ((FlightLogListFragment) getChildFragmentManager()
+                .findFragmentByTag(listFragmentTag)).updateList();
     }
 
     @Override

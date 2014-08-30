@@ -30,6 +30,7 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
     private Context mContext;
     private View rootView;
     private RocketDetailFragment detailFragment;
+    private final String listFragmentTag = "RocketList";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
 
         if (savedInstanceState == null) {
             getChildFragmentManager().beginTransaction().add(R.id.rocket_list_fragment,
-                    new RocketListFragment()).commit();
+                    new RocketListFragment(), listFragmentTag).commit();
             if (rootView.findViewById(R.id.rocket_details_fragment) != null) {
                 if (detailFragment == null)
                     detailFragment = new RocketDetailFragment();
@@ -54,7 +55,7 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int r = (Integer) view.getTag();
-        if (detailFragment == null) {   //always returning null TODO fix me
+        if (detailFragment == null) {
             Intent intent = new Intent();
             intent.setClass(mContext, RocketDetailActivity.class);
             intent.putExtra("Rocket", r);
@@ -66,8 +67,8 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
 
     @Override
     public void updateList() {
-        ((RocketListFragment) getFragmentManager()
-                .findFragmentById(R.id.rocket_list_fragment)).updateList();
+        ((RocketListFragment) getChildFragmentManager()
+                .findFragmentByTag(listFragmentTag)).updateList();
     }
 
     @Override

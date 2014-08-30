@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
+import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.BitmapLoader;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.Rocket;
@@ -66,6 +67,10 @@ public class RocketDetailFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.delete_menu_rocket:
                 DataModel.getInstance(mContext).deleteRocket(rocket.getId());
+                Fragment parent = getParentFragment();
+                if (parent != null) {
+                    ((UpdateList) parent).updateList();
+                }
                 return true;
             case R.id.edit_menu_rocket:
                 Intent rocketIntent = new Intent();

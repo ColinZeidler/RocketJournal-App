@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
+import zeidler.colin.rocketjournal.UpdateList;
 import zeidler.colin.rocketjournal.data.DataModel;
 import zeidler.colin.rocketjournal.data.FlightLog;
 import zeidler.colin.rocketjournal.R;
@@ -94,6 +95,10 @@ public class FlightLogDetailFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.delete_menu_flightlog:
                 DataModel.getInstance(mContext).deleteFlightLog(flightLog.getId());
+                Fragment parent = getParentFragment();
+                if (parent != null) {
+                    ((UpdateList) parent).updateList();
+                }
                 return true;
             case R.id.edit_menu_flightlog:
                 Intent intent = new Intent();
