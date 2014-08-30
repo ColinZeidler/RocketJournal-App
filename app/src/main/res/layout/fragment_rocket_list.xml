@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ListView
+    android:orientation="horizontal"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/empty_list"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/list_vertical_padding"
+            style="@style/display_text.medium"
+            android:text="@string/empty_list_rocket"/>
+
+    </LinearLayout>
+
+    <View
         android:layout_height="match_parent"
-        android:id="@+id/listView"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/empty_list"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:layout_margin="@dimen/list_vertical_padding"
-        style="@style/display_text.medium"
-        android:text="@string/empty_list_rocket"/>
-
+        android:layout_width="@dimen/list_border_width"
+        android:layout_marginLeft="@dimen/list_border_inset"
+        android:layout_marginStart="@dimen/list_border_inset"
+        android:background="@color/listborder"/>
 </LinearLayout>

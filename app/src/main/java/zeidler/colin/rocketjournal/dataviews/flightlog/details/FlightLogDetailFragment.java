@@ -32,6 +32,7 @@ public class FlightLogDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_flightlog_view, container, false);
+        setHasOptionsMenu(true);
         mContext = container.getContext();
         try {
             flightLogID = getActivity().getIntent().getExtras().getInt("Journal");

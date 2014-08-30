@@ -15,4 +15,7 @@
     <dimen name="medium_text">18sp</dimen>
     <dimen name="large_text">22sp</dimen>
 
+    <dimen name="list_border_width">1dp</dimen>
+    <dimen name="list_border_inset">-1dp</dimen>
+
 </resources>

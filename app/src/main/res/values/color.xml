@@ -5,6 +5,7 @@
     <color name="selection">#9ACC1E</color>
     <!--<color name="actionBarSecondary">@color/selection</color>-->
     <color name="name_bg">#a2000000</color>
+    <color name="listborder">#CdCdCd</color>
     <color name="white">#FFF</color>
 
 </resources>
