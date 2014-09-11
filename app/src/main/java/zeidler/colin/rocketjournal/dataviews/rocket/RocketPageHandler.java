@@ -61,6 +61,7 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
             intent.putExtra("Rocket", r);
             startActivity(intent);
         } else {
+            view.setSelected(true);
             detailFragment.update(r);
         }
     }

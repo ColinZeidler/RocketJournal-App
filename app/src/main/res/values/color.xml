@@ -7,5 +7,6 @@
     <color name="name_bg">#a2000000</color>
     <color name="list_border">#CdCdCd</color>
     <color name="white">#FFF</color>
+    <color name="list_selected">#fa9acc1e</color>
 
 </resources>

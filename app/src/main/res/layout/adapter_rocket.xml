@@ -6,7 +6,8 @@
     android:paddingTop="@dimen/row_padding_vertical"
     android:paddingBottom="@dimen/row_padding_vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin">
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@drawable/listitem_background">
 
     <ImageView
         android:layout_alignParentTop="true"

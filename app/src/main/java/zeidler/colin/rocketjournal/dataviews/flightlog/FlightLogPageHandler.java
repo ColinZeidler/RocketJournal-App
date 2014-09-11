@@ -55,6 +55,7 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
             intent.putExtra("Journal", j);
             startActivity(intent);
         } else {
+            view.setSelected(true);
             detailFragment.update(j);
         }
     }
