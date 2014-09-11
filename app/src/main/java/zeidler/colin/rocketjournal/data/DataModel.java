@@ -18,6 +18,7 @@ public class DataModel {
     private List<FlightLog> flightLogs;
     private static DataModel instance;
     private DataManager dbManager;
+    private int tabPosition;
 
     public DataModel(Context context) {
         dbManager = DataManager.getInstance(context);
@@ -229,5 +230,13 @@ public class DataModel {
             addRocket(rocket);
         else
             rockets.set(pos, rocket);
+    }
+
+    public int getTabPosition() {
+        return tabPosition;
+    }
+
+    public void setTabPosition(int tabPosition) {
+        this.tabPosition = tabPosition;
     }
 }

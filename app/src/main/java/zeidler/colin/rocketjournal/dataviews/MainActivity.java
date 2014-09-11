@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         final ActionBar actionBar = getSupportActionBar();
         setContentView(R.layout.activity_main);
+        DataModel.getInstance(getApplicationContext()).setTabPosition(0);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -84,6 +86,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                DataModel.getInstance(getApplicationContext()).setTabPosition(position);
                 actionBar.setSelectedNavigationItem(position);
             }
         });
@@ -93,6 +96,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
         DataModel.getInstance(this).saveAllData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("MainActivity", "onresume");
+        mViewPager.setCurrentItem(DataModel.getInstance(getApplicationContext()).getTabPosition());
     }
 
     @Override
