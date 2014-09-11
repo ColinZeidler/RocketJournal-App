@@ -46,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         final ActionBar actionBar = getSupportActionBar();
         setContentView(R.layout.activity_main);
-        DataModel.getInstance(getApplicationContext()).setTabPosition(0);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -101,8 +100,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("MainActivity", "onresume");
-        mViewPager.setCurrentItem(DataModel.getInstance(getApplicationContext()).getTabPosition());
+        int pos = DataModel.getInstance(getApplicationContext()).getTabPosition();
+        mViewPager.setCurrentItem(pos);
     }
 
     @Override

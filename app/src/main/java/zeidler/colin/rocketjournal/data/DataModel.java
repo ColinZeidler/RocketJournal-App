@@ -18,7 +18,7 @@ public class DataModel {
     private List<FlightLog> flightLogs;
     private static DataModel instance;
     private DataManager dbManager;
-    private int tabPosition;
+    private int tabPosition = 0;
 
     public DataModel(Context context) {
         dbManager = DataManager.getInstance(context);
