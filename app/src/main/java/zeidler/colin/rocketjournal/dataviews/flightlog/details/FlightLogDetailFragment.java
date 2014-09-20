@@ -35,12 +35,15 @@ public class FlightLogDetailFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_flightlog_view, container, false);
         setHasOptionsMenu(true);
         mContext = container.getContext();
+
+        //TODO change this for blank view
         try {
             flightLogID = getActivity().getIntent().getExtras().getInt("Journal");
             populate();
         } catch (Exception e) {
             //do nothing
         }
+        //end of change
         return rootView;
     }
 

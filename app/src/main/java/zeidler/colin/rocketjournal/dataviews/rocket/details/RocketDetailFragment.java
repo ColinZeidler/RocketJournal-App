@@ -42,12 +42,15 @@ public class RocketDetailFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_rocket_view, container, false);
         setHasOptionsMenu(true);
         mContext = container.getContext();
+
+        //TODO change this for blank view
         try {
             rocketID = getActivity().getIntent().getExtras().getInt("Rocket");
             populate();
         } catch (Exception e) {
             //do nothing
         }
+        //end of change
         return rootView;
     }
 

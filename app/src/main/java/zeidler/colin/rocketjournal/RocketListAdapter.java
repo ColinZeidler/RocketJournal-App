@@ -1,7 +1,6 @@
 package zeidler.colin.rocketjournal;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import zeidler.colin.rocketjournal.data.BitmapLoader;
 import zeidler.colin.rocketjournal.data.Rocket;
 
 /**
+ * AdapterView implementation that displays a rocket
  * Created by Colin on 2014-07-26.
  */
 public class RocketListAdapter extends ArrayAdapter<Rocket> {
