@@ -1,8 +1,11 @@
 package zeidler.colin.rocketjournal.dataviews.rocket;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -38,9 +41,15 @@ public class AddRocket extends ActionBarActivity {
 
     private DataModel model;
     private boolean editing;
+    private static final int REQUEST_GALLERY_IMAGE = 2;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int IMAGE_SCALE_WIDTH = 1000;
+    private static final int IMAGE_SCALE_HEIGHT = 1000;
     private File TEMP_CAMERA_FILE;
     private Bitmap picture;
+    private String imageLocation;
+    private boolean camera = false;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +104,8 @@ public class AddRocket extends ActionBarActivity {
                     .add(R.id.add_r_container, aRV)
                     .commit();
         }
-        Context context = this;
-        model = DataModel.getInstance(context);
+        mContext = this;
+        model = DataModel.getInstance(mContext);
 
         if (rocket != null) {
             editing = true;
@@ -104,14 +113,39 @@ public class AddRocket extends ActionBarActivity {
 
     }
 
+    /**
+     * called when the image of the rocket is clicked on
+     * @param v the View object that was selected
+     */
     public void loadImage(View v) {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            TEMP_CAMERA_FILE = new File(Environment.getExternalStorageDirectory(),
-                    "temp.jpg");
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(TEMP_CAMERA_FILE));
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
+        Log.i("AddRocket", "loadImage");
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(R.string.imageDialogTitle)
+                .setItems(R.array.imageDialogArray, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                Log.i("AddRocket", "Camera");
+                                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                                    TEMP_CAMERA_FILE = new File(Environment.getExternalStorageDirectory(),
+                                            "temp.jpg");
+                                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(TEMP_CAMERA_FILE));
+                                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                                }
+                                break;
+                            case 1:
+                                Log.i("AddRocket", "Gallery");
+                                Intent getPictureIntent = new Intent();
+                                getPictureIntent.setType("image/*");
+                                getPictureIntent.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(Intent.createChooser(getPictureIntent, "Select Picture"), REQUEST_GALLERY_IMAGE);
+                                break;
+                        }
+                    }
+                });
+        builder.show();
     }
 
     /**
@@ -138,10 +172,14 @@ public class AddRocket extends ActionBarActivity {
             return false;
         }
 
-        if (picture != null)
-            rocket.setImage(saveImageToStorage(rocket.getId()));
-        else
-            rocket.setImage("");
+        if (camera) {
+            if (picture != null)
+                rocket.setImage(saveImageToStorage(rocket.getId()));
+            else
+                rocket.setImage("");
+        } else {
+            rocket.setImage(imageLocation);
+        }
 
         rocket.setWeight(w);
         if (!editing)
@@ -154,19 +192,44 @@ public class AddRocket extends ActionBarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             ImageView iView = (ImageView) findViewById(R.id.rocket_image);
-
-            //Full image
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            picture = BitmapFactory.decodeFile(TEMP_CAMERA_FILE.getAbsolutePath(),
-                    bmOptions);
-            picture = scaleDown(picture, 700, 700);
-            iView.setImageBitmap(picture);
-            Log.i("PICTURE", picture.getHeight()+ " height");
-            Log.i("PICTURE", picture.getWidth()+ " width");
-            TEMP_CAMERA_FILE.delete();
+            if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                camera = true;
+                //Full image
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                picture = BitmapFactory.decodeFile(TEMP_CAMERA_FILE.getAbsolutePath(),
+                        bmOptions);
+                picture = scaleDown(picture, IMAGE_SCALE_WIDTH, IMAGE_SCALE_HEIGHT);
+                iView.setImageBitmap(picture);
+                Log.i("PICTURE", picture.getHeight() + " height");
+                Log.i("PICTURE", picture.getWidth() + " width");
+                TEMP_CAMERA_FILE.delete();
+            } else if (requestCode == REQUEST_GALLERY_IMAGE) {
+                camera = false;
+                Uri selectedImage = data.getData();
+                imageLocation = getPath(selectedImage);
+                Log.i("ImageResult", ""+imageLocation);
+                Bitmap temp = BitmapFactory.decodeFile(imageLocation);
+                iView.setImageBitmap(temp);
+            }
         }
+    }
+
+    private String getPath(Uri uri) {
+        if (uri == null)
+            //TODO let user know that load failed
+            return null;
+
+        //try to get image from media store first
+        String[] projection = { MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        if (cursor != null) {
+            int col = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(col);
+        }
+        return uri.getPath();
     }
 
     private Bitmap scaleDown(Bitmap original, int width, int height) {
@@ -181,6 +244,7 @@ public class AddRocket extends ActionBarActivity {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         //path to /data/data/<app>/app_imageDir/
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // TODO change this to the public storage dir
 
         final File myPic = new File(directory, "rocket"+rocketID+".jpg");
 
