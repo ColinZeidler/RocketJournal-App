@@ -41,6 +41,9 @@ public class DataManager extends SQLiteOpenHelper{
     private static final String R_FLIGHTS = "flights";
     private static final String R_ALTITUDE = "altitude";
     private static final String R_IMAGE = "image";
+    private static final String R_MOTORDIAM = "motorDiameter";
+    private static final String R_CHUTESIZE = "chuteSize";
+    private static final String R_MOTORTUBELEN = "motorTubeLength";
 
     private static DataManager instance;
     private SQLiteDatabase db;
@@ -64,7 +67,9 @@ public class DataManager extends SQLiteOpenHelper{
         String createTable = "CREATE TABLE " + R_TABLENAME + "("
                 + R_KEY + " INTEGER PRIMARY KEY," + R_NAME + " TEXT,"
                 + R_WEIGHT + " REAL," + R_FLIGHTS + " INTEGER,"
-                + R_ALTITUDE + " INTEGER," + R_IMAGE + " TEXT);";
+                + R_ALTITUDE + " INTEGER," + R_IMAGE + " TEXT,"
+                + R_MOTORDIAM + " INTEGER, " + R_CHUTESIZE + " INTEGER,"
+                + R_MOTORTUBELEN + "INTEGER);";
 
         db.execSQL(createTable);
 
@@ -82,9 +87,15 @@ public class DataManager extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + J_TABLENAME);
-        db.execSQL("DROP TABLE IF EXISTS " + R_TABLENAME);
-        onCreate(db);
+        if (oldVersion < 9) {//trying to preserve user data
+            db.execSQL("ALTER TABLE " + R_TABLENAME + " ADD COLUMN " + R_MOTORDIAM + " INTEGER DEFAULT 0");
+            db.execSQL("ALTER TABLE " + R_TABLENAME + " ADD COLUMN " + R_CHUTESIZE + " INTEGER DEFAULT 0");
+            db.execSQL("ALTER TABLE " + R_TABLENAME + " ADD COLUMN " + R_MOTORTUBELEN + " INTEGER DEFAULT 0");
+        } else {
+            db.execSQL("DROP TABLE IF EXISTS " + J_TABLENAME);
+            db.execSQL("DROP TABLE IF EXISTS " + R_TABLENAME);
+            onCreate(db);
+        }
     }
 
     /**

@@ -18,6 +18,9 @@ public class Rocket implements Serializable {
     private int flightCount;
     private int maxAltitude;
     private String image;
+    private int motorTubeDiam;
+    private int motorTubeLen;
+    private int chuteSize;
     private ArrayList<Integer> flightLogIDs;
 
     public Rocket(int id) {
@@ -28,6 +31,9 @@ public class Rocket implements Serializable {
         this.maxAltitude = -1;
         this.flightLogIDs = new ArrayList<Integer>();
         this.image = "";
+        this.motorTubeDiam = 0;
+        this.motorTubeLen = 0;
+        this.chuteSize = 0;
     }
 
     /**
@@ -42,11 +48,15 @@ public class Rocket implements Serializable {
         this.weight = weight;
     }
 
-    public Rocket(int id, String name, float weight, int flightCount, int maxAltitude, String image) {
+    public Rocket(int id, String name, float weight, int flightCount, int maxAltitude, String image,
+                  int motorTubeDiam, int motorTubeLen, int chuteSize) {
         this(id, name, weight);
         this.flightCount = flightCount;
         this.maxAltitude = maxAltitude;
         this.image = image;
+        this.motorTubeDiam = motorTubeDiam;
+        this.motorTubeLen = motorTubeLen;
+        this.chuteSize = chuteSize;
     }
 
     public ArrayList<Integer> getFlightLogIDs() {
@@ -109,6 +119,30 @@ public class Rocket implements Serializable {
     public void setMaxAltitude(int maxAltitude) {
         if (maxAltitude > this.maxAltitude)
             this.maxAltitude = maxAltitude;
+    }
+
+    public int getMotorTubeDiam() {
+        return motorTubeDiam;
+    }
+
+    public void setMotorTubeDiam(int motorTubeDiam) {
+        this.motorTubeDiam = motorTubeDiam;
+    }
+
+    public int getMotorTubeLen() {
+        return motorTubeLen;
+    }
+
+    public void setMotorTubeLen(int motorTubeLen) {
+        this.motorTubeLen = motorTubeLen;
+    }
+
+    public int getChuteSize() {
+        return chuteSize;
+    }
+
+    public void setChuteSize(int chuteSize) {
+        this.chuteSize = chuteSize;
     }
 
     @Override
