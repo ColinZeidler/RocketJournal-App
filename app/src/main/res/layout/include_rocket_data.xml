@@ -65,6 +65,57 @@
             android:id="@+id/r_altitude"
             app:layout_row="2"
             app:layout_column="2"/>
+
+        <!-- Row 4 -->
+        <TextView
+            style="@style/table_text.bold"
+            android:text="@string/motorTubeDiam_header"
+            app:layout_row="3"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
+            android:layout_width="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            style="@style/table_text"
+            android:text="@string/placeholder_number"
+            android:id="@+id/r_motorTubeDiam"
+            app:layout_row="3"
+            app:layout_column="2"/>
+
+        <!-- Row 5 -->
+        <TextView
+            style="@style/table_text.bold"
+            android:text="@string/motorTubeLen_header"
+            app:layout_row="4"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
+            android:layout_width="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            style="@style/table_text"
+            android:text="@string/placeholder_number"
+            android:id="@+id/r_motorTubeLen"
+            app:layout_row="4"
+            app:layout_column="2"/>
+
+        <!-- Row 6 -->
+        <TextView
+            style="@style/table_text.bold"
+            android:text="@string/chuteSize_header"
+            app:layout_row="5"
+            app:layout_column="0"/>
+        <android.support.v7.widget.Space
+            app:layout_column="1"
+            android:layout_width="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            style="@style/table_text"
+            android:text="@string/placeholder_number"
+            android:id="@+id/r_chuteSize"
+            app:layout_row="5"
+            app:layout_column="2"/>
     </android.support.v7.widget.GridLayout>
 
 </LinearLayout>

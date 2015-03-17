@@ -53,6 +53,9 @@
     <string name="date_header">Date:</string>
     <string name="altitude_header">Max Altitude:</string>
     <string name="altitude_header_2">Altitude:</string>
+    <string name="motorTubeDiam_header">Max Motor Diameter:</string>
+    <string name="motorTubeLen_header">Max Motor Length:</string>
+    <string name="chuteSize_header">Parachute Size:</string>
 
     //Error Messages
     <string name="error_invalid_delay">Invalid input; Delay must be a number</string>
