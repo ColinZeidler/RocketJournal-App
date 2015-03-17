@@ -63,6 +63,9 @@
     //Error Messages
     <string name="error_invalid_delay">Invalid input; Delay must be a number</string>
     <string name="error_invalid_weight">Invalid input; Weight must be a number</string>
+    <string name="error_invalid_mTD">Invalid input; Motor diameter must be a number</string>
+    <string name="error_invalid_mTL">Invalid input; Motor length must be a number</string>
+    <string name="error_invalid_chute">Invalid input; Parachute size must be a number</string>
     <string name="empty_list_rocket">You have no rockets,\npress add to get started</string>
     <string name="empty_list_flightlogs">You have no flight logs,\npress add to get started</string>
     <string name="error_invalid_altitude">Invalid input; Altitude must be a number</string>

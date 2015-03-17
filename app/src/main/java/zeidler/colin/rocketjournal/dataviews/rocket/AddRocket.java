@@ -24,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -156,6 +158,9 @@ public class AddRocket extends ActionBarActivity {
     public boolean saveToDB(Rocket rocket) {
         TextView name = (TextView) findViewById(R.id.rocket_name);
         TextView weight = (TextView) findViewById(R.id.rocket_weight);
+        TextView mTD = (TextView) findViewById(R.id.rocket_mTubeDiam);
+        TextView mTL = (TextView) findViewById(R.id.rocket_mTubeLen);
+        TextView chuteSize = (TextView) findViewById(R.id.rocket_chuteSize);
 
         if (rocket == null)
             rocket = new Rocket(-1);
@@ -171,6 +176,7 @@ public class AddRocket extends ActionBarActivity {
             error.show();
             return false;
         }
+        rocket.setWeight(w);
 
         if (camera) {
             if (picture != null)
@@ -181,7 +187,38 @@ public class AddRocket extends ActionBarActivity {
             rocket.setImage(imageLocation);
         }
 
-        rocket.setWeight(w);
+        int  mTubeDiam, mTubeLen, cSize;
+        try {
+            mTubeDiam = Integer.parseInt(mTD.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast error = Toast.makeText(getApplicationContext(),
+                    getResources().getText(R.string.error_invalid_mTD),
+                    Toast.LENGTH_SHORT);
+            error.show();
+            return false;
+        }
+        rocket.setMotorTubeDiam(mTubeDiam);
+        try {
+            mTubeLen = Integer.parseInt(mTL.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast error = Toast.makeText(getApplicationContext(),
+                    getResources().getText(R.string.error_invalid_mTL),
+                    Toast.LENGTH_SHORT);
+            error.show();
+            return false;
+        }
+        rocket.setMotorTubeLen(mTubeLen);
+        try {
+            cSize = Integer.parseInt(chuteSize.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast error = Toast.makeText(getApplicationContext(),
+                    getResources().getText(R.string.error_invalid_chute),
+                    Toast.LENGTH_SHORT);
+            error.show();
+            return false;
+        }
+        rocket.setChuteSize(cSize);
+
         if (!editing)
             model.addRocket(rocket);
         else
@@ -277,6 +314,9 @@ public class AddRocket extends ActionBarActivity {
                 TextView name = (TextView) rootView.findViewById(R.id.rocket_name);
                 TextView weight = (TextView) rootView.findViewById(R.id.rocket_weight);
                 ImageView image = (ImageView) rootView.findViewById(R.id.rocket_image);
+                TextView mTubeDiam = (TextView) rootView.findViewById(R.id.rocket_mTubeDiam);
+                TextView mTubeLen = (TextView) rootView.findViewById(R.id.rocket_mTubeLen);
+                TextView chuteSize = (TextView) rootView.findViewById(R.id.rocket_chuteSize);
 
                 String imageS = rocket.getImage();
                 if (!imageS.equals("")) {
@@ -288,6 +328,9 @@ public class AddRocket extends ActionBarActivity {
 
                 name.setText(rocket.getName());
                 weight.setText(String.valueOf(rocket.getWeight()));
+                mTubeDiam.setText(String.valueOf(rocket.getMotorTubeDiam()));
+                mTubeLen.setText(String.valueOf(rocket.getMotorTubeLen()));
+                chuteSize.setText(String.valueOf(rocket.getChuteSize()));
             }
 
             return rootView;
