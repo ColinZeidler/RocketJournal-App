@@ -118,14 +118,14 @@ public class AddRocket extends ActionBarActivity {
      * @param v the View object that was selected
      */
     public void loadImage(View v) {
-        Log.i("AddRocket", "loadImage");
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle(R.string.imageDialogTitle)
-                .setItems(R.array.imageDialogArray, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
+//        Log.i("AddRocket", "loadImage");
+//        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+//        builder.setTitle(R.string.imageDialogTitle)
+//                .setItems(R.array.imageDialogArray, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        switch (which) {
+//                            case 0:
                                 Log.i("AddRocket", "Camera");
                                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -134,18 +134,18 @@ public class AddRocket extends ActionBarActivity {
                                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(TEMP_CAMERA_FILE));
                                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                                 }
-                                break;
-                            case 1:
-                                Log.i("AddRocket", "Gallery");
-                                Intent getPictureIntent = new Intent();
-                                getPictureIntent.setType("image/*");
-                                getPictureIntent.setAction(Intent.ACTION_GET_CONTENT);
-                                startActivityForResult(Intent.createChooser(getPictureIntent, "Select Picture"), REQUEST_GALLERY_IMAGE);
-                                break;
-                        }
-                    }
-                });
-        builder.show();
+//                                break;
+//                            case 1:
+//                                Log.i("AddRocket", "Gallery");
+//                                Intent getPictureIntent = new Intent();
+//                                getPictureIntent.setType("image/*");
+//                                getPictureIntent.setAction(Intent.ACTION_GET_CONTENT);
+//                                startActivityForResult(Intent.createChooser(getPictureIntent, "Select Picture"), REQUEST_GALLERY_IMAGE);
+//                                break;
+//                        }
+//                    }
+//                });
+//        builder.show();
     }
 
     /**
