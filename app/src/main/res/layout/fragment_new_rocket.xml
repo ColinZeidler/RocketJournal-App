@@ -52,4 +52,25 @@
         android:id="@+id/rocket_weight"
         android:inputType="numberDecimal"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mTubeDiam_field"
+        android:id="@+id/rocket_mTubeDiam"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mTubeLen_field"
+        android:id="@+id/rocket_mTubeLen"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/chuteSize_field"
+        android:id="@+id/rocket_chuteSize"
+        android:inputType="number"/>
+
 </LinearLayout>

@@ -39,6 +39,9 @@
     <string name="results_field">Result</string>
     <string name="altitude_field">Altitude (ft)</string>
     <string name="image_change">Change Image</string>
+    <string name="mTubeDiam_field">Max Motor Diameter</string>
+    <string name="mTubeLen_field">Max Motor Length</string>
+    <string name="chuteSize_field">Parachute Size</string>
 
     //FlightLog View
     <string name="spec_table">Rocket Info</string>
