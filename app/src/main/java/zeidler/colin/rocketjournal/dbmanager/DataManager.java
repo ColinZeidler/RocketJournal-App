@@ -42,8 +42,8 @@ public class DataManager extends SQLiteOpenHelper{
     private static final String R_ALTITUDE = "altitude";
     private static final String R_IMAGE = "image";
     private static final String R_MOTORDIAM = "motorDiameter";
-    private static final String R_CHUTESIZE = "chuteSize";
     private static final String R_MOTORTUBELEN = "motorTubeLength";
+    private static final String R_CHUTESIZE = "chuteSize";
 
     private static DataManager instance;
     private SQLiteDatabase db;
@@ -68,8 +68,8 @@ public class DataManager extends SQLiteOpenHelper{
                 + R_KEY + " INTEGER PRIMARY KEY," + R_NAME + " TEXT,"
                 + R_WEIGHT + " REAL," + R_FLIGHTS + " INTEGER,"
                 + R_ALTITUDE + " INTEGER," + R_IMAGE + " TEXT,"
-                + R_MOTORDIAM + " INTEGER, " + R_CHUTESIZE + " INTEGER,"
-                + R_MOTORTUBELEN + "INTEGER);";
+                + R_MOTORDIAM + " INTEGER, " + R_MOTORTUBELEN + " INTEGER,"
+                + R_CHUTESIZE + "INTEGER);";
 
         db.execSQL(createTable);
 
@@ -89,8 +89,8 @@ public class DataManager extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 9) {//trying to preserve user data
             db.execSQL("ALTER TABLE " + R_TABLENAME + " ADD COLUMN " + R_MOTORDIAM + " INTEGER DEFAULT 0");
-            db.execSQL("ALTER TABLE " + R_TABLENAME + " ADD COLUMN " + R_CHUTESIZE + " INTEGER DEFAULT 0");
             db.execSQL("ALTER TABLE " + R_TABLENAME + " ADD COLUMN " + R_MOTORTUBELEN + " INTEGER DEFAULT 0");
+            db.execSQL("ALTER TABLE " + R_TABLENAME + " ADD COLUMN " + R_CHUTESIZE + " INTEGER DEFAULT 0");
         } else {
             db.execSQL("DROP TABLE IF EXISTS " + J_TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + R_TABLENAME);
@@ -200,7 +200,10 @@ public class DataManager extends SQLiteOpenHelper{
                 cursor.getFloat(2),     //weight
                 cursor.getInt(3),       //flight count
                 cursor.getInt(4),       //max altitude
-                cursor.getString(5));   //image
+                cursor.getString(5),    //image
+                cursor.getInt(6),       //mTubeDiam
+                cursor.getInt(7),       //mTubeLen
+                cursor.getInt(8));      //chuteSize
     }
 
     /**
@@ -215,6 +218,9 @@ public class DataManager extends SQLiteOpenHelper{
         values.put(R_FLIGHTS, rocket.getFlightCount());
         values.put(R_IMAGE, rocket.getImage());
         values.put(R_ALTITUDE, rocket.getMaxAltitude());
+        values.put(R_MOTORDIAM, rocket.getMotorTubeDiam());
+        values.put(R_MOTORTUBELEN, rocket.getMotorTubeLen());
+        values.put(R_CHUTESIZE, rocket.getChuteSize());
 
         db.insert(R_TABLENAME, null, values);
     }
