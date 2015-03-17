@@ -42,21 +42,21 @@ public class Rocket implements Serializable {
      * @param name      The Name of the Rocket
      * @param weight    The weight of the Rocket in pounds
      */
-    public Rocket(int id, String name, float weight) {
+    public Rocket(int id, String name, float weight, int motorTubeDiam, int motorTubeLen, int chuteSize) {
         this(id);
         this.name = name;
         this.weight = weight;
+        this.motorTubeDiam = motorTubeDiam;
+        this.motorTubeLen = motorTubeLen;
+        this.chuteSize = chuteSize;
     }
 
     public Rocket(int id, String name, float weight, int flightCount, int maxAltitude, String image,
                   int motorTubeDiam, int motorTubeLen, int chuteSize) {
-        this(id, name, weight);
+        this(id, name, weight, motorTubeDiam, motorTubeLen, chuteSize);
         this.flightCount = flightCount;
         this.maxAltitude = maxAltitude;
         this.image = image;
-        this.motorTubeDiam = motorTubeDiam;
-        this.motorTubeLen = motorTubeLen;
-        this.chuteSize = chuteSize;
     }
 
     public ArrayList<Integer> getFlightLogIDs() {
