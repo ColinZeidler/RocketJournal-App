@@ -49,7 +49,7 @@ public class AddRocket extends ActionBarActivity {
     private static final int IMAGE_SCALE_HEIGHT = 1000;
     private File TEMP_CAMERA_FILE;
     private Bitmap picture;
-    private String imageLocation;
+    private String imageLocation = "";
     private boolean camera = false;
     private Context mContext;
 

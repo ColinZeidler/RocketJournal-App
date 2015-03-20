@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
 import zeidler.colin.rocketjournal.UpdateList;
@@ -103,8 +105,19 @@ public class RocketDetailFragment extends Fragment {
         TextView rWeight = (TextView) rootView.findViewById(R.id.r_weight);
         TextView rFCount = (TextView) rootView.findViewById(R.id.r_flights);
         TextView rAlt = (TextView) rootView.findViewById(R.id.r_altitude);
+        TextView rMD = (TextView) rootView.findViewById(R.id.r_motorTubeDiam);
+        TextView rML = (TextView) rootView.findViewById(R.id.r_motorTubeLen);
+        TextView rChute = (TextView) rootView.findViewById(R.id.r_chuteSize);
+
         final ImageView rImage = (ImageView) rootView.findViewById(R.id.rocket_image);
 
+        rName.setText(rocket.getName());
+        rWeight.setText(String.valueOf(rocket.getWeight()) + " lbs");
+        rFCount.setText(String.valueOf(rocket.getFlightCount()));
+        rAlt.setText(String.valueOf(rocket.getMaxAltitude()));
+        rMD.setText(String.valueOf(rocket.getMotorTubeDiam()));
+        rML.setText(String.valueOf(rocket.getMotorTubeLen()));
+        rChute.setText(String.valueOf(rocket.getChuteSize()));
 
         final String image = rocket.getImage();
         if (!image.equals("")) {
@@ -113,11 +126,6 @@ public class RocketDetailFragment extends Fragment {
         } else {
             rImage.setImageDrawable(rootView.getResources().getDrawable(R.drawable.default_rocket));
         }
-
-        rName.setText(rocket.getName());
-        rWeight.setText(String.valueOf(rocket.getWeight()) + " lbs");
-        rFCount.setText(String.valueOf(rocket.getFlightCount()));
-        rAlt.setText(String.valueOf(rocket.getMaxAltitude()));
 
         FlightLogListAdapter arrAdapter = new FlightLogListAdapter(mContext,
                 R.layout.adapter_flightlog,
