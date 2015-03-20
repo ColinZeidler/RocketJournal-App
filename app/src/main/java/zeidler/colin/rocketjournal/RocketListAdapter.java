@@ -43,9 +43,13 @@ public class RocketListAdapter extends ArrayAdapter<Rocket> {
         Rocket rocket = rockets.get(position);
         if (rocket != null) {
             String image = rocket.getImage();
-            if (!image.equals("")) {
-                BitmapLoader task = new BitmapLoader(iView);
-                task.execute(image);
+            if (image != null) {
+                if (!image.equals("")) {
+                    BitmapLoader task = new BitmapLoader(iView);
+                    task.execute(image);
+                } else {
+                    iView.setImageDrawable(v.getResources().getDrawable(R.drawable.default_rocket));
+                }
             } else {
                 iView.setImageDrawable(v.getResources().getDrawable(R.drawable.default_rocket));
             }

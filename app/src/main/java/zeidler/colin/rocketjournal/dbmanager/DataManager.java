@@ -21,7 +21,7 @@ import zeidler.colin.rocketjournal.data.Rocket;
  */
 public class DataManager extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION   = 8;
+    private static final int DATABASE_VERSION   = 9;
     private static final String DATABASE_NAME   = "Rocket Journal";
 
     private static final String J_TABLENAME = "Journals";
@@ -68,8 +68,8 @@ public class DataManager extends SQLiteOpenHelper{
                 + R_KEY + " INTEGER PRIMARY KEY," + R_NAME + " TEXT,"
                 + R_WEIGHT + " REAL," + R_FLIGHTS + " INTEGER,"
                 + R_ALTITUDE + " INTEGER," + R_IMAGE + " TEXT,"
-                + R_MOTORDIAM + " INTEGER, " + R_MOTORTUBELEN + " INTEGER,"
-                + R_CHUTESIZE + "INTEGER);";
+                + R_MOTORDIAM + " INTEGER," + R_MOTORTUBELEN + " INTEGER,"
+                + R_CHUTESIZE + " INTEGER);";
 
         db.execSQL(createTable);
 
