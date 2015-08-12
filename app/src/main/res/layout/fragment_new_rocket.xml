@@ -1,76 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Rocket"
-        style="@style/display_text.medium"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:onClick="loadImage"
-            android:src="@drawable/default_rocket"
-            android:scaleType="centerCrop"
-            android:id="@+id/rocket_image"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/display_text.medium"
-            android:layout_alignBottom="@+id/rocket_image"
-            android:padding="8dp"
-            android:text="@string/image_change"
-            android:background="@color/name_bg"
-            android:textColor="@color/white"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:onClick="loadImage"
+                android:src="@drawable/default_rocket"
+                android:scaleType="centerCrop"
+                android:id="@+id/rocket_image"/>
+
+            <TextView
+                style="@style/display_text.medium"
+                android:layout_alignBottom="@+id/rocket_image"
+                android:padding="8dp"
+                android:text="@string/image_change"
+                android:background="@color/name_bg"
+                android:textColor="@color/white"/>
 
         </RelativeLayout>
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/name_field"
-        android:id="@+id/rocket_name"
-        android:inputType="textCapWords"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/weight_field"
-        android:id="@+id/rocket_weight"
-        android:inputType="numberDecimal"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/mTubeDiam_field"
-        android:id="@+id/rocket_mTubeDiam"
-        android:inputType="number"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_field"
+                android:id="@+id/rocket_name"
+                android:inputType="textCapWords"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/mTubeLen_field"
-        android:id="@+id/rocket_mTubeLen"
-        android:inputType="number"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/weight_field"
+                android:id="@+id/rocket_weight"
+                android:inputType="numberDecimal"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/chuteSize_field"
-        android:id="@+id/rocket_chuteSize"
-        android:inputType="number"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mTubeDiam_field"
+                android:id="@+id/rocket_mTubeDiam"
+                android:inputType="number"/>
 
-</LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mTubeLen_field"
+                android:id="@+id/rocket_mTubeLen"
+                android:inputType="number"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/chuteSize_field"
+                android:id="@+id/rocket_chuteSize"
+                android:inputType="number"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
