@@ -46,9 +46,10 @@ public class FlightLogListAdapter extends ArrayAdapter<FlightLog> {
             TextView status = (TextView) v.findViewById(R.id.adapter_status);
 
             String n = DataModel.getInstance(mContext).getRocket(flightLog.getRocketID()).getName();
+            n = n + ", " + flightLog.getMotor();
             name.setText(n);
             Format formatter = new SimpleDateFormat(v.getResources().getString(R.string.date_format_use));
-            String statusT = flightLog.getResult().toString() + " launched: " + formatter.format(flightLog.getDate());
+            String statusT = flightLog.getResult().toString() + ", launched: " + formatter.format(flightLog.getDate());
             status.setText(statusT);
 
             v.setTag(flightLog.getId());
