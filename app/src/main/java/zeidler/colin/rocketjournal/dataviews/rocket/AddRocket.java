@@ -47,6 +47,7 @@ public class AddRocket extends ActionBarActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int IMAGE_SCALE_WIDTH = 1000;
     private static final int IMAGE_SCALE_HEIGHT = 1000;
+    private static final String TEMP_IMAGE_NAME = "temp.jpg";
     private File TEMP_CAMERA_FILE;
     private Bitmap picture;
     private String imageLocation = "";
@@ -132,7 +133,7 @@ public class AddRocket extends ActionBarActivity {
                                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                                     TEMP_CAMERA_FILE = new File(Environment.getExternalStorageDirectory(),
-                                            "temp.jpg");
+                                            TEMP_IMAGE_NAME);
                                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(TEMP_CAMERA_FILE));
                                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                                 }
@@ -235,13 +236,13 @@ public class AddRocket extends ActionBarActivity {
                 camera = true;
                 //Full image
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                picture = BitmapFactory.decodeFile(TEMP_CAMERA_FILE.getAbsolutePath(),
+                picture = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getPath() +  File.separator + TEMP_IMAGE_NAME,
                         bmOptions);
                 picture = scaleDown(picture, IMAGE_SCALE_WIDTH, IMAGE_SCALE_HEIGHT);
                 iView.setImageBitmap(picture);
                 Log.i("PICTURE", picture.getHeight() + " height");
                 Log.i("PICTURE", picture.getWidth() + " width");
-                TEMP_CAMERA_FILE.delete();
+                new File(Environment.getExternalStorageDirectory().getPath(), TEMP_IMAGE_NAME).delete();
             } else if (requestCode == REQUEST_GALLERY_IMAGE) {
                 camera = false;
                 Uri selectedImage = data.getData();
