@@ -1,5 +1,6 @@
 package zeidler.colin.rocketjournal.dataviews.rocket;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
     private View rootView;
     private RocketDetailFragment detailFragment;
     private final String listFragmentTag = "RocketList";
+    private final String detailFragmentTag = "Details";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
                 if (detailFragment == null)
                     detailFragment = new RocketDetailFragment();
                 getChildFragmentManager().beginTransaction().add(R.id.rocket_details_fragment,
-                        detailFragment).commit();
+                        detailFragment, detailFragmentTag).commit();
             }
         }
 
@@ -55,14 +57,15 @@ public class RocketPageHandler extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int r = (Integer) view.getTag();
-        if (detailFragment == null) {
+        if (rootView.findViewById(R.id.rocket_details_fragment) != null) {
+            detailFragment = (RocketDetailFragment) getChildFragmentManager().findFragmentByTag(detailFragmentTag);
+            view.setSelected(true);
+            detailFragment.update(r);
+        } else {
             Intent intent = new Intent();
             intent.setClass(mContext, RocketDetailActivity.class);
             intent.putExtra("Rocket", r);
             startActivity(intent);
-        } else {
-            view.setSelected(true);
-            detailFragment.update(r);
         }
     }
 

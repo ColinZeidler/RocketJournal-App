@@ -26,6 +26,7 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
     private Context mContext;
     private FlightLogDetailFragment detailFragment;
     private final String listFragmentTag = "FlightList";
+    private final String detailFragmentTag = "Details";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
                 if (detailFragment == null)
                     detailFragment = new FlightLogDetailFragment();
                 getChildFragmentManager().beginTransaction().add(R.id.flightlog_details_fragment,
-                        detailFragment).commit();
+                        detailFragment, detailFragmentTag).commit();
             }
         }
         mContext = container.getContext();
@@ -49,14 +50,15 @@ public class FlightLogPageHandler extends Fragment implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int j = (Integer)view.getTag();
-        if (detailFragment == null) {
+        if (rootView.findViewById(R.id.flightlog_details_fragment) != null) {
+            detailFragment = (FlightLogDetailFragment) getChildFragmentManager().findFragmentByTag(detailFragmentTag);
+            view.setSelected(true);
+            detailFragment.update(j);
+        } else {
             Intent intent = new Intent();
             intent.setClass(mContext, FlightLogDetailActivity.class);
             intent.putExtra("Journal", j);
             startActivity(intent);
-        } else {
-            view.setSelected(true);
-            detailFragment.update(j);
         }
     }
 
