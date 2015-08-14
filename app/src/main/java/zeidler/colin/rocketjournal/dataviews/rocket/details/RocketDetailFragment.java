@@ -50,7 +50,7 @@ public class RocketDetailFragment extends Fragment {
             rocketID = getActivity().getIntent().getExtras().getInt("Rocket");
             populate();
         } catch (Exception e) {
-            //do nothing
+            e.printStackTrace();
         }
         //end of change
         return rootView;

@@ -41,7 +41,7 @@ public class FlightLogDetailFragment extends Fragment {
             flightLogID = getActivity().getIntent().getExtras().getInt("Journal");
             populate();
         } catch (Exception e) {
-            //do nothing
+            e.printStackTrace();
         }
         //end of change
         return rootView;

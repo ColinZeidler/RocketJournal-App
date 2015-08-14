@@ -1,6 +1,5 @@
 package zeidler.colin.rocketjournal.dataviews.rocket;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
