@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <include layout="@layout/include_rocket_name"
-        android:layout_height="200dp"
-        android:layout_width="match_parent"/>
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-        <android.support.v7.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_vertical_margin" />
+        <include layout="@layout/include_rocket_name"
+            android:layout_height="200dp"
+            android:layout_width="match_parent"/>
 
-        <include layout="@layout/include_rocket_data"/>
-
-        <android.support.v7.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_vertical_margin" />
-
-        <TextView
-            style="@style/display_text.bold"
-            android:text="@string/flight_header"/>
-
-        <ListView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/flightlog_list"/>
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+            <android.support.v7.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_vertical_margin" />
+
+            <include layout="@layout/include_rocket_data"/>
+
+            <android.support.v7.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_vertical_margin" />
+
+            <TextView
+                style="@style/display_text.bold"
+                android:text="@string/flight_header"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/flightlog_list"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/expanded_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:background="@color/name_bg"
+        android:contentDescription="Touch to close"/>
+
+</FrameLayout>

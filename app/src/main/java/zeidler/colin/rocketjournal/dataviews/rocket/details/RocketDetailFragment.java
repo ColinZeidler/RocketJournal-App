@@ -2,12 +2,11 @@ package zeidler.colin.rocketjournal.dataviews.rocket.details;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import zeidler.colin.rocketjournal.FlightLogListAdapter;
 import zeidler.colin.rocketjournal.R;
@@ -45,6 +42,14 @@ public class RocketDetailFragment extends Fragment {
         setHasOptionsMenu(true);
         mContext = container.getContext();
 
+        final View rocketImageView = rootView.findViewById(R.id.rocket_image);
+        rocketImageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                displayFullImage(((ImageView)rocketImageView).getDrawable());
+            }
+        });
+
         //TODO change this for blank view
         try {
             rocketID = getActivity().getIntent().getExtras().getInt("Rocket");
@@ -54,6 +59,18 @@ public class RocketDetailFragment extends Fragment {
         }
         //end of change
         return rootView;
+    }
+
+    private void displayFullImage(Drawable image) {
+        final ImageView expandedView = (ImageView) rootView.findViewById(R.id.expanded_image);
+        expandedView.setImageDrawable(image);
+        expandedView.setVisibility(View.VISIBLE);
+        expandedView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expandedView.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override

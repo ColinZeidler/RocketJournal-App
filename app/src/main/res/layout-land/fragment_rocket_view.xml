@@ -1,56 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.4">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/include_rocket_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
+
+                <include layout="@layout/include_rocket_data"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <android.support.v7.widget.Space
+            android:layout_height="match_parent"
+            android:layout_width="@dimen/activity_vertical_margin" />
+
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:paddingTop="@dimen/activity_vertical_margin">
 
-            <include layout="@layout/include_rocket_name"
+            <TextView
+                style="@style/display_text.bold"
+                android:text="@string/flight_header"/>
+
+            <ListView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"/>
-
-            <include layout="@layout/include_rocket_data"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                android:id="@+id/flightlog_list"/>
 
         </LinearLayout>
 
-    </ScrollView>
-
-    <android.support.v7.widget.Space
-        android:layout_height="match_parent"
-        android:layout_width="@dimen/activity_vertical_margin" />
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.6"
-        android:paddingTop="@dimen/activity_vertical_margin">
-
-        <TextView
-            style="@style/display_text.bold"
-            android:text="@string/flight_header"/>
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/flightlog_list"/>
-
     </LinearLayout>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/expanded_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:background="@color/name_bg"
+        android:contentDescription="Touch to close"/>
+
+</FrameLayout>
